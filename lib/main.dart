@@ -1,15 +1,20 @@
 import 'package:cap_stone_project/Theme/light_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'home.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
