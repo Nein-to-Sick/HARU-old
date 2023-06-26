@@ -3,27 +3,38 @@ import 'package:flutter/material.dart';
 class NextButton extends StatelessWidget {
   final Function()? onTap;
   final String text;
+  final bool isSelected;
+
   const NextButton({
     super.key,
     required this.onTap,
     required this.text,
+    required this.isSelected,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: isSelected ? onTap : () {},
       child: Container(
-        padding: const EdgeInsets.all(25),
+        height: 60,
+        width: 335,
         decoration: BoxDecoration(
-          color: Color(0xFF619F70),
-          borderRadius: BorderRadius.circular(67),
-        ),
+            color: isSelected
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.tertiary,
+            borderRadius: BorderRadius.circular(67),
+            border: Border.all(
+                color: isSelected
+                    ? Theme.of(context).colorScheme.primary
+                    : const Color(0xFF717171))),
         child: Center(
           child: Text(
             text,
-            style: const TextStyle(
-              color: Colors.white,
+            style: TextStyle(
+              color: isSelected
+                  ? Theme.of(context).colorScheme.background
+                  : const Color(0xFF717171),
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),
