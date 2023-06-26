@@ -67,7 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1015193375203',
     projectId: 'capstone-505a1',
     storageBucket: 'capstone-505a1.appspot.com',
-    iosClientId: '1015193375203-sstjrvj01v7b24s44pdp6lsv316g4uga.apps.googleusercontent.com',
+    iosClientId:
+        '1015193375203-sstjrvj01v7b24s44pdp6lsv316g4uga.apps.googleusercontent.com',
     iosBundleId: 'com.example.capStoneProject',
   );
 
@@ -77,7 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1015193375203',
     projectId: 'capstone-505a1',
     storageBucket: 'capstone-505a1.appspot.com',
-    iosClientId: '1015193375203-2fvleq3lnoj7rfef3e5j0ea5sn2cevcr.apps.googleusercontent.com',
+    iosClientId:
+        '1015193375203-2fvleq3lnoj7rfef3e5j0ea5sn2cevcr.apps.googleusercontent.com',
     iosBundleId: 'com.example.capStoneProject.RunnerTests',
   );
 }

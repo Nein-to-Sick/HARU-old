@@ -1,4 +1,4 @@
-import 'package:cap_stone_project/pages/self_diagnosis_page.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/self_diagnosis_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
