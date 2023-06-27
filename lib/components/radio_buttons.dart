@@ -1,5 +1,7 @@
+import 'package:cap_stone_project/pages/self_diagnosis/self_diagnosis_model.dart';
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RadioButtons extends StatelessWidget {
   const RadioButtons({super.key});
@@ -43,6 +45,8 @@ class RadioButtons extends StatelessWidget {
           ),
           radioButtonValue: (value) {
             print(value);
+            Provider.of<DiagnosisModel>(context, listen: false)
+                .selectRadiobutton();
           },
           selectedColor: Theme.of(context).colorScheme.primary,
           unSelectedBorderColor: Colors.black,

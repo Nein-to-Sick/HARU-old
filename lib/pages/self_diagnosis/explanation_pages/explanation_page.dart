@@ -2,8 +2,8 @@ import 'package:cap_stone_project/pages/self_diagnosis/self_diagnosis_model.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class Question2 extends StatelessWidget {
-  const Question2({super.key});
+class ExplanationPage extends StatelessWidget {
+  const ExplanationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class Question2 extends StatelessWidget {
                 .selectRadiobutton();
           },
           child: const Text(
-            'data2',
+            '이용방법 소개',
             style: TextStyle(fontSize: 50),
           ),
         ),

@@ -1,74 +1,131 @@
 import 'package:cap_stone_project/components/next_button.dart';
 import 'package:cap_stone_project/components/step_progress_indicator.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/explanation_pages/complete_page.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/explanation_pages/explanation_page.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/question_pages/question1.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/question_pages/question2.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/question_pages/question3.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/question_pages/question4.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/question_pages/question5.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/self_introduction_pages/self_introduction_page.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/self_diagnosis_model.dart';
 import 'package:flutter/material.dart';
-import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'package:provider/provider.dart';
 
 class SelfDiagnosisPage extends StatelessWidget {
   const SelfDiagnosisPage({super.key});
 
-  void nextPage() {
-    print("next!!");
-  }
-
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 5,
-      initialIndex: 0,
-      child: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 83.0, left: 34, right: 34),
-              child: MyProgressIndicator(),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 34, right: 34, top: 21),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: const Icon(Icons.arrow_back),
-                  ),
-                  const Text(
-                    '1/5',
-                    style: TextStyle(
+    TabController tabController = DefaultTabController.of(context);
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          //  progress bar
+          const Padding(
+            padding: EdgeInsets.only(top: 83.0, left: 34, right: 34),
+            child: MyProgressIndicator(),
+          ),
+
+          //  back arrow icon button, page numer
+          Padding(
+            padding: const EdgeInsets.only(left: 34, right: 34, top: 21),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                //  back arrow
+                GestureDetector(
+                  onTap: () {
+                    if (Provider.of<DiagnosisModel>(context, listen: false)
+                            .currentTabIndex >
+                        0) {
+                      Provider.of<DiagnosisModel>(context, listen: false)
+                          .decreaseProgressIndex();
+                    } else {
+                      print('no more page');
+                    }
+                    tabController.animateTo(
+                        Provider.of<DiagnosisModel>(context, listen: false)
+                            .currentTabIndex);
+                  },
+                  child: const Icon(Icons.arrow_back),
+                ),
+
+                //  page number
+                RichText(
+                  text: TextSpan(
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
+                      color: Colors.black,
                     ),
+                    children: [
+                      TextSpan(
+                        text: Provider.of<DiagnosisModel>(context)
+                            .currentProgressbarIndex
+                            .toString(),
+                      ),
+                      const TextSpan(
+                        text: '/',
+                      ),
+                      TextSpan(
+                        text: Provider.of<DiagnosisModel>(context)
+                            .getTotalStagePage()
+                            .toString(),
+                      )
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            const Expanded(
-              child: TabBarView(
-                //physics: NeverScrollableScrollPhysics(),
-                children: [
-                  Question1(),
-                  Question2(),
-                  Question3(),
-                  Question4(),
-                  Question5(),
-                ],
-              ),
+          ),
+
+          //  diagnosis question page
+          const Expanded(
+            child: TabBarView(
+              physics: NeverScrollableScrollPhysics(),
+              children: [
+                SelfIntroPage(),
+                Question1(),
+                Question2(),
+                Question3(),
+                Question4(),
+                Question5(),
+                ExplanationPage(),
+                CompletePage(),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 66, left: 29, right: 29),
-              child: NextButton(
-                onTap: nextPage,
-                text: '다음',
-                isSelected: false,
-              ),
+          ),
+
+          //  next button
+          Padding(
+            padding: const EdgeInsets.only(bottom: 66, left: 29, right: 29),
+            child: NextButton(
+              onTap: () {
+                if (Provider.of<DiagnosisModel>(context, listen: false)
+                        .currentTabIndex <
+                    Provider.of<DiagnosisModel>(context, listen: false)
+                        .getTotalPageNum()) {
+                  Provider.of<DiagnosisModel>(context, listen: false)
+                      .increaseProgressIndex();
+                } else {
+                  print('no more page');
+                }
+                tabController.animateTo(
+                    Provider.of<DiagnosisModel>(context, listen: false)
+                        .currentTabIndex);
+                Provider.of<DiagnosisModel>(context, listen: false)
+                    .moveNextPage();
+              },
+              text: '다음',
+              isSelected:
+                  Provider.of<DiagnosisModel>(context, listen: false).isSelected
+                      ? true
+                      : false,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -76,10 +133,7 @@ class SelfDiagnosisPage extends StatelessWidget {
 
 
 /*
-모든게 상태 관리야, 상태 관리가 필요하다....!
-radio 선택시 다음 버튼 활성화 및 색상 변화 애니메이션 추가 > isSelected
-radio 버튼의 value 파베로 넘기기
+radio 버튼의 value 파베로 넘기기, 뒤로 가기시 기본값 유지, 다음 버튼 활성화 유지
 유저 닉네임 문장에 띄우기
-페이지 넘길시 위의 페이지 번호, progress bar 변화, 텍스트 색상 변화
-뒤로 가기 아이콘 함수 구현
+전체적인 색상 병경에 애니메이션 효과 추가
 */
