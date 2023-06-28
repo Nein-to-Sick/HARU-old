@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 class StatisticState with ChangeNotifier {
-  DateTime _selectedDate = DateTime(2023, 6, 27);
+  DateTime _selectedDate = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
   final List<DateTime> _dates = [];
 
   StatisticState() {

@@ -5,6 +5,8 @@ import 'package:flutter_radar_chart/flutter_radar_chart.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:provider/provider.dart';
 
+import '../../components/customRadarChart.dart';
+
 class Statistic extends StatelessWidget {
   Statistic({super.key});
 
@@ -27,18 +29,9 @@ class Statistic extends StatelessWidget {
       statisticState.selectDate(date);
     }
 
-    const ticks = [7, 14, 21, 28, 35];
-    var features = ["AA", "BB", "CC", "DD", "EE", "FF", "GG", "HH"];
-    var data = [
-      [10.0, 20, 28, 5, 16, 15, 17, 6],
-      [14.5, 1, 4, 14, 23, 10, 6, 19]
-    ];
-
-    features = features.sublist(0, numberOfFeatures.floor());
-    data = data
-        .map((graph) => graph.sublist(0, numberOfFeatures.floor()))
-        .toList();
-
+    final labels = ['친밀성', '건강', '전문성', '취미', '규칙성', '성실성'];
+    final values = [0.6, 0.8, 0.4, 0.7, 0.5, 0.9];
+    const maxValue = 1.0;
 
     return Scaffold(
       body: SafeArea(
@@ -163,74 +156,31 @@ class Statistic extends StatelessWidget {
                   tabTextIndexSelected == 1 ? Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      // Padding(
-                      //   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      //   child: Row(
-                      //     mainAxisAlignment: MainAxisAlignment.start,
-                      //     children: [
-                      //       Text(
-                      //         'Dark mode',
-                      //         style: TextStyle(color: Colors.black),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
-                      // Padding(
-                      //   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      //   child: Row(
-                      //     mainAxisAlignment: MainAxisAlignment.start,
-                      //     children: [
-                      //       useSides
-                      //           ? Text(
-                      //         'Polygon border',
-                      //         style: darkMode
-                      //             ? TextStyle(color: Colors.white)
-                      //             : TextStyle(color: Colors.black),
-                      //       )
-                      //           : Text(
-                      //         'Circular border',
-                      //         style: darkMode
-                      //             ? TextStyle(color: Colors.white)
-                      //             : TextStyle(color: Colors.black),
-                      //       ),
-                      //       Switch(
-                      //         value: this.useSides,
-                      //         onChanged: (value) {
-                      //           // setState(() {
-                      //           //   useSides = value;
-                      //           // });
-                      //         },
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
-                      // Padding(
-                      //   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      //   child: Row(
-                      //     mainAxisAlignment: MainAxisAlignment.end,
-                      //     children: <Widget>[
-                      //       Text(
-                      //         'Number of features',
-                      //         style: TextStyle(
-                      //             color: darkMode ? Colors.white : Colors.black),
-                      //       ),
-                      //       Expanded(
-                      //         child: Slider(
-                      //           value: this.numberOfFeatures,
-                      //           min: 3,
-                      //           max: 8,
-                      //           divisions: 5,
-                      //           onChanged: (value) {
-                      //             // setState(() {
-                      //             //   numberOfFeatures = value;
-                      //             // });
-                      //           },
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
-
+                      const SizedBox(height: 30),
+                      const Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "완료한 미션",
+                            style: TextStyle(fontSize: 18),
+                          )),
+                      const Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "주로 한 미션",
+                            style: TextStyle(fontSize: 18),
+                          )),                      SizedBox(height: 30,),
+                      SizedBox(
+                        width: 200,
+                        height: 200,
+                        child: CustomRadarChart(
+                          labels: labels,
+                          values: values,
+                          maxValue: maxValue,
+                          lineColor: Colors.grey.shade300,//Color(0xffF4F4F4),
+                          dataPointColor: Theme.of(context).colorScheme.primary,
+                          dataLineColor: Theme.of(context).colorScheme.secondary, // Add this line for the data line color
+                        ),
+                      ),
                     ],
                   ) : Container()
                 ],
