@@ -1,44 +1,22 @@
 import 'package:cap_stone_project/model/mission.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'provider/missonProvider.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   final controller = PageController(viewportFraction: 0.8, keepPage: true);
-  late int currentIndex = 0;
-
-  void missionComplete(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          content: const SizedBox(
-              width: 337,
-              height: 220,
-              child: Column(
-                children: [
-                  SizedBox(height: 20,),
-                  Text('(와 끝낸거야? 대박)', style: TextStyle(color: Color(0xff717171), fontSize: 15),),
-                  SizedBox(height: 15,),
-                  Text("어땠어? 간단하게 알려줄래?", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-                ],
-              )),
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
+    final missionProvider = Provider.of<MissionProvider>(context);
+    final currentIndex = missionProvider.currentIndex;
+
+    void missionComplete(BuildContext context) {
+      missionProvider.missionComplete(context);
+    }
+
     final pages = List.generate(
         Mission().mission.length,
         (index) => Container(
@@ -139,9 +117,7 @@ class _HomePageState extends State<HomePage> {
                     );
                   },
                   onPageChanged: (index) {
-                    setState(() {
-                      currentIndex = index;
-                    });
+                    missionProvider.updateIndex(index);
                   },
                 ),
                 currentIndex != 0
@@ -190,8 +166,8 @@ class _HomePageState extends State<HomePage> {
                         shape: const CircleBorder(),
                       ),
                       child: SizedBox(
-                        width: 70,
-                        height: 70,
+                        width: 68,
+                        height: 68,
                         child: Image.asset(
                           "./assets/images/lamp.png",
                           scale: 2,

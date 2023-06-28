@@ -1,8 +1,11 @@
 import 'package:cap_stone_project/profile.dart';
+import 'package:cap_stone_project/provider/missonProvider.dart';
+import 'package:cap_stone_project/provider/statisticState.dart';
 import 'package:cap_stone_project/statistic.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import 'home.dart';
+import 'myhompage.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -36,10 +39,16 @@ class _MainPageState extends State<MainPage>
   Widget build(BuildContext context) {
     return Scaffold(
         body: _selectedIndex == 1
-            ? HomePage()
+            ? ChangeNotifierProvider(
+                create: (context) => MissionProvider(),
+                child: HomePage(),
+              )
             : _selectedIndex == 0
-                ? const Statistic()
-                : const Profile(),
+                ? ChangeNotifierProvider(
+                    create: (_) => StatisticState(),
+                    child: Statistic(),
+                  )
+                : MyHomePage(),
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
               border: Border(top: BorderSide(color: Colors.grey.shade200))),
@@ -51,17 +60,21 @@ class _MainPageState extends State<MainPage>
             tabs: [
               Tab(
                   child: _selectedIndex == 0
-                      ? Image.asset("./assets/images/statisticIcon_click.png")
+                      ? Image.asset(
+                          "./assets/images/icon/statisticIcon_click.png")
                       : Image.asset(
-                          "./assets/images/statisticIcon_unclick.png")),
+                          "./assets/images/icon/statisticIcon_unclick.png")),
               Tab(
                   child: _selectedIndex == 1
-                      ? Image.asset("./assets/images/homeIcon_click.png")
-                      : Image.asset("./assets/images/homeIcon_unclick.png")),
+                      ? Image.asset("./assets/images/icon/homeIcon_click.png")
+                      : Image.asset(
+                          "./assets/images/icon/homeIcon_unclick.png")),
               Tab(
                   child: _selectedIndex == 2
-                      ? Image.asset("./assets/images/profileIcon_click.png")
-                      : Image.asset("./assets/images/profileIcon_unclick.png")),
+                      ? Image.asset(
+                          "./assets/images/icon/profileIcon_click.png")
+                      : Image.asset(
+                          "./assets/images/icon/profileIcon_unclick.png")),
             ],
           ),
         ));
