@@ -19,12 +19,6 @@ class HomePage extends StatelessWidget {
       missionProvider.missionComplete(context, index);
     }
 
-    void signUserOut() {
-      FirebaseAuth.instance.signOut();
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AuthPage()));
-    }
-
     final pages = List.generate(
         Mission().mission.length,
         (index) => Container(
@@ -86,161 +80,156 @@ class HomePage extends StatelessWidget {
             ));
 
     return Scaffold(
-      appBar: AppBar(actions: [
-        IconButton(onPressed: signUserOut, icon: Icon(Icons.logout))
-      ]),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            const SizedBox(
-              height: 100,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          const SizedBox(
+            height: 100,
+          ),
+          const Text(
+            "오늘의 미션",
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 32,
+                fontWeight: FontWeight.w300),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          SizedBox(
+            height: 240,
+            child: Stack(
+              children: [
+                PageView.builder(
+                  controller: controller,
+                  itemCount: pages.length,
+                  itemBuilder: (_, index) {
+                    return Column(
+                      children: [
+                        Text(
+                          "${index + 1}/${pages.length}",
+                          style: const TextStyle(
+                              color: Color(0xff878787), fontSize: 14),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        pages[index % pages.length],
+                      ],
+                    );
+                  },
+                  onPageChanged: (index) {
+                    missionProvider.updateIndex(index);
+                  },
+                ),
+                currentIndex != 0
+                    ? Align(
+                        alignment: Alignment.centerLeft,
+                        child: GestureDetector(
+                          onTap: () {
+                            if (currentIndex > 0) {
+                              missionProvider.updateIndex(currentIndex - 1);
+                              controller.animateToPage(
+                                currentIndex - 1,
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.ease,
+                              );
+                            }
+                          },
+                          child: const Icon(
+                            Icons.arrow_back_ios_new,
+                            color: Color(0xffE4E4E4),
+                            size: 40,
+                          ),
+                        ))
+                    : Container(),
+                currentIndex != Mission().mission.length - 1
+                    ? Align(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                          onTap: () {
+                            if (currentIndex < pages.length - 1) {
+                              missionProvider.updateIndex(currentIndex + 1);
+                              controller.animateToPage(
+                                currentIndex + 1,
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.ease,
+                              );
+                            }
+                          },
+                          child: const Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: Color(0xffE4E4E4),
+                            size: 40,
+                          ),
+                        ))
+                    : Container()
+              ],
             ),
-            const Text(
-              "오늘의 미션",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 32,
-                  fontWeight: FontWeight.w300),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            SizedBox(
-              height: 240,
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          SizedBox(
+            height: 230,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 50.0),
               child: Stack(
                 children: [
-                  PageView.builder(
-                    controller: controller,
-                    itemCount: pages.length,
-                    itemBuilder: (_, index) {
-                      return Column(
-                        children: [
-                          Text(
-                            "${index + 1}/${pages.length}",
-                            style: const TextStyle(
-                                color: Color(0xff878787), fontSize: 14),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          pages[index % pages.length],
-                        ],
-                      );
-                    },
-                    onPageChanged: (index) {
-                      missionProvider.updateIndex(index);
-                    },
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30.0),
+                    child: Image.asset(
+                      "./assets/images/tree.png",
+                    ),
                   ),
-                  currentIndex != 0
-                      ? Align(
-                          alignment: Alignment.centerLeft,
-                          child: GestureDetector(
-                            onTap: () {
-                              if (currentIndex > 0) {
-                                missionProvider.updateIndex(currentIndex - 1);
-                                controller.animateToPage(
-                                  currentIndex - 1,
-                                  duration: const Duration(milliseconds: 500),
-                                  curve: Curves.ease,
-                                );
-                              }
-                            },
-                            child: const Icon(
-                              Icons.arrow_back_ios_new,
-                              color: Color(0xffE4E4E4),
-                              size: 40,
-                            ),
-                          ))
-                      : Container(),
-                  currentIndex != Mission().mission.length - 1
-                      ? Align(
-                          alignment: Alignment.centerRight,
-                          child: GestureDetector(
-                            onTap: () {
-                              if (currentIndex < pages.length - 1) {
-                                missionProvider.updateIndex(currentIndex + 1);
-                                controller.animateToPage(
-                                  currentIndex + 1,
-                                  duration: const Duration(milliseconds: 500),
-                                  curve: Curves.ease,
-                                );
-                              }
-                            },
-                            child: const Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              color: Color(0xffE4E4E4),
-                              size: 40,
-                            ),
-                          ))
-                      : Container()
+                  Padding(
+                    padding: const EdgeInsets.only(left: 150.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // 버튼을 클릭했을 때 실행될 코드
+                      },
+                      style: ElevatedButton.styleFrom(
+                        elevation: 5,
+                        backgroundColor: const Color(0xffA2D3FA),
+                        shape: const CircleBorder(),
+                      ),
+                      child: SizedBox(
+                        width: 68,
+                        height: 68,
+                        child: Image.asset(
+                          "./assets/images/lamp.png",
+                          scale: 2,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
-            const SizedBox(
-              height: 30,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.black12.withOpacity(0.025),
             ),
-            SizedBox(
-              height: 230,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 50.0),
-                child: Stack(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 30.0),
-                      child: Image.asset(
-                        "./assets/images/tree.png",
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 150.0),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          // 버튼을 클릭했을 때 실행될 코드
-                        },
-                        style: ElevatedButton.styleFrom(
-                          elevation: 5,
-                          backgroundColor: const Color(0xffA2D3FA),
-                          shape: const CircleBorder(),
-                        ),
-                        child: SizedBox(
-                          width: 68,
-                          height: 68,
-                          child: Image.asset(
-                            "./assets/images/lamp.png",
-                            scale: 2,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+            child: const Padding(
+              padding: EdgeInsets.only(
+                  left: 16.0, right: 16.0, top: 8.0, bottom: 8.0),
+              child: Column(
+                children: [
+                  Text(
+                    "\"나는 심심할때 창밖에 있는 새들을 봐\"",
+                    style: TextStyle(color: Color(0xff717171)),
+                  ),
+                  Text("너는?", style: TextStyle(color: Color(0xff717171))),
+                ],
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Colors.black12.withOpacity(0.025),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.only(
-                    left: 16.0, right: 16.0, top: 8.0, bottom: 8.0),
-                child: Column(
-                  children: [
-                    Text(
-                      "\"나는 심심할때 창밖에 있는 새들을 봐\"",
-                      style: TextStyle(color: Color(0xff717171)),
-                    ),
-                    Text("너는?", style: TextStyle(color: Color(0xff717171))),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
