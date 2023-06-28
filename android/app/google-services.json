@@ -29,6 +29,13 @@
             {
               "client_id": "1015193375203-lpmip6nn5b4447b41u2ee42hcfshunnc.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1015193375203-2fvleq3lnoj7rfef3e5j0ea5sn2cevcr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.capStoneProject.RunnerTests"
+              }
             }
           ]
         }
