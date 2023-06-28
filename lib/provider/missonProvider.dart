@@ -1,4 +1,4 @@
-import 'package:cap_stone_project/database_service.dart';
+import 'package:cap_stone_project/services/database_service.dart';
 import 'package:flutter/material.dart';
 
 class MissionProvider extends ChangeNotifier {
@@ -23,7 +23,10 @@ class MissionProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void missionComplete(BuildContext context) {
+  void missionComplete(BuildContext context, int missionIndex) {
+    final text1Controller = TextEditingController();
+    final text2Controller = TextEditingController();
+    final text3Controller = TextEditingController();
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -46,10 +49,10 @@ class MissionProvider extends ChangeNotifier {
                         children: [
                           face == 0
                               ? const SizedBox(
-                                  height: 30,
+                                  height: 20,
                                 )
                               : const SizedBox(
-                                  height: 25,
+                                  height: 20,
                                 ),
                           face != 0 && height == 400
                               ? Image.asset(
@@ -85,7 +88,7 @@ class MissionProvider extends ChangeNotifier {
                                   ),
                                 ),
                           const SizedBox(
-                            height: 20,
+                            height: 5,
                           ),
                           height == 400
                               ? Padding(
@@ -94,6 +97,7 @@ class MissionProvider extends ChangeNotifier {
                                   child: Column(
                                     children: [
                                       TextField(
+                                        controller: text1Controller,
                                         decoration: InputDecoration(
                                             focusedBorder: UnderlineInputBorder(
                                                 borderSide: BorderSide(
@@ -105,6 +109,7 @@ class MissionProvider extends ChangeNotifier {
                                       ),
                                       const SizedBox(height: 15,),
                                       TextField(
+                                        controller: text2Controller,
                                         decoration: InputDecoration(
                                             focusedBorder: UnderlineInputBorder(
                                                 borderSide: BorderSide(
@@ -116,6 +121,7 @@ class MissionProvider extends ChangeNotifier {
                                       ),
                                       const SizedBox(height: 15,),
                                       TextField(
+                                        controller: text3Controller,
                                         decoration: InputDecoration(
                                             focusedBorder: UnderlineInputBorder(
                                                 borderSide: BorderSide(
@@ -246,7 +252,7 @@ class MissionProvider extends ChangeNotifier {
                             height: 38,
                             child: ElevatedButton(
                               onPressed: () {
-                                DatabaseService().missionEmotion();
+                                DatabaseService().missionEmotion(face, missionIndex,"", "", "");
                                 Navigator.pop(context);
                               },
                               style: ElevatedButton.styleFrom(
@@ -270,6 +276,7 @@ class MissionProvider extends ChangeNotifier {
                                 height: 45,
                                 child: ElevatedButton(
                                   onPressed: () {
+                                    DatabaseService().missionEmotion(face, missionIndex, text1Controller.text, text2Controller.text, text3Controller.text);
                                     Navigator.pop(context);
                                   },
                                   style: ElevatedButton.styleFrom(
