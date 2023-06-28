@@ -1,30 +1,74 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import '../../components/customRadarChart.dart';
 
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final labels = ['친밀성', '건강', '전문성', '취미', '규칙성', '성실성'];
-    final values = [0.6, 0.8, 0.4, 0.7, 0.5, 0.9];
-    const maxValue = 1.0;
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Custom Radar Chart Example'),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text('저금통')),
+        body: const Center(child: CoinPiggyBank()),
       ),
-      body: Center(
-        child: Container(
-          width: 300,
-          height: 300,
-          child: CustomRadarChart(
-            labels: labels,
-            values: values,
-            maxValue: maxValue,
-            lineColor: Colors.grey.shade300,//Color(0xffF4F4F4),
-            dataPointColor: Theme.of(context).colorScheme.primary,
-            dataLineColor: Theme.of(context).colorScheme.secondary, // Add this line for the data line color
+    );
+  }
+}
+
+class CoinPiggyBank extends StatefulWidget {
+  const CoinPiggyBank({Key? key}) : super(key: key);
+
+  @override
+  _CoinPiggyBankState createState() => _CoinPiggyBankState();
+}
+
+class _CoinPiggyBankState extends State<CoinPiggyBank> {
+  int _coins = 0;
+
+  void _addCoin() {
+    setState(() {
+      _coins++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> piggyBankContent = [];
+
+    for (int i = 0; i < _coins; i++) {
+      double angle = 2 * 3.141592653589793 * i / _coins;
+      double offsetX = 50 + 40 * cos(angle);
+      double offsetY = 140 - 40 * (1 - sin(angle));
+      piggyBankContent.add(
+        Positioned(
+          left: offsetX,
+          top: offsetY,
+          child: Container(
+            height: 5,
+            width: 5,
+            decoration: const BoxDecoration(
+              color: Colors.yellow,
+              shape: BoxShape.circle,
+            ),
           ),
         ),
+      );
+    }
+
+    return GestureDetector(
+      onTap: _addCoin,
+      child: Stack(
+        children: [
+          Container(
+            width: 100,
+            height: 150,
+            padding: EdgeInsets.all(5.0),
+            decoration: BoxDecoration(
+              color: Colors.pinkAccent,
+              borderRadius: BorderRadius.circular(50),
+            ),
+          ),
+          ...piggyBankContent,
+        ],
       ),
     );
   }
