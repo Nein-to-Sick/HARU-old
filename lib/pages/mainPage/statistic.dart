@@ -230,13 +230,7 @@ class Statistic extends StatelessWidget {
                       //     ],
                       //   ),
                       // ),
-                      RadarChart.light(
-                        ticks: ticks,
-                        features: features,
-                        data: data,
-                        reverseAxis: true,
-                        useSides: useSides,
-                      ),
+
                     ],
                   ) : Container()
                 ],

@@ -1,7 +1,7 @@
 import 'package:cap_stone_project/model/mission.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'provider/missonProvider.dart';
+import '../../provider/missonProvider.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -13,8 +13,8 @@ class HomePage extends StatelessWidget {
     final missionProvider = Provider.of<MissionProvider>(context);
     final currentIndex = missionProvider.currentIndex;
 
-    void missionComplete(BuildContext context) {
-      missionProvider.missionComplete(context);
+    void missionComplete(BuildContext context, int index) {
+      missionProvider.missionComplete(context, index);
     }
 
     final pages = List.generate(
@@ -59,7 +59,7 @@ class HomePage extends StatelessWidget {
                           height: 33,
                           child: ElevatedButton(
                             onPressed: () {
-                              missionComplete(context);
+                              missionComplete(context, index);
                             },
                             style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
@@ -121,21 +121,45 @@ class HomePage extends StatelessWidget {
                   },
                 ),
                 currentIndex != 0
-                    ? const Align(
+                    ? Align(
                         alignment: Alignment.centerLeft,
-                        child: Icon(
-                          Icons.arrow_back_ios_new,
-                          color: Color(0xffE4E4E4),
-                          size: 40,
+                        child: GestureDetector(
+                          onTap: (){
+                            if(currentIndex > 0){
+                              missionProvider.updateIndex(currentIndex-1);
+                              controller.animateToPage(
+                                currentIndex - 1,
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.ease,
+                              );
+                            }
+                          },
+                          child: const Icon(
+                            Icons.arrow_back_ios_new,
+                            color: Color(0xffE4E4E4),
+                            size: 40,
+                          ),
                         ))
                     : Container(),
                 currentIndex != Mission().mission.length - 1
-                    ? const Align(
+                    ? Align(
                         alignment: Alignment.centerRight,
-                        child: Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          color: Color(0xffE4E4E4),
-                          size: 40,
+                        child: GestureDetector(
+                          onTap: (){
+                            if(currentIndex < pages.length - 1){
+                              missionProvider.updateIndex(currentIndex+1);
+                              controller.animateToPage(
+                                currentIndex + 1,
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.ease,
+                              );
+                            }
+                          },
+                          child: const Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: Color(0xffE4E4E4),
+                            size: 40,
+                          ),
                         ))
                     : Container()
               ],

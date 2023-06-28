@@ -1,4 +1,4 @@
-import 'package:cap_stone_project/mainPage.dart';
+import 'package:cap_stone_project/pages/mainPage/mainPage.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/self_diagnosis_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

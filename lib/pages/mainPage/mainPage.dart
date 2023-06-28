@@ -1,7 +1,7 @@
-import 'package:cap_stone_project/profile.dart';
+import 'package:cap_stone_project/pages/mainPage/profile.dart';
 import 'package:cap_stone_project/provider/missonProvider.dart';
 import 'package:cap_stone_project/provider/statisticState.dart';
-import 'package:cap_stone_project/statistic.dart';
+import 'package:cap_stone_project/pages/mainPage/statistic.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'home.dart';
