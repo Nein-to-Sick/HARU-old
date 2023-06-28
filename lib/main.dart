@@ -1,9 +1,11 @@
 import 'package:cap_stone_project/Theme/light_theme.dart';
+import 'package:cap_stone_project/auth/auth.dart';
 import 'package:cap_stone_project/mainPage.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/self_diagnosis_start_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'home.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,11 +23,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      theme: lightTheme,  
-      home: const MainPage(),
+      title: 'Flutter Demo',
+      theme: lightTheme,
+      home: const AuthPage(),
     );
   }
 }
