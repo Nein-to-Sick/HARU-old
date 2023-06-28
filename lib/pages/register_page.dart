@@ -150,7 +150,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 25,
+                    height: 20,
                   ),
 
                   //sign in button
@@ -159,7 +159,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       height: 60,
                       child: MyButton(onTap: signUp, text: '회원 가입')),
                   const SizedBox(
-                    height: 25,
+                    height: 10,
                   ),
 
                   //go to register page
@@ -172,6 +172,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           color: Color(0xFF717171),
                           decoration: TextDecoration.underline),
                     ),
+                  ),
+                  const SizedBox(
+                    height: 15,
                   ),
 
                   Row(
