@@ -6,10 +6,13 @@ class DatabaseService {
 
   void missionEmotion(int faceIndex, int missionIndex, String text1,
       String text2, String text3) async {
+    DateTime selectedDate = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+    String todayDate = selectedDate.toString().substring(0, 10);
+
     DocumentReference dr = FirebaseFirestore.instance
         .collection('users')
         .doc(userId)
-        .collection("mission")
+        .collection(todayDate)
         .doc("mission${missionIndex+1}");
 
     dr.update({
