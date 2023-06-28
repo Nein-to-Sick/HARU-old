@@ -1,15 +1,17 @@
 import 'package:cap_stone_project/Theme/light_theme.dart';
+import 'package:cap_stone_project/mainPage.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'home.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -21,8 +23,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      theme: lightTheme,
-      home: const HomePage(),
+      theme: lightTheme,  
+      home: const MainPage(),
     );
   }
 }
