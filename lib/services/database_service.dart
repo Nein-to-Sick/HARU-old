@@ -6,7 +6,6 @@ class DatabaseService {
 
   void missionEmotion(int faceIndex, int missionIndex, String text1,
       String text2, String text3) async {
-    print(userId);
     DocumentReference dr = FirebaseFirestore.instance
         .collection('users')
         .doc(userId)
