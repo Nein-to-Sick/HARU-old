@@ -139,3 +139,4 @@ app.*.symbols
 ios/Flutter/Release.xcconfig
 macos/Podfile.lock
 ios/Flutter/Release.xcconfig
+.DS_Store
