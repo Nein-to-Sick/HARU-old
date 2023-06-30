@@ -6,8 +6,8 @@ class UserInfoValueModel with ChangeNotifier {
   String userNickName = '';
   String height = '';
   String weight = '';
-  bool isAgree = false; //  whether user agree to start application
   bool isSubmitted = false; //  whether user agree to submit thier diagnosis
+  bool isAgree = false; //  whether user agree to start application
 
   void userNickNameUpdate(value) {
     userNickName = value;

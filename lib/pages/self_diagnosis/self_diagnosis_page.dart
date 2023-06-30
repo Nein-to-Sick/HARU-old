@@ -55,8 +55,11 @@ class SelfDiagnosisPage extends StatelessWidget {
                   onTap: () {
                     //  After submitied you can't go back
                     if (Provider.of<DiagnosisModel>(context, listen: false)
-                            .currentTabIndex !=
-                        resultPageindex + 1) {
+                                .currentTabIndex !=
+                            resultPageindex + 1 &&
+                        Provider.of<DiagnosisModel>(context, listen: false)
+                                .currentTabIndex !=
+                            0) {
                       if (Provider.of<DiagnosisModel>(context, listen: false)
                               .currentTabIndex >
                           0) {
@@ -79,8 +82,11 @@ class SelfDiagnosisPage extends StatelessWidget {
                   child: Icon(
                     Icons.arrow_back,
                     color: (Provider.of<DiagnosisModel>(context, listen: false)
-                                .currentTabIndex !=
-                            resultPageindex + 1)
+                                    .currentTabIndex !=
+                                resultPageindex + 1 &&
+                            Provider.of<DiagnosisModel>(context, listen: false)
+                                    .currentTabIndex !=
+                                0)
                         ? Colors.black
                         : Colors.white.withOpacity(0),
                   ),
