@@ -123,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: 44,
                       child: MyTextField(
                         controller: passwordTextController,
-                        hintText: '비민번호',
+                        hintText: '비밀번호',
                         obscureText: true,
                         validatorType: 2,
                       ),
@@ -166,11 +166,13 @@ class _LoginPageState extends State<LoginPage> {
                         SquareTile(
                             onTap: () {
                               showErrorMessage("카카오톡 로그인은 v.1.0에 추가될 예정입니다.");
-                            }, imagePath: 'assets/kakaologin.jpg'),
+                            },
+                            imagePath: 'assets/kakaologin.jpg'),
                         SquareTile(
                             onTap: () {
                               showErrorMessage("애플 로그인은 v.1.0에 추가될 예정입니다.");
-                            }, imagePath: 'assets/applelogin.jpg'),
+                            },
+                            imagePath: 'assets/applelogin.jpg'),
                       ],
                     ),
                   ],
