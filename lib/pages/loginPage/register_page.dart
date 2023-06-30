@@ -2,6 +2,7 @@ import 'package:cap_stone_project/components/button.dart';
 import 'package:cap_stone_project/components/square_tile.dart';
 import 'package:cap_stone_project/components/test_field.dart';
 import 'package:cap_stone_project/services/auth_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -44,6 +45,30 @@ class _RegisterPageState extends State<RegisterPage> {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: emailTextController.text,
             password: passwordTextController.text);
+
+        final userCollection = FirebaseFirestore.instance.collection("users");
+
+        String? userId = FirebaseAuth.instance.currentUser?.uid;
+
+        final docRef = userCollection.doc(userId);
+
+        await docRef.set({
+          "nickname": "",
+          "hight": 0.0,
+          "weight": 0.0,
+          "gender": 1,
+          "activity level": 1,
+          "age": 0,
+          "SelfDiagnosisisDone": false
+        });
+
+        DateTime selectedDate = DateTime(
+            DateTime.now().year, DateTime.now().month, DateTime.now().day);
+        String todayDate = selectedDate.toString().substring(0, 10);
+        FirebaseFirestore.instance
+            .collection("users")
+            .doc(docRef as String?)
+            .collection(todayDate);
 
         Navigator.pop(context);
       } else {
