@@ -1,16 +1,27 @@
-import 'package:cap_stone_project/pages/self_diagnosis/self_diagnosis_model.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/provider/self_diagnosis_model.dart';
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class RadioButtons extends StatelessWidget {
-  const RadioButtons({super.key});
+  final int tabPage;
+  const RadioButtons({
+    super.key,
+    required this.tabPage,
+  });
 
   @override
   Widget build(BuildContext context) {
+    bool valueStatus =
+        Provider.of<UserInfoValueModel>(context).isResponsed.elementAt(tabPage);
+
     return Column(
       children: [
         CustomRadioButton(
+          defaultSelected: valueStatus
+              ? Provider.of<UserInfoValueModel>(context).returnResponse(tabPage)
+              : null,
           elevation: 0,
           absoluteZeroSpacing: false,
           unSelectedColor: Theme.of(context).canvasColor,
@@ -44,9 +55,10 @@ class RadioButtons extends StatelessWidget {
             ),
           ),
           radioButtonValue: (value) {
-            print(value);
             Provider.of<DiagnosisModel>(context, listen: false)
-                .selectRadiobutton();
+                .recordResponse();
+            Provider.of<UserInfoValueModel>(context, listen: false)
+                .responseAdd(value, tabPage);
           },
           selectedColor: Theme.of(context).colorScheme.primary,
           unSelectedBorderColor: Colors.black,

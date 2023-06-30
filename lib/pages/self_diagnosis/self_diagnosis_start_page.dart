@@ -1,4 +1,5 @@
-import 'package:cap_stone_project/pages/self_diagnosis/self_diagnosis_model.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/provider/self_diagnosis_model.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/self_diagnosis_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,9 +19,12 @@ class SelfDiagnosisStartPage extends StatelessWidget {
             isSelected: false,
           ),
         ),
+        ChangeNotifierProvider(
+          create: (context) => UserInfoValueModel(),
+        ),
       ],
       child: const DefaultTabController(
-          length: 8, initialIndex: 0, child: SelfDiagnosisPage()),
+          length: 12, initialIndex: 0, child: SelfDiagnosisPage()),
     );
   }
 }

@@ -1,14 +1,14 @@
 import 'package:cap_stone_project/pages/self_diagnosis/provider/self_diagnosis_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:provider/provider.dart';
-import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-class MyProgressIndicator extends StatelessWidget {
-  const MyProgressIndicator({super.key});
+class AnimatedProgressBar extends StatelessWidget {
+  const AnimatedProgressBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    int stage = Provider.of<DiagnosisModel>(context, listen: false).stage;
+    int stage = Provider.of<DiagnosisModel>(context).stage;
     int currentProgress = Provider.of<DiagnosisModel>(context, listen: false)
         .currentProgressbarIndex;
     int totalIntro =
@@ -20,63 +20,60 @@ class MyProgressIndicator extends StatelessWidget {
 
     return Column(
       children: [
-        //  three different progress bar
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            //  intro page
-            StepProgressIndicator(
-              totalSteps: Provider.of<DiagnosisModel>(context).totalIntroPage,
-              currentStep: (stage > 0)
-                  ? totalIntro
-                  : (stage == 0)
-                      ? currentProgress
-                      : 0,
-              selectedColor: Theme.of(context).colorScheme.primary,
-              unselectedColor: Theme.of(context).colorScheme.secondary,
-              size: 7,
-              roundedEdges: const Radius.circular(5),
-              fallbackLength: 60,
-            ),
-            const SizedBox(
-              width: 6,
-            ),
-
-            //  diagnosis page
-            Expanded(
-              child: StepProgressIndicator(
-                totalSteps:
-                    Provider.of<DiagnosisModel>(context).totalDiagnosisPage,
-                currentStep: (stage > 1)
-                    ? totalDiagnosis
-                    : (stage == 1)
-                        ? currentProgress
+            Flexible(
+              flex: 1,
+              child: FAProgressBar(
+                currentValue: (stage > 0)
+                    ? 100
+                    : (stage == 0)
+                        ? currentProgress / totalIntro * 100
                         : 0,
-                selectedColor: Theme.of(context).colorScheme.primary,
-                unselectedColor: Theme.of(context).colorScheme.secondary,
-                padding: 0,
+                maxValue: 100,
                 size: 7,
-                roundedEdges: const Radius.circular(5),
+                animatedDuration: const Duration(milliseconds: 300),
+                backgroundColor: Theme.of(context).colorScheme.secondary,
+                progressColor: Theme.of(context).colorScheme.primary,
               ),
             ),
             const SizedBox(
               width: 6,
             ),
-
-            //  explanation page
-            StepProgressIndicator(
-              totalSteps: Provider.of<DiagnosisModel>(context).totalExplainPage,
-              currentStep: (stage > 2)
-                  ? totalExplain
-                  : (stage == 2)
-                      ? currentProgress
-                      : 0,
-              selectedColor: Theme.of(context).colorScheme.primary,
-              unselectedColor: Theme.of(context).colorScheme.secondary,
-              size: 7,
-              roundedEdges: const Radius.circular(5),
-              fallbackLength: 60,
+            Flexible(
+              flex: 3,
+              child: FAProgressBar(
+                currentValue: (stage > 1)
+                    ? 100
+                    : (stage == 1)
+                        ? currentProgress / totalDiagnosis * 100
+                        : 0,
+                maxValue: 100,
+                size: 7,
+                animatedDuration: const Duration(milliseconds: 300),
+                backgroundColor: Theme.of(context).colorScheme.secondary,
+                progressColor: Theme.of(context).colorScheme.primary,
+              ),
             ),
+            const SizedBox(
+              width: 6,
+            ),
+            Flexible(
+              flex: 1,
+              child: FAProgressBar(
+                currentValue: (stage > 2)
+                    ? 100
+                    : (stage == 2)
+                        ? currentProgress / totalExplain * 100
+                        : 0,
+                maxValue: 100,
+                size: 7,
+                animatedDuration: const Duration(milliseconds: 400),
+                backgroundColor: Theme.of(context).colorScheme.secondary,
+                progressColor: Theme.of(context).colorScheme.primary,
+              ),
+            )
           ],
         ),
         const SizedBox(
@@ -90,7 +87,7 @@ class MyProgressIndicator extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '자기소개',
+                '개인설정',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: (stage == 0)
@@ -123,5 +120,3 @@ class MyProgressIndicator extends StatelessWidget {
     );
   }
 }
-
-// 텍스트 색상 변경 변수 추가 하기, 상태 관리!

@@ -1,24 +1,36 @@
+import 'package:cap_stone_project/pages/mainPage/mainPage.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class NextButton extends StatelessWidget {
-  final Function()? onTap;
+class StartButton extends StatelessWidget {
   final String text;
-  final bool isSelected;
 
-  const NextButton({
+  const StartButton({
     super.key,
-    required this.onTap,
     required this.text,
-    required this.isSelected,
   });
 
   @override
   Widget build(BuildContext context) {
+    bool isSelected = Provider.of<UserInfoValueModel>(context).isAgree;
+
     return GestureDetector(
-      onTap: isSelected ? onTap : () {},
+      onLongPress: () {
+        Provider.of<UserInfoValueModel>(context, listen: false)
+            .isAgreeUpdate(true);
+      },
       child: AnimatedContainer(
         height: 60,
         width: 335,
+        curve: Curves.easeInQuart,
+        onEnd: () {
+          print('end! page route');
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => const MainPage()),
+              (route) => false);
+        },
         decoration: BoxDecoration(
             color: isSelected
                 ? Theme.of(context).colorScheme.primary
@@ -28,7 +40,7 @@ class NextButton extends StatelessWidget {
                 color: isSelected
                     ? Theme.of(context).colorScheme.primary
                     : const Color(0xFF717171))),
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 500),
         child: Center(
           child: Text(
             text,
