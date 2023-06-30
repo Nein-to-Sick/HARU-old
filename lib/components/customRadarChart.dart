@@ -134,12 +134,12 @@ class RadarChartPainter extends CustomPainter {
 
     final textStyle = TextStyle(
       color: Colors.black,
-      fontSize: 12,
+      fontSize: 14,
     );
 
     for (var i = 0; i < labels.length; i++) {
       final label = labels[i];
-      final padding = (i == 0 || i == 3) ? 10.0 : 25.0;
+      final padding = (i == 0 || i == 3) ? 15.0 : 25.0;
       final x = center.dx + (radius + padding) * cos(i * angle - pi / 2); // Subtract pi/2 to rotate, add 10 or 30 as padding
       final y = center.dy + (radius + padding) * sin(i * angle - pi / 2); // Subtract pi/2 to rotate, add 10 or 30 as padding
       final labelOffset = Offset(x, y);
