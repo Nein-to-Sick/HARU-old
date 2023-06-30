@@ -78,7 +78,11 @@ class HomePage extends StatelessWidget {
                 )),
               ),
             ));
-
+    void signUserOut() {
+      FirebaseAuth.instance.signOut();
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => AuthPage()));
+    }
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
