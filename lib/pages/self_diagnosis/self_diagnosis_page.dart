@@ -1,8 +1,6 @@
 import 'package:cap_stone_project/components/animated_step_progress_indidator.dart';
 import 'package:cap_stone_project/components/next_button.dart';
 import 'package:cap_stone_project/components/start_button.dart';
-import 'package:cap_stone_project/pages/mainPage/home.dart';
-import 'package:cap_stone_project/pages/mainPage/mainPage.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/explanation_pages/complete_page.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/explanation_pages/explanation_page.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
@@ -15,6 +13,7 @@ import 'package:cap_stone_project/pages/self_diagnosis/question_pages/question3.
 import 'package:cap_stone_project/pages/self_diagnosis/question_pages/question4.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/question_pages/question5.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/user_info_pages/user_body_info.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/user_info_pages/user_info_database_update.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/user_info_pages/user_nickname_info_page.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/self_diagnosis_model.dart';
 import 'package:flutter/material.dart';
@@ -170,9 +169,11 @@ class SelfDiagnosisPage extends StatelessWidget {
                           Provider.of<UserInfoValueModel>(context,
                                   listen: false)
                               .isSubmittedUpdate();
+                          userInfoFirebaseUpdate(context);
                         },
                         text: '제출하기',
-                        isSelected: true)
+                        isSelected: true,
+                      )
                     :
                     //  Button for move to next page
                     NextButton(
