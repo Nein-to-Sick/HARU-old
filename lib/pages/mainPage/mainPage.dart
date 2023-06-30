@@ -48,10 +48,7 @@ class _MainPageState extends State<MainPage>
                     create: (_) => StatisticState(),
                     child: Statistic(),
                   )
-                : ChangeNotifierProvider(
-                    create: (_) => StatisticState(),
-                    child: MyHomePage(),
-                  ),
+                : ProfilePage(),
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
               border: Border(top: BorderSide(color: Colors.grey.shade200))),
