@@ -59,7 +59,7 @@ class _RegisterPageState extends State<RegisterPage> {
           "gender": 1,
           "activity level": 1,
           "age": 0,
-          "SelfDiagnosisisDone": false
+          "SelfDiagnosisIsDone": false
         });
 
         DateTime selectedDate = DateTime(
