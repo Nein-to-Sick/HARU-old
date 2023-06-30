@@ -26,7 +26,7 @@ class BodyInfo extends StatelessWidget {
           const SizedBox(
             width: 325,
             child: Text(
-              '신장을 입력해주세요',
+              '신장을 입력해주세요 (선택)',
               style: TextStyle(fontSize: 23),
               textAlign: TextAlign.center,
               textWidthBasis: TextWidthBasis.parent,
@@ -80,7 +80,13 @@ class BodyInfo extends StatelessWidget {
               suffixIcon: Padding(
                 padding: const EdgeInsets.only(right: 10),
                 child: IconButton(
-                  onPressed: heightTextController.clear,
+                  onPressed: () {
+                    heightTextController.clear;
+                    Provider.of<UserInfoValueModel>(context, listen: false)
+                        .userHeightUpdate('');
+                    heightTextController.text = userHeightData;
+                    textFocusHeight.unfocus();
+                  },
                   icon: const Icon(Icons.clear),
                 ),
               ),
@@ -98,7 +104,7 @@ class BodyInfo extends StatelessWidget {
           const SizedBox(
             width: 325,
             child: Text(
-              '체중을 입력해주세요',
+              '체중을 입력해주세요 (선택)',
               style: TextStyle(fontSize: 23),
               textAlign: TextAlign.center,
               textWidthBasis: TextWidthBasis.parent,
@@ -152,7 +158,13 @@ class BodyInfo extends StatelessWidget {
               suffixIcon: Padding(
                 padding: const EdgeInsets.only(right: 10),
                 child: IconButton(
-                  onPressed: weightTextController.clear,
+                  onPressed: () {
+                    weightTextController.clear;
+                    Provider.of<UserInfoValueModel>(context, listen: false)
+                        .userWeightUpdate('');
+                    weightTextController.text = userWeightData;
+                    textFocusWeight.unfocus();
+                  },
                   icon: const Icon(Icons.clear),
                 ),
               ),

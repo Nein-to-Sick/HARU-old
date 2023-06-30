@@ -57,7 +57,7 @@ class SelfIntroPage extends StatelessWidget {
                 focusNode: textFocus,
                 autocorrect: false,
                 onChanged: (value) {
-                  if (value.isNotEmpty) {
+                  if (value.trim().isNotEmpty) {
                     Provider.of<DiagnosisModel>(context, listen: false)
                         .recordResponse();
                   } else {
@@ -67,9 +67,9 @@ class SelfIntroPage extends StatelessWidget {
                 },
                 onEditingComplete: () {
                   Provider.of<UserInfoValueModel>(context, listen: false)
-                      .userNickNameUpdate(nicknameTextController.text);
-                  textFocus.unfocus();
+                      .userNickNameUpdate(nicknameTextController.text.trim());
                   nicknameTextController.text = userNickNameData;
+                  textFocus.unfocus();
                 },
                 controller: nicknameTextController,
                 decoration: InputDecoration(
@@ -97,6 +97,12 @@ class SelfIntroPage extends StatelessWidget {
                     child: IconButton(
                       onPressed: () {
                         nicknameTextController.clear;
+                        Provider.of<UserInfoValueModel>(context, listen: false)
+                            .userNickNameUpdate('');
+                        nicknameTextController.text = userNickNameData;
+                        textFocus.unfocus();
+                        Provider.of<DiagnosisModel>(context, listen: false)
+                            .moveNextPage();
                       },
                       icon: const Icon(Icons.clear),
                     ),
