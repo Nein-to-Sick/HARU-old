@@ -59,16 +59,13 @@ class _RegisterPageState extends State<RegisterPage> {
           "gender": 1,
           "activity level": 1,
           "age": 0,
-          "SelfDiagnosisisDone": false
+          "SelfDiagnosisIsDone": false
         });
 
         DateTime selectedDate = DateTime(
             DateTime.now().year, DateTime.now().month, DateTime.now().day);
         String todayDate = selectedDate.toString().substring(0, 10);
-        FirebaseFirestore.instance
-            .collection("users")
-            .doc(docRef as String?)
-            .collection(todayDate);
+        await docRef.collection(todayDate);
 
         Navigator.pop(context);
       } else {

@@ -42,10 +42,8 @@ class AuthService {
     DateTime selectedDate =
         DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
     String todayDate = selectedDate.toString().substring(0, 10);
-    FirebaseFirestore.instance
-        .collection("users")
-        .doc(docRef as String?)
-        .collection(todayDate);
+
+    await docRef.collection(todayDate);
 
     //finally, lets sign in
     return await FirebaseAuth.instance.signInWithCredential(credential);
