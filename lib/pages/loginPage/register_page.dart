@@ -1,10 +1,9 @@
+import 'package:cap_stone_project/components/button.dart';
+import 'package:cap_stone_project/components/square_tile.dart';
 import 'package:cap_stone_project/components/test_field.dart';
+import 'package:cap_stone_project/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import '../components/button.dart';
-import '../components/square_tile.dart';
-import '../services/auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
@@ -185,12 +184,14 @@ class _RegisterPageState extends State<RegisterPage> {
                           imagePath: 'assets/googlelogin.jpg'),
                       SquareTile(
                           onTap: () {
-                              showErrorMessage("카카오톡 로그인은 v.1.0에 추가될 예정입니다.");
-                            }, imagePath: 'assets/kakaologin.jpg'),
+                            showErrorMessage("카카오톡 로그인은 v.1.0에 추가될 예정입니다.");
+                          },
+                          imagePath: 'assets/kakaologin.jpg'),
                       SquareTile(
                           onTap: () {
-                              showErrorMessage("애플 로그인은 v.1.0에 추가될 예정입니다.");
-                            }, imagePath: 'assets/applelogin.jpg'),
+                            showErrorMessage("애플 로그인은 v.1.0에 추가될 예정입니다.");
+                          },
+                          imagePath: 'assets/applelogin.jpg'),
                     ],
                   ),
                 ],

@@ -1,5 +1,5 @@
-import 'package:cap_stone_project/pages/login_page.dart';
-import 'package:cap_stone_project/pages/register_page.dart';
+import 'package:cap_stone_project/pages/loginPage/login_page.dart';
+import 'package:cap_stone_project/pages/loginPage/register_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginOrRegister extends StatefulWidget {
