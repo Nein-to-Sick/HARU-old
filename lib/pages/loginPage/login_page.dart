@@ -123,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: 44,
                       child: MyTextField(
                         controller: passwordTextController,
-                        hintText: '비민번호',
+                        hintText: '비밀번호',
                         obscureText: true,
                         validatorType: 2,
                       ),

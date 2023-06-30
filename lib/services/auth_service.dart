@@ -29,7 +29,7 @@ class AuthService {
 
     final docRef = userCollection.doc(userId);
 
-    await docRef.set({
+    await docRef.update({
       "nickname": "",
       "hight": 0.0,
       "weight": 0.0,
@@ -42,7 +42,6 @@ class AuthService {
     DateTime selectedDate =
         DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
     String todayDate = selectedDate.toString().substring(0, 10);
-
     await docRef.collection(todayDate);
 
     //finally, lets sign in

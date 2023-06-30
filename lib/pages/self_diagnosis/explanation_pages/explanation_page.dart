@@ -15,10 +15,7 @@ class ExplanationPage extends StatelessWidget {
           child: SizedBox(
             width: 200,
             child: GestureDetector(
-              onTap: () {
-                Provider.of<UserInfoValueModel>(context, listen: false)
-                    .isAgreeUpdate(false);
-              },
+              onTap: () {},
               child: const Text(
                 '앞으로 미션을 통해 소소한 성공의 경험을 쌓아가볼 거예요',
                 style: TextStyle(fontSize: 23),

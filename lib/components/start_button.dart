@@ -25,7 +25,6 @@ class StartButton extends StatelessWidget {
         width: 335,
         curve: Curves.easeInQuart,
         onEnd: () {
-          print('end! page route');
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (context) => const MainPage()),
