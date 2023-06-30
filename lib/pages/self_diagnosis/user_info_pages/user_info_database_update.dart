@@ -11,7 +11,7 @@ void userInfoFirebaseUpdate(BuildContext context) {
         Provider.of<UserInfoValueModel>(context, listen: false).userNickName,
     'height': Provider.of<UserInfoValueModel>(context, listen: false).height,
     'weight': Provider.of<UserInfoValueModel>(context, listen: false).weight,
-    'SelfDiagnosisDone':
+    'SelfDiagnosisIsDone':
         Provider.of<UserInfoValueModel>(context, listen: false).isAgree,
   });
 
