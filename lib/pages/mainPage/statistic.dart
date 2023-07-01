@@ -26,18 +26,18 @@ class DraggableSheet extends StatelessWidget {
     var selectedDate = statisticState.selectedDate;
 
     int daysInMonth(DateTime date) {
-      return DateTime(selectedDate.year, selectedDate.month + 1, 0).day;
+      return DateTime(date.year, date.month + 1, 0).day;
     }
 
     int firstDayOfMonthIndex(DateTime date) {
-      return DateTime(selectedDate.year, selectedDate.month, 0).weekday;
+      return DateTime(date.year, date.month, 1).weekday;
     }
 
     bool showTableCalendar = sheetHeight > 131;
 
-    final currentDate = DateTime.now();
-    final daysThisMonth = daysInMonth(currentDate);
-    final firstDayIndex = firstDayOfMonthIndex(currentDate);
+    final currDate = statisticState.currentDate;
+    final daysThisMonth = daysInMonth(currDate);
+    final firstDayIndex = firstDayOfMonthIndex(currDate) - 1;
     final totalGridItems = daysThisMonth + firstDayIndex + 1;
     final yearAndMonthText = Padding(
       padding: const EdgeInsets.only(left: 16.0, bottom: 20),
@@ -47,20 +47,28 @@ class DraggableSheet extends StatelessWidget {
               padding: EdgeInsets.zero,
               constraints: const BoxConstraints(),
               onPressed: () {
-                statisticState.selectDate(DateTime(selectedDate.year, selectedDate.month -1, 1));
+                statisticState.selectCurrentDate(DateTime(
+                    currDate.month == 1 ? currDate.year - 1 : currDate.year,
+                    currDate.month == 1 ? 12 : currDate.month - 1,
+                    1
+                ));
               },
               icon: const Icon(Icons.arrow_back_ios)),
           Align(
               alignment: Alignment.topLeft,
               child: Text(
-                '${selectedDate.year} / ${selectedDate.month}',
+                '${currDate.year} / ${currDate.month}',
                 style: const TextStyle(fontSize: 25),
               )),
           IconButton(
               padding: EdgeInsets.zero,
               constraints: const BoxConstraints(),
               onPressed: () {
-                statisticState.selectDate(DateTime(selectedDate.year, selectedDate.month +1, 1));
+                statisticState.selectCurrentDate(DateTime(
+                    currDate.month == 12 ? currDate.year + 1 : currDate.year,
+                    currDate.month == 12 ? 1 : currDate.month + 1,
+                    1
+                ));
               },
               icon: const Icon(Icons.arrow_forward_ios)),
         ],
@@ -97,8 +105,8 @@ class DraggableSheet extends StatelessWidget {
                     childAspectRatio: 0.8,
                   ),
                   itemBuilder: (BuildContext context, int index) {
-                    final currentDate = DateTime(DateTime.now().year,
-                        DateTime.now().month, index - firstDayIndex);
+                    final currentDate = DateTime(currDate.year,
+                        currDate.month, index - firstDayIndex);
                     return Stack(
                       children: [
                         currentDate.month == selectedDate.month &&
@@ -116,7 +124,7 @@ class DraggableSheet extends StatelessWidget {
                           onTap: () {
                             statisticState.selectDate(DateTime(currentDate.year,
                                 currentDate.month, currentDate.day));
-                            print(selectedDate);
+                            print(currentDate);
                           },
                           child: Center(
                             child: Column(
