@@ -274,5 +274,5 @@ class SelfDiagnosisPage extends StatelessWidget {
 
 /*
 추가질문 페이지 구현, progress bar 추가 구현, progress bar 자가진단 질문만 담기 - 디자인 필요
-keyboard 화면 scroll 구현
+닉네임 길이 제한 및 경고 메세지 추가
 */

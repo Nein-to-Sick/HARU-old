@@ -86,31 +86,40 @@ class AnimatedProgressBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                '개인설정',
-                textAlign: TextAlign.center,
+              AnimatedDefaultTextStyle(
+                duration: const Duration(milliseconds: 300),
                 style: TextStyle(
                   color: (stage == 0)
                       ? Colors.black
                       : Theme.of(context).colorScheme.tertiary,
                 ),
+                child: const Text(
+                  '개인설정',
+                  textAlign: TextAlign.center,
+                ),
               ),
-              Text(
-                '자가진단',
-                textAlign: TextAlign.center,
+              AnimatedDefaultTextStyle(
+                duration: const Duration(milliseconds: 300),
                 style: TextStyle(
                   color: (stage == 1)
                       ? Colors.black
                       : Theme.of(context).colorScheme.tertiary,
                 ),
+                child: const Text(
+                  '자가진단',
+                  textAlign: TextAlign.center,
+                ),
               ),
-              Text(
-                '이용설명',
-                textAlign: TextAlign.center,
+              AnimatedDefaultTextStyle(
+                duration: const Duration(milliseconds: 300),
                 style: TextStyle(
                   color: (stage == 2)
                       ? Colors.black
                       : Theme.of(context).colorScheme.tertiary,
+                ),
+                child: const Text(
+                  '이용설명',
+                  textAlign: TextAlign.center,
                 ),
               ),
             ],

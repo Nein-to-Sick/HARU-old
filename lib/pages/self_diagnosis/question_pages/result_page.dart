@@ -2,6 +2,7 @@ import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.
 import 'package:cap_stone_project/pages/self_diagnosis/question_pages/additional_question_pages/additional_question_start_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:wrapped_korean_text/wrapped_korean_text.dart';
 
 class ResultPage extends StatelessWidget {
   const ResultPage({super.key});
@@ -80,9 +81,9 @@ class ResultPage extends StatelessWidget {
                 ),
               );
             },
-            child: const Text(
+            child: WrappedKoreanText(
               '더 정확한 결과를 위해 추가질문 답하기',
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color(0xFF717171),
                 decoration: TextDecoration.underline,
               ),
