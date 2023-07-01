@@ -1,4 +1,5 @@
 import 'package:cap_stone_project/provider/statisticState.dart';
+import 'package:cap_stone_project/services/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
@@ -50,8 +51,7 @@ class DraggableSheet extends StatelessWidget {
                 statisticState.selectCurrentDate(DateTime(
                     currDate.month == 1 ? currDate.year - 1 : currDate.year,
                     currDate.month == 1 ? 12 : currDate.month - 1,
-                    1
-                ));
+                    1));
               },
               icon: const Icon(Icons.arrow_back_ios)),
           Align(
@@ -67,8 +67,7 @@ class DraggableSheet extends StatelessWidget {
                 statisticState.selectCurrentDate(DateTime(
                     currDate.month == 12 ? currDate.year + 1 : currDate.year,
                     currDate.month == 12 ? 1 : currDate.month + 1,
-                    1
-                ));
+                    1));
               },
               icon: const Icon(Icons.arrow_forward_ios)),
         ],
@@ -105,64 +104,106 @@ class DraggableSheet extends StatelessWidget {
                     childAspectRatio: 0.8,
                   ),
                   itemBuilder: (BuildContext context, int index) {
-                    final currentDate = DateTime(currDate.year,
-                        currDate.month, index - firstDayIndex);
-                    return Stack(
-                      children: [
-                        currentDate.month == selectedDate.month &&
-                                currentDate.day == selectedDate.day
-                            ? Center(
-                                child: Container(
-                                  width: 46,
-                                  decoration: BoxDecoration(
-                                      color: Colors.grey.shade300,
-                                      borderRadius: BorderRadius.circular(15)),
+                    final currentDate = DateTime(
+                        currDate.year, currDate.month, index - firstDayIndex);
+                    return FutureBuilder<bool>(
+                      future: DatabaseService().checkDate(currentDate),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<dynamic> snapshot) {
+                        if (snapshot.hasData) {
+                          // if (snapshot.connectionState == ConnectionState.waiting) {
+                          //   return const Center(child: CircularProgressIndicator());
+                          // }
+                          final bool isDate = snapshot.data;
+                          return Stack(
+                            children: [
+                              currentDate.month == selectedDate.month &&
+                                      currentDate.day == selectedDate.day
+                                  ? Center(
+                                      child: Container(
+                                        width: 46,
+                                        decoration: BoxDecoration(
+                                            color: Colors.grey.shade300,
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                      ),
+                                    )
+                                  : Container(),
+                              GestureDetector(
+                                onTap: () {
+                                  statisticState.selectDate(DateTime(
+                                      currentDate.year,
+                                      currentDate.month,
+                                      currentDate.day));
+                                  DatabaseService().averageFace(currentDate);
+                                },
+                                child: Center(
+                                  child: Container(
+                                    color: Colors.transparent,
+                                    child: FutureBuilder<int>(
+                                      future: DatabaseService()
+                                          .averageFace(currentDate),
+                                      builder: (BuildContext context,
+                                          AsyncSnapshot<dynamic> snapshot) {
+                                        if (snapshot.hasData) {
+                                          final int faceAverage = snapshot.data;
+                                          return Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              isDate
+                                                  ? index <= firstDayIndex
+                                                      ? Opacity(
+                                                          opacity: 0.2,
+                                                          child: Image.asset(
+                                                              "./assets/images/face$faceAverage.png",
+                                                              scale: 3))
+                                                      : Image.asset(
+                                                          "./assets/images/face$faceAverage.png",
+                                                          scale: 3)
+                                                  : Container(),
+                                              const SizedBox(
+                                                height: 3,
+                                              ),
+                                              Text(
+                                                currentDate.month ==
+                                                            DateTime.now()
+                                                                .month &&
+                                                        currentDate.day ==
+                                                            DateTime.now().day
+                                                    ? '오늘'
+                                                    : '${currentDate.day}',
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    color: index <=
+                                                            firstDayIndex
+                                                        ? Colors.grey.shade300
+                                                        : Colors.black,
+                                                    fontWeight: currentDate
+                                                                    .month ==
+                                                                selectedDate
+                                                                    .month &&
+                                                            currentDate.day ==
+                                                                selectedDate.day
+                                                        ? FontWeight.w600
+                                                        : FontWeight.normal),
+                                              ),
+                                            ],
+                                          );
+                                        } else {
+                                          return Container();
+                                        }
+                                      },
+                                    ),
+                                  ),
                                 ),
-                              )
-                            : Container(),
-                        GestureDetector(
-                          onTap: () {
-                            statisticState.selectDate(DateTime(currentDate.year,
-                                currentDate.month, currentDate.day));
-                            print(currentDate);
-                          },
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                index <= firstDayIndex
-                                    ? Opacity(
-                                        opacity: 0.2,
-                                        child: Image.asset(
-                                            "./assets/images/face1.png",
-                                            scale: 3))
-                                    : Image.asset("./assets/images/face1.png",
-                                        scale: 3),
-                                const SizedBox(
-                                  height: 3,
-                                ),
-                                Text(
-                                  currentDate.month == DateTime.now().month &&
-                                          currentDate.day == DateTime.now().day
-                                      ? '오늘'
-                                      : '${currentDate.day}',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: index <= firstDayIndex
-                                          ? Colors.grey.shade300
-                                          : Colors.black,
-                                      fontWeight: currentDate.month ==
-                                                  selectedDate.month &&
-                                              currentDate.day ==
-                                                  selectedDate.day
-                                          ? FontWeight.w600
-                                          : FontWeight.normal),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+                              ),
+                            ],
+                          );
+                        } else {
+                          return Container();
+                        }
+                      },
                     );
                   },
                   itemCount: totalGridItems,
@@ -206,42 +247,66 @@ class DraggableSheet extends StatelessWidget {
                     } else {
                       displayText = date.day.toString();
                     }
-                    return GestureDetector(
-                      onTap: () {
-                        selectDate(date);
-                      },
-                      child: Padding(
-                        padding: !isSelected
-                            ? const EdgeInsets.only(bottom: 1.0)
-                            : EdgeInsets.zero,
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              width: 80,
-                              height: 50,
-                              child: Center(
-                                child: Text(
-                                  displayText,
-                                  style: TextStyle(
-                                    fontSize: isSelected ? 20 : 15,
-                                    color: Colors.black,
-                                  ),
-                                ),
+                    return FutureBuilder<bool>(
+                        future: DatabaseService().checkDate(date),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<dynamic> snapshot) {
+                          if (snapshot.hasData) {
+                            // if (snapshot.connectionState == ConnectionState.waiting) {
+                            //   return const Center(child: CircularProgressIndicator());
+                            // }
+                            final bool isDate = snapshot.data;
+                            return GestureDetector(
+                              onTap: () {
+                                selectDate(date);
+                              },
+                              child: Padding(
+                                padding: !isSelected
+                                    ? const EdgeInsets.only(bottom: 1.0)
+                                    : EdgeInsets.zero,
+                                child: FutureBuilder<int>(
+                                    future: DatabaseService().averageFace(date),
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot<dynamic> snapshot) {
+                                      if (snapshot.hasData) {
+                                        final int faceAverage = snapshot.data;
+                                        return Column(
+                                          children: [
+                                            SizedBox(
+                                              width: 80,
+                                              height: 50,
+                                              child: Center(
+                                                child: Text(
+                                                  displayText,
+                                                  style: TextStyle(
+                                                    fontSize:
+                                                        isSelected ? 20 : 15,
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            isDate
+                                                ? isSelected
+                                                    ? Image.asset(
+                                                        "./assets/images/face$faceAverage.png",
+                                                        scale: 2.4,
+                                                      )
+                                                    : Image.asset(
+                                                        "./assets/images/face$faceAverage.png",
+                                                        scale: 2.8,
+                                                      )
+                                                : Container(),
+                                          ],
+                                        );
+                                      } else
+                                        return Container();
+                                    }),
                               ),
-                            ),
-                            isSelected
-                                ? Image.asset(
-                                    "./assets/images/face4.png",
-                                    scale: 2.4,
-                                  )
-                                : Image.asset(
-                                    "./assets/images/face4.png",
-                                    scale: 2.8,
-                                  ),
-                          ],
-                        ),
-                      ),
-                    );
+                            );
+                          } else
+                            return Container();
+                        });
                   }).toList(),
                 );
               },
@@ -467,8 +532,10 @@ class DraggableSheet extends StatelessWidget {
                 // Add 16 pixels of padding
                 newHeight = MediaQuery.of(context).padding.top + kToolbarHeight;
               } else if (newHeight >
-                  MediaQuery.of(context).size.height * (totalGridItems > 35 ? 0.65 : 0.56)) {
-                newHeight = MediaQuery.of(context).size.height * (totalGridItems > 35 ? 0.65 : 0.56);
+                  MediaQuery.of(context).size.height *
+                      (totalGridItems > 35 ? 0.65 : 0.56)) {
+                newHeight = MediaQuery.of(context).size.height *
+                    (totalGridItems > 35 ? 0.65 : 0.56);
               }
 
               statisticState.changeHeight(newHeight);
