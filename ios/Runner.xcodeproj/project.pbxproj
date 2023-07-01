@@ -100,6 +100,14 @@
 			path = RunnerTests;
 			sourceTree = "<group>";
 		};
+		849BB0602A505BEE00055B5C /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				595A42716DDCC7EAEC87ACFB /* Pods_Runner.framework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		9740EEB11CF90186004384FC /* Flutter */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +129,7 @@
 				C48996621AFD51C28EF2DFCA /* GoogleService-Info.plist */,
 				D39FCA93A48E9FA9ED98BB25 /* Pods */,
 				E6268D39BA68223E28353596 /* Frameworks */,
+				849BB0602A505BEE00055B5C /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,7 +167,6 @@
 				DED61AE7FCD3B02DFEC8ED71 /* Pods-RunnerTests.release.xcconfig */,
 				6CB1F98C1EAA10FF8819AF4A /* Pods-RunnerTests.profile.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -475,13 +483,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = KBWF5DN24T;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.capStoneProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.haru.myapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -653,13 +662,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = KBWF5DN24T;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.capStoneProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.haru.myapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -675,13 +685,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = KBWF5DN24T;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.capStoneProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.haru.myapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
