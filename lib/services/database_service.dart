@@ -50,7 +50,7 @@ class DatabaseService {
         .collection(date).get();
 
     int total = 0;
-    for (final DocumentSnapshot document in queryㅇSnapshot.docs) {
+    for (final DocumentSnapshot document in querySnapshot.docs) {
       final int faceIndex = document['faceIndex'];
       // 필드 값을 이용한 작업 수행
       total += faceIndex;
