@@ -6,6 +6,7 @@ class Question4 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const QuestionFrom(question: '혼자서 시간을 보내는 일이 많으신가요?', tabNumber: 3);
+    return const QuestionFrom(
+        question: '혼자서 시간을 보내는 것보다 다른 사람과 함께하는 편이 훨씬 좋으신가요?', tabNumber: 3);
   }
 }
