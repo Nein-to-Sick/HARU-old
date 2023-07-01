@@ -13,10 +13,11 @@ import 'package:cap_stone_project/pages/self_diagnosis/question_pages/question3.
 import 'package:cap_stone_project/pages/self_diagnosis/question_pages/question4.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/question_pages/question5.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/user_info_pages/user_body_info.dart';
-import 'package:cap_stone_project/pages/self_diagnosis/user_info_pages/user_info_database_update.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/user_data_database_update.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/user_info_pages/user_nickname_info_page.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/self_diagnosis_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
 class SelfDiagnosisPage extends StatelessWidget {
@@ -24,6 +25,7 @@ class SelfDiagnosisPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var padding = MediaQuery.of(context).padding;
     int greetingPageIndex =
         Provider.of<DiagnosisModel>(context, listen: false).totalIntroPage - 1;
     int resultPageindex = greetingPageIndex +
@@ -31,210 +33,239 @@ class SelfDiagnosisPage extends StatelessWidget {
         1;
 
     TabController tabController = DefaultTabController.of(context);
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          //  progress bar
-          const Padding(
-            padding: EdgeInsets.only(top: 83.0, left: 34, right: 34),
-            child: AnimatedProgressBar(),
-            //child: MyProgressIndicator(),
-          ),
-
-          //  back arrow icon button, page numer
-          Padding(
-            padding: const EdgeInsets.only(left: 34, right: 34, top: 21),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height -
+                padding.top -
+                padding.bottom,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                //  back arrow
-                GestureDetector(
-                  onTap: () {
-                    //  After submitied you can't go back
-                    if (Provider.of<DiagnosisModel>(context, listen: false)
-                                .currentTabIndex !=
-                            resultPageindex + 1 &&
-                        Provider.of<DiagnosisModel>(context, listen: false)
-                                .currentTabIndex !=
-                            0) {
-                      if (Provider.of<DiagnosisModel>(context, listen: false)
-                              .currentTabIndex >
-                          0) {
-                        Provider.of<DiagnosisModel>(context, listen: false)
-                            .decreaseProgressIndex();
-                      } else {
-                        print('no more page');
-                      }
-                      if (Provider.of<DiagnosisModel>(context, listen: false)
-                              .currentTabIndex !=
-                          0) {
-                        Provider.of<DiagnosisModel>(context, listen: false)
-                            .recordResponse();
-                      }
-                      tabController.animateTo(
-                          Provider.of<DiagnosisModel>(context, listen: false)
-                              .currentTabIndex);
-                    }
-                  },
-                  child: Icon(
-                    Icons.arrow_back,
-                    color: (Provider.of<DiagnosisModel>(context, listen: false)
-                                    .currentTabIndex !=
-                                resultPageindex + 1 &&
-                            Provider.of<DiagnosisModel>(context, listen: false)
-                                    .currentTabIndex !=
-                                0)
-                        ? Colors.black
-                        : Colors.white.withOpacity(0),
-                  ),
+                //  progress bar
+                const Padding(
+                  padding: EdgeInsets.only(top: 33.0, left: 34, right: 34),
+                  child: AnimatedProgressBar(),
+                  //child: MyProgressIndicator(),
                 ),
 
-                //  page number
-                RichText(
-                  text: TextSpan(
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
+                //  back arrow icon button, page numer
+                Padding(
+                  padding: const EdgeInsets.only(left: 34, right: 34, top: 21),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      TextSpan(
-                        text: Provider.of<DiagnosisModel>(context)
-                            .currentProgressbarIndex
-                            .toString(),
+                      //  back arrow
+                      GestureDetector(
+                        onTap: () {
+                          //  After submitied you can't go back
+                          if (Provider.of<DiagnosisModel>(context,
+                                          listen: false)
+                                      .currentTabIndex !=
+                                  resultPageindex + 1 &&
+                              Provider.of<DiagnosisModel>(context,
+                                          listen: false)
+                                      .currentTabIndex !=
+                                  0) {
+                            if (Provider.of<DiagnosisModel>(context,
+                                        listen: false)
+                                    .currentTabIndex >
+                                0) {
+                              Provider.of<DiagnosisModel>(context,
+                                      listen: false)
+                                  .decreaseProgressIndex();
+                            } else {
+                              print('no more page');
+                            }
+                            if (Provider.of<DiagnosisModel>(context,
+                                        listen: false)
+                                    .currentTabIndex !=
+                                0) {
+                              Provider.of<DiagnosisModel>(context,
+                                      listen: false)
+                                  .recordResponse();
+                            }
+                            tabController.animateTo(Provider.of<DiagnosisModel>(
+                                    context,
+                                    listen: false)
+                                .currentTabIndex);
+                          }
+                        },
+                        child: Icon(
+                          Icons.arrow_back,
+                          color: (Provider.of<DiagnosisModel>(context,
+                                              listen: false)
+                                          .currentTabIndex !=
+                                      resultPageindex + 1 &&
+                                  Provider.of<DiagnosisModel>(context,
+                                              listen: false)
+                                          .currentTabIndex !=
+                                      0)
+                              ? Colors.black
+                              : Colors.white.withOpacity(0),
+                        ),
                       ),
-                      const TextSpan(
-                        text: '/',
+
+                      //  page number
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                          children: [
+                            TextSpan(
+                              text: Provider.of<DiagnosisModel>(context)
+                                  .currentProgressbarIndex
+                                  .toString(),
+                            ),
+                            const TextSpan(
+                              text: '/',
+                            ),
+                            TextSpan(
+                              text: Provider.of<DiagnosisModel>(context)
+                                  .getTotalStagePage()
+                                  .toString(),
+                            )
+                          ],
+                        ),
                       ),
-                      TextSpan(
-                        text: Provider.of<DiagnosisModel>(context)
-                            .getTotalStagePage()
-                            .toString(),
-                      )
                     ],
                   ),
                 ),
-              ],
-            ),
-          ),
 
-          //  diagnosis question page
-          const Expanded(
-            child: TabBarView(
-              physics: NeverScrollableScrollPhysics(),
-              children: [
-                //  Intro page
-                SelfIntroPage(),
-                BodyInfo(),
-                GreetingPage(),
-                //  Question page
-                Question1(),
-                Question2(),
-                Question3(),
-                Question4(),
-                Question5(),
-                SubmitPage(),
-                ResultPage(),
-                //  Explain page
-                ExplanationPage(),
-                CompletePage(),
-              ],
-            ),
-          ),
+                //  diagnosis question page
+                const Expanded(
+                  child: TabBarView(
+                    physics: NeverScrollableScrollPhysics(),
+                    children: [
+                      //  Intro page
+                      SelfIntroPage(),
+                      BodyInfo(),
+                      GreetingPage(),
+                      //  Question page
+                      Question1(),
+                      Question2(),
+                      Question3(),
+                      Question4(),
+                      Question5(),
+                      SubmitPage(),
+                      ResultPage(),
+                      //  Explain page
+                      ExplanationPage(),
+                      CompletePage(),
+                    ],
+                  ),
+                ),
 
-          //  next button
-          Padding(
-            padding: const EdgeInsets.only(bottom: 66, left: 29, right: 29),
-            child: (Provider.of<DiagnosisModel>(context).currentTabIndex ==
-                    Provider.of<DiagnosisModel>(context).getTotalPageNum())
-                ?
-                //  Button for the last page to start
-                const StartButton(
-                    text: '시작하기',
-                  )
-                : (Provider.of<DiagnosisModel>(context).currentTabIndex ==
-                        resultPageindex)
-                    ?
-                    //  Button for submition
-                    NextButton(
-                        onTap: () {
-                          Provider.of<DiagnosisModel>(context, listen: false)
-                              .increaseProgressIndex();
-                          tabController.animateTo(Provider.of<DiagnosisModel>(
-                                  context,
-                                  listen: false)
-                              .currentTabIndex);
-                          Provider.of<UserInfoValueModel>(context,
-                                  listen: false)
-                              .isSubmittedUpdate();
-                          userInfoFirebaseUpdate(context);
-                        },
-                        text: '제출하기',
-                        isSelected: true,
-                      )
-                    :
-                    //  Button for move to next page
-                    NextButton(
-                        onTap: () {
-                          if (Provider.of<DiagnosisModel>(context,
-                                      listen: false)
-                                  .currentTabIndex <
-                              Provider.of<DiagnosisModel>(context,
-                                      listen: false)
-                                  .getTotalPageNum()) {
-                            Provider.of<DiagnosisModel>(context, listen: false)
-                                .increaseProgressIndex();
-                          } else {
-                            print('no more page');
-                          }
-                          tabController.animateTo(Provider.of<DiagnosisModel>(
-                                  context,
-                                  listen: false)
-                              .currentTabIndex);
-                          //  except greeting page and result page index
-                          if (Provider.of<DiagnosisModel>(context,
-                                          listen: false)
-                                      .currentTabIndex !=
-                                  greetingPageIndex &&
-                              Provider.of<DiagnosisModel>(context,
-                                          listen: false)
-                                      .currentTabIndex !=
-                                  resultPageindex &&
-                              Provider.of<DiagnosisModel>(context,
-                                          listen: false)
-                                      .currentTabIndex !=
-                                  1) {
-                            //  In the middle of diagnosis(radio button) with already resonponsed
-                            if (Provider.of<DiagnosisModel>(context,
+                //  next button
+                Padding(
+                  padding:
+                      const EdgeInsets.only(bottom: 16, left: 29, right: 29),
+                  child: (Provider.of<DiagnosisModel>(context)
+                              .currentTabIndex ==
+                          Provider.of<DiagnosisModel>(context)
+                              .getTotalPageNum())
+                      ?
+                      //  Button for the last page to start
+                      const StartButton(
+                          text: '시작하기',
+                        )
+                      : (Provider.of<DiagnosisModel>(context).currentTabIndex ==
+                              resultPageindex)
+                          ?
+                          //  Button for submition
+                          NextButton(
+                              onTap: () {
+                                Provider.of<DiagnosisModel>(context,
+                                        listen: false)
+                                    .increaseProgressIndex();
+                                tabController.animateTo(
+                                    Provider.of<DiagnosisModel>(context,
                                             listen: false)
-                                        .stage ==
-                                    1 &&
+                                        .currentTabIndex);
                                 Provider.of<UserInfoValueModel>(context,
+                                        listen: false)
+                                    .isSubmittedUpdate();
+                                Provider.of<UserInfoValueModel>(context,
+                                        listen: false)
+                                    .calculateDiagnosisResult();
+                                userDiagnosisResultFirebaseUpdate(
+                                    Provider.of<UserInfoValueModel>(context,
+                                        listen: false));
+                                userInfoFirebaseUpdate(context);
+                              },
+                              text: '제출하기',
+                              isSelected: true,
+                            )
+                          :
+                          //  Button for move to next page
+                          NextButton(
+                              onTap: () {
+                                if (Provider.of<DiagnosisModel>(context,
+                                            listen: false)
+                                        .currentTabIndex <
+                                    Provider.of<DiagnosisModel>(context,
+                                            listen: false)
+                                        .getTotalPageNum()) {
+                                  Provider.of<DiagnosisModel>(context,
+                                          listen: false)
+                                      .increaseProgressIndex();
+                                } else {
+                                  print('no more page');
+                                }
+                                tabController.animateTo(
+                                    Provider.of<DiagnosisModel>(context,
+                                            listen: false)
+                                        .currentTabIndex);
+                                //  except greeting page and result page index
+                                if (Provider.of<DiagnosisModel>(context,
                                                 listen: false)
-                                            .isResponsed[
-                                        Provider.of<DiagnosisModel>(context,
-                                                    listen: false)
-                                                .currentProgressbarIndex -
-                                            1] ==
-                                    true) {
-                            } else {
-                              Provider.of<DiagnosisModel>(context,
-                                      listen: false)
-                                  .moveNextPage();
-                            }
-                          }
-                        },
-                        text: '다음',
-                        isSelected:
-                            Provider.of<DiagnosisModel>(context, listen: false)
-                                    .isSelected
-                                ? true
-                                : false,
-                      ),
+                                            .currentTabIndex !=
+                                        greetingPageIndex &&
+                                    Provider.of<DiagnosisModel>(context,
+                                                listen: false)
+                                            .currentTabIndex !=
+                                        resultPageindex &&
+                                    Provider.of<DiagnosisModel>(context,
+                                                listen: false)
+                                            .currentTabIndex !=
+                                        1) {
+                                  //  In the middle of diagnosis(radio button) with already resonponsed
+                                  if (Provider.of<DiagnosisModel>(context,
+                                                  listen: false)
+                                              .stage ==
+                                          1 &&
+                                      Provider.of<UserInfoValueModel>(context,
+                                                      listen: false)
+                                                  .isResponsed[
+                                              Provider.of<DiagnosisModel>(
+                                                          context,
+                                                          listen: false)
+                                                      .currentProgressbarIndex -
+                                                  1] ==
+                                          true) {
+                                  } else {
+                                    Provider.of<DiagnosisModel>(context,
+                                            listen: false)
+                                        .moveNextPage();
+                                  }
+                                }
+                              },
+                              text: '다음',
+                              isSelected: Provider.of<DiagnosisModel>(context,
+                                          listen: false)
+                                      .isSelected
+                                  ? true
+                                  : false,
+                            ),
+                ),
+              ],
+            ),
           ),
-        ],
+        ),
       ),
     );
   }
@@ -242,9 +273,6 @@ class SelfDiagnosisPage extends StatelessWidget {
 
 
 /*
-radio 버튼의 value 파베로 넘기기
-추가질문 페이지 구현
-추가 질문 페이지에 대한 progress bar 추가 구현
-nickname clear button 기능 구현
-result 계산 방법 구현
+추가질문 페이지 구현, progress bar 추가 구현, progress bar 자가진단 질문만 담기 - 디자인 필요
+닉네임 길이 제한 및 경고 메세지 추가
 */

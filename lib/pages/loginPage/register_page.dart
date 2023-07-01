@@ -59,7 +59,8 @@ class _RegisterPageState extends State<RegisterPage> {
           "gender": 1,
           "activity level": 1,
           "age": 0,
-          "SelfDiagnosisIsDone": false
+          "SelfDiagnosisIsDone": false,
+          "SelfDiagnosisResult": 0,
         });
 
         DateTime selectedDate = DateTime(
@@ -100,123 +101,125 @@ class _RegisterPageState extends State<RegisterPage> {
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: Form(
               key: _formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  //logo
-                  Image(
-                    image: AssetImage('assets/thecat.jpg'),
-                    width: 120,
-                    height: 146.9,
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  const Text(
-                    "하루",
-                    style: TextStyle(
-                      fontSize: 61,
-                      color: Color(0xFF544437),
-                      height: 1.0,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //logo
+                    Image(
+                      image: AssetImage('assets/thecat.jpg'),
+                      width: 120,
+                      height: 146.9,
                     ),
-                  ),
-                  const Text(
-                    "Haru",
-                    style: TextStyle(
-                        fontSize: 30, color: Color(0xFF544437), height: 1.0),
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-
-                  //email textfield
-                  Container(
-                    width: 295,
-                    height: 44,
-                    child: MyTextField(
-                        controller: emailTextController,
-                        hintText: '이메일',
-                        obscureText: false,
-                        validatorType: 1),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-
-                  //pw textfield
-                  Container(
-                    width: 295,
-                    height: 44,
-                    child: MyTextField(
-                      controller: passwordTextController,
-                      hintText: '비민번호',
-                      obscureText: true,
-                      validatorType: 2,
+                    SizedBox(
+                      height: 5,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-
-                  //confirm password textfield
-                  Container(
-                    width: 295,
-                    height: 44,
-                    child: MyTextField(
-                      controller: confirmPasswordTextController,
-                      hintText: '비밀번호 확인',
-                      obscureText: true,
-                      validatorType: 3,
-                      passwordcheck: passwordTextController,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-
-                  //sign in button
-                  Container(
-                      width: 295,
-                      height: 60,
-                      child: MyButton(onTap: signUp, text: '회원 가입')),
-                  const SizedBox(
-                    height: 10,
-                  ),
-
-                  //go to register page
-                  GestureDetector(
-                    onTap: widget.onTap,
-                    child: const Text(
-                      "로그인 하러 가기",
+                    const Text(
+                      "하루",
                       style: TextStyle(
-                          fontSize: 13,
-                          color: Color(0xFF717171),
-                          decoration: TextDecoration.underline),
+                        fontSize: 61,
+                        color: Color(0xFF544437),
+                        height: 1.0,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
+                    const Text(
+                      "Haru",
+                      style: TextStyle(
+                          fontSize: 30, color: Color(0xFF544437), height: 1.0),
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SquareTile(
-                          onTap: () => AuthService().signInWithGoogle(),
-                          imagePath: 'assets/googlelogin.jpg'),
-                      SquareTile(
-                          onTap: () {
-                            showErrorMessage("카카오톡 로그인은 v.1.0에 추가될 예정입니다.");
-                          },
-                          imagePath: 'assets/kakaologin.jpg'),
-                      SquareTile(
-                          onTap: () {
-                            showErrorMessage("애플 로그인은 v.1.0에 추가될 예정입니다.");
-                          },
-                          imagePath: 'assets/applelogin.jpg'),
-                    ],
-                  ),
-                ],
+                    //email textfield
+                    Container(
+                      width: 295,
+                      height: 44,
+                      child: MyTextField(
+                          controller: emailTextController,
+                          hintText: '이메일',
+                          obscureText: false,
+                          validatorType: 1),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+
+                    //pw textfield
+                    Container(
+                      width: 295,
+                      height: 44,
+                      child: MyTextField(
+                        controller: passwordTextController,
+                        hintText: '비민번호',
+                        obscureText: true,
+                        validatorType: 2,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+
+                    //confirm password textfield
+                    Container(
+                      width: 295,
+                      height: 44,
+                      child: MyTextField(
+                        controller: confirmPasswordTextController,
+                        hintText: '비밀번호 확인',
+                        obscureText: true,
+                        validatorType: 3,
+                        passwordcheck: passwordTextController,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+
+                    //sign in button
+                    Container(
+                        width: 295,
+                        height: 60,
+                        child: MyButton(onTap: signUp, text: '회원 가입')),
+                    const SizedBox(
+                      height: 10,
+                    ),
+
+                    //go to register page
+                    GestureDetector(
+                      onTap: widget.onTap,
+                      child: const Text(
+                        "로그인 하러 가기",
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: Color(0xFF717171),
+                            decoration: TextDecoration.underline),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SquareTile(
+                            onTap: () => AuthService().signInWithGoogle(),
+                            imagePath: 'assets/googlelogin.jpg'),
+                        SquareTile(
+                            onTap: () {
+                              showErrorMessage("카카오톡 로그인은 v.1.0에 추가될 예정입니다.");
+                            },
+                            imagePath: 'assets/kakaologin.jpg'),
+                        SquareTile(
+                            onTap: () {
+                              showErrorMessage("애플 로그인은 v.1.0에 추가될 예정입니다.");
+                            },
+                            imagePath: 'assets/applelogin.jpg'),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

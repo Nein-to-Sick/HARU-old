@@ -2,6 +2,7 @@ import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.
 import 'package:cap_stone_project/pages/self_diagnosis/question_pages/additional_question_pages/additional_question_start_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:wrapped_korean_text/wrapped_korean_text.dart';
 
 class ResultPage extends StatelessWidget {
   const ResultPage({super.key});
@@ -10,6 +11,9 @@ class ResultPage extends StatelessWidget {
   Widget build(BuildContext context) {
     String userNickName =
         Provider.of<UserInfoValueModel>(context, listen: false).userNickName;
+    //  추가 질문 후 계산 결과를 새로 반영하지 않을 꺼면 listen: false
+    int userStatus = Provider.of<UserInfoValueModel>(context).userStatus;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -42,9 +46,13 @@ class ResultPage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const Text(
-                '"씨앗"',
-                style: TextStyle(
+              Text(
+                (userStatus == 1)
+                    ? '"씨앗"'
+                    : (userStatus == 2)
+                        ? '"새싹"'
+                        : '"묘목"',
+                style: const TextStyle(
                   fontSize: 23,
                   fontWeight: FontWeight.bold,
                 ),
@@ -67,11 +75,15 @@ class ResultPage extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 25),
           child: GestureDetector(
             onTap: () {
-              Navigator.of(context).push(additionalQuestionPage());
+              Navigator.of(context).push(
+                additionalQuestionPage(
+                  Provider.of<UserInfoValueModel>(context, listen: false),
+                ),
+              );
             },
-            child: const Text(
+            child: WrappedKoreanText(
               '더 정확한 결과를 위해 추가질문 답하기',
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color(0xFF717171),
                 decoration: TextDecoration.underline,
               ),

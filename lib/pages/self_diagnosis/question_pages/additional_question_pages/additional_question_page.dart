@@ -1,7 +1,14 @@
+import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/user_data_database_update.dart';
 import 'package:flutter/material.dart';
 
 class AdditionalQuestionPage extends StatelessWidget {
-  const AdditionalQuestionPage({super.key});
+  final UserInfoValueModel value;
+
+  const AdditionalQuestionPage({
+    super.key,
+    required this.value,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +27,8 @@ class AdditionalQuestionPage extends StatelessWidget {
                 size: 50,
               ),
               onPressed: () {
-                print('record submitted!!');
+                value.calculateDiagnosisResult();
+                userDiagnosisResultFirebaseUpdate(value);
                 Navigator.of(context).pop();
               },
             ),
