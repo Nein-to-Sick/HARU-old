@@ -21,6 +21,12 @@ class StatisticState with ChangeNotifier {
     }
   }
 
+  DateTime currentDate = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+  void selectCurrentDate(DateTime date) {
+    currentDate = date;
+    notifyListeners();
+  }
+
   void selectDate(DateTime date) {
     _selectedDate = date;
     _generateDates();
