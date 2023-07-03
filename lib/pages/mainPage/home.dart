@@ -1,3 +1,4 @@
+import 'package:cap_stone_project/components/daily_emotion_dialog.dart';
 import 'package:cap_stone_project/model/mission.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,12 +26,11 @@ class HomePage extends StatelessWidget {
 
               final pages = List.generate(
                   mission.length,
-                      (index) =>
-                      Container(
+                  (index) => Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
-                          color: Colors.black12.withOpacity(
-                              0.025), // 피그마 색 다름 너무 연함
+                          color: Colors.black12
+                              .withOpacity(0.025), // 피그마 색 다름 너무 연함
                         ),
                         margin: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 4),
@@ -39,56 +39,53 @@ class HomePage extends StatelessWidget {
                           width: 290,
                           child: Center(
                               child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 24.0, right: 24),
-                                child: Column(
-                                  children: [
-                                    const SizedBox(
-                                      height: 30,
-                                    ),
-                                    Text(
-                                      mission[index][0],
-                                      style: const TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    Text(
-                                      mission[index][1],
-                                      textAlign: TextAlign.center,
-                                      style: const TextStyle(
-                                          color: Color(0xff717171)),
-                                    ),
-                                    const SizedBox(
-                                      height: 30,
-                                    ),
-                                    SizedBox(
-                                        width: 113,
-                                        height: 33,
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            missionComplete(context, index);
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius
-                                                      .circular(10)),
-                                              backgroundColor:
-                                              Theme
-                                                  .of(context)
-                                                  .primaryColor),
-                                          child: const Text(
-                                            "성공!",
-                                            style: TextStyle(
-                                                color: Colors.white),
-                                          ),
-                                        ))
-                                  ],
+                            padding:
+                                const EdgeInsets.only(left: 24.0, right: 24),
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 30,
                                 ),
-                              )),
+                                Text(
+                                  mission[index][0],
+                                  style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Text(
+                                  mission[index][1],
+                                  textAlign: TextAlign.center,
+                                  style:
+                                      const TextStyle(color: Color(0xff717171)),
+                                ),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                                SizedBox(
+                                    width: 113,
+                                    height: 33,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        missionComplete(context, index);
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          backgroundColor:
+                                              Theme.of(context).primaryColor),
+                                      child: const Text(
+                                        "성공!",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ))
+                              ],
+                            ),
+                          )),
                         ),
                       ));
 
@@ -137,47 +134,51 @@ class HomePage extends StatelessWidget {
                           ),
                           currentIndex != 0
                               ? Align(
-                            alignment: Alignment.centerLeft,
-                            child: GestureDetector(
-                              onTap: () {
-                                if (currentIndex > 0) {
-                                  missionProvider.updateIndex(currentIndex - 1);
-                                  controller.animateToPage(
-                                    currentIndex - 1,
-                                    duration: const Duration(milliseconds: 500),
-                                    curve: Curves.ease,
-                                  );
-                                }
-                              },
-                              child: const Icon(
-                                Icons.arrow_back_ios_new,
-                                color: Color(0xffE4E4E4),
-                                size: 40,
-                              ),
-                            ),
-                          )
+                                  alignment: Alignment.centerLeft,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      if (currentIndex > 0) {
+                                        missionProvider
+                                            .updateIndex(currentIndex - 1);
+                                        controller.animateToPage(
+                                          currentIndex - 1,
+                                          duration:
+                                              const Duration(milliseconds: 500),
+                                          curve: Curves.ease,
+                                        );
+                                      }
+                                    },
+                                    child: const Icon(
+                                      Icons.arrow_back_ios_new,
+                                      color: Color(0xffE4E4E4),
+                                      size: 40,
+                                    ),
+                                  ),
+                                )
                               : Container(),
                           currentIndex != mission.length - 1
                               ? Align(
-                            alignment: Alignment.centerRight,
-                            child: GestureDetector(
-                              onTap: () {
-                                if (currentIndex < pages.length - 1) {
-                                  missionProvider.updateIndex(currentIndex + 1);
-                                  controller.animateToPage(
-                                    currentIndex + 1,
-                                    duration: const Duration(milliseconds: 500),
-                                    curve: Curves.ease,
-                                  );
-                                }
-                              },
-                              child: const Icon(
-                                Icons.arrow_forward_ios_rounded,
-                                color: Color(0xffE4E4E4),
-                                size: 40,
-                              ),
-                            ),
-                          )
+                                  alignment: Alignment.centerRight,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      if (currentIndex < pages.length - 1) {
+                                        missionProvider
+                                            .updateIndex(currentIndex + 1);
+                                        controller.animateToPage(
+                                          currentIndex + 1,
+                                          duration:
+                                              const Duration(milliseconds: 500),
+                                          curve: Curves.ease,
+                                        );
+                                      }
+                                    },
+                                    child: const Icon(
+                                      Icons.arrow_forward_ios_rounded,
+                                      color: Color(0xffE4E4E4),
+                                      size: 40,
+                                    ),
+                                  ),
+                                )
                               : Container(),
                         ],
                       ),
@@ -205,11 +206,15 @@ class HomePage extends StatelessWidget {
                                 ],
                               ),
                             ),
+
+                            //  daily emotion button
                             Padding(
                               padding: const EdgeInsets.only(left: 200.0),
                               child: ElevatedButton(
                                 onPressed: () {
                                   // 버튼을 클릭했을 때 실행될 코드
+                                  dialyEmotionDailog(context);
+                                  print('daily emotion button');
                                 },
                                 style: ElevatedButton.styleFrom(
                                   elevation: 5,
@@ -255,8 +260,8 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               );
-            }
-            else return Container();
+            } else
+              return Container();
           },
         );
       },
