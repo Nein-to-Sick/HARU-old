@@ -29,14 +29,15 @@ class AuthService {
 
     final docRef = userCollection.doc(userId);
 
-    await docRef.update({
+    await docRef.set({
       "nickname": "",
       "hight": 0.0,
       "weight": 0.0,
       "gender": 1,
       "activity level": 1,
       "age": 0,
-      "SelfDiagnosisIsDone": false
+      "SelfDiagnosisIsDone": false,
+      "SelfDiagnosisResult": 0,
     });
 
     DateTime selectedDate =

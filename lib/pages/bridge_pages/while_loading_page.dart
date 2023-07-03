@@ -1,3 +1,5 @@
+import 'package:cap_stone_project/auth/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MyLoadingPage extends StatelessWidget {
@@ -5,10 +7,17 @@ class MyLoadingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    void signUserOut() {
+      FirebaseAuth.instance.signOut();
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => AuthPage()));
+    }
+
+    return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          IconButton(onPressed: signUserOut, icon: Icon(Icons.logout)),
           Text(
             '안녕!',
             style: TextStyle(

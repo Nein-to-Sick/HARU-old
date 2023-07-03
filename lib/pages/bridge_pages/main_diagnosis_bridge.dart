@@ -27,6 +27,7 @@ class BridgPage extends StatelessWidget {
   }
 }
 
+//  구글의 userId 다른가?
 Future<bool> _getDataFromFirebase() async {
   bool selfDiagnosisIsDone = false;
   final userCollection = FirebaseFirestore.instance.collection("users");
