@@ -73,19 +73,13 @@ class _RegisterPageState extends State<RegisterPage> {
             .collection(todayDate);
 
         final mission1 = missionCollection.doc("mission1");
-        await mission1.set({
-          "faceIndex": 1,
-        });
+        await mission1.set({});
 
         final mission2 = missionCollection.doc("mission2");
-        await mission2.set({
-          "faceIndex": 2,
-        });
+        await mission2.set({});
 
         final mission3 = missionCollection.doc("mission3");
-        await mission3.set({
-          "faceIndex": 3,
-        });
+        await mission3.set({});
 
         Navigator.pop(context);
       } else {
