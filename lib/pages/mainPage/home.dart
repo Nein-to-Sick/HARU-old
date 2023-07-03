@@ -1,6 +1,4 @@
-import 'package:cap_stone_project/auth/auth.dart';
 import 'package:cap_stone_project/model/mission.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../provider/missonProvider.dart';
@@ -166,23 +164,26 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(
-            height: 30,
-          ),
+          const SizedBox(height: 20,),
           SizedBox(
             height: 230,
             child: Padding(
-              padding: const EdgeInsets.only(left: 50.0),
+              padding: const EdgeInsets.only(left: 35.0),
               child: Stack(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 30.0),
-                    child: Image.asset(
-                      "./assets/images/tree.png",
+                    padding: const EdgeInsets.only(top: 50.0),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 20,),
+                        Image.asset(
+                          "./assets/images/haru.png", scale: 3,
+                        ),
+                      ],
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 150.0),
+                    padding: const EdgeInsets.only(left: 200.0),
                     child: ElevatedButton(
                       onPressed: () {
                         // 버튼을 클릭했을 때 실행될 코드
@@ -193,11 +194,11 @@ class HomePage extends StatelessWidget {
                         shape: const CircleBorder(),
                       ),
                       child: SizedBox(
-                        width: 68,
-                        height: 68,
+                        width: 55,
+                        height: 55,
                         child: Image.asset(
                           "./assets/images/lamp.png",
-                          scale: 2,
+                          scale: 1.7,
                         ),
                       ),
                     ),
@@ -205,9 +206,6 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-          const SizedBox(
-            height: 20,
           ),
           Container(
             decoration: BoxDecoration(

@@ -46,7 +46,26 @@ class AuthService {
     DateTime selectedDate =
         DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
     String todayDate = selectedDate.toString().substring(0, 10);
-    await docRef.collection(todayDate);
+
+    final missionCollection = FirebaseFirestore.instance
+        .collection("users")
+        .doc(FirebaseAuth.instance.currentUser?.uid)
+        .collection(todayDate);
+
+    final mission1 = missionCollection.doc("mission1");
+    await mission1.set({
+      "faceIndex": 1,
+    });
+
+    final mission2 = missionCollection.doc("mission2");
+    await mission2.set({
+      "faceIndex": 2,
+    });
+
+    final mission3 = missionCollection.doc("mission3");
+    await mission3.set({
+      "faceIndex": 3,
+    });
 
     //finally, lets sign in
     return userCredential;
