@@ -23,6 +23,9 @@ class AuthService {
       idToken: gAuth.idToken,
     );
 
+    final userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+
     final userCollection = FirebaseFirestore.instance.collection("users");
 
     String? userId = FirebaseAuth.instance.currentUser?.uid;
@@ -46,6 +49,6 @@ class AuthService {
     await docRef.collection(todayDate);
 
     //finally, lets sign in
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+    return userCredential;
   }
 }
