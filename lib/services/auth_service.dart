@@ -23,20 +23,24 @@ class AuthService {
       idToken: gAuth.idToken,
     );
 
+    final userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+
     final userCollection = FirebaseFirestore.instance.collection("users");
 
     String? userId = FirebaseAuth.instance.currentUser?.uid;
 
     final docRef = userCollection.doc(userId);
 
-    await docRef.update({
+    await docRef.set({
       "nickname": "",
       "hight": 0.0,
       "weight": 0.0,
       "gender": 1,
       "activity level": 1,
       "age": 0,
-      "SelfDiagnosisIsDone": false
+      "SelfDiagnosisIsDone": false,
+      "SelfDiagnosisResult": 0,
     });
 
     DateTime selectedDate =
@@ -64,6 +68,6 @@ class AuthService {
     });
 
     //finally, lets sign in
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+    return userCredential;
   }
 }

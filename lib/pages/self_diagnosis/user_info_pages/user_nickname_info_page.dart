@@ -1,5 +1,7 @@
+import 'package:cap_stone_project/auth/auth.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/self_diagnosis_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,6 +10,12 @@ class SelfIntroPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void signUserOut() {
+      FirebaseAuth.instance.signOut();
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => AuthPage()));
+    }
+
     String userNickNameData =
         Provider.of<UserInfoValueModel>(context).userNickName;
     final nicknameTextController = TextEditingController();
@@ -21,6 +29,9 @@ class SelfIntroPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          IconButton(onPressed: signUserOut, icon: Icon(Icons.logout)),
+
+          //  Text line
           RichText(
             text: TextSpan(
               style: const TextStyle(fontSize: 20),
@@ -49,6 +60,8 @@ class SelfIntroPage extends StatelessWidget {
           const SizedBox(
             height: 25,
           ),
+
+          //  nickname textfield
           Padding(
             padding: const EdgeInsets.only(left: 45, right: 45),
             child: SizedBox(
