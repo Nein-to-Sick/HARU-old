@@ -111,8 +111,82 @@ class DraggableSheet extends StatelessWidget {
                       builder: (BuildContext context,
                           AsyncSnapshot<dynamic> snapshot) {
                         if (snapshot.hasData) {
-                          // if (snapshot.connectionState == ConnectionState.waiting) {
-                          //   return const Center(child: CircularProgressIndicator());
+                          //보류
+                          // if (snapshot.connectionState == ConnectionState.none) {
+                          //   return Stack(
+                          //     children: [
+                          //       currentDate.month == selectedDate.month &&
+                          //           currentDate.day == selectedDate.day
+                          //           ? Center(
+                          //         child: Container(
+                          //           width: 46,
+                          //           decoration: BoxDecoration(
+                          //               color: Colors.grey.shade300,
+                          //               borderRadius:
+                          //               BorderRadius.circular(15)),
+                          //         ),
+                          //       )
+                          //           : Container(),
+                          //       GestureDetector(
+                          //         onTap: () {
+                          //           statisticState.selectDate(DateTime(
+                          //               currentDate.year,
+                          //               currentDate.month,
+                          //               currentDate.day));
+                          //           DatabaseService().averageFace(currentDate);
+                          //         },
+                          //         child: Center(
+                          //           child: Container(
+                          //             color: Colors.transparent,
+                          //             child: FutureBuilder<int>(
+                          //               future: DatabaseService()
+                          //                   .averageFace(currentDate),
+                          //               builder: (BuildContext context,
+                          //                   AsyncSnapshot<dynamic> snapshot) {
+                          //                 if (snapshot.hasData) {
+                          //                   final int faceAverage = snapshot.data;
+                          //                   return Column(
+                          //                     mainAxisAlignment:
+                          //                     MainAxisAlignment.center,
+                          //                     children: [
+                          //                       const SizedBox(
+                          //                         height: 3,
+                          //                       ),
+                          //                       Text(
+                          //                         currentDate.month ==
+                          //                             DateTime.now()
+                          //                                 .month &&
+                          //                             currentDate.day ==
+                          //                                 DateTime.now().day
+                          //                             ? '오늘'
+                          //                             : '${currentDate.day}',
+                          //                         style: TextStyle(
+                          //                             fontSize: 16,
+                          //                             color: index <=
+                          //                                 firstDayIndex
+                          //                                 ? Colors.grey.shade300
+                          //                                 : Colors.black,
+                          //                             fontWeight: currentDate
+                          //                                 .month ==
+                          //                                 selectedDate
+                          //                                     .month &&
+                          //                                 currentDate.day ==
+                          //                                     selectedDate.day
+                          //                                 ? FontWeight.w600
+                          //                                 : FontWeight.normal),
+                          //                       ),
+                          //                     ],
+                          //                   );
+                          //                 } else {
+                          //                   return Container();
+                          //                 }
+                          //               },
+                          //             ),
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   );
                           // }
                           final bool isDate = snapshot.data;
                           return Stack(
@@ -251,9 +325,46 @@ class DraggableSheet extends StatelessWidget {
                         future: DatabaseService().checkDate(date),
                         builder: (BuildContext context,
                             AsyncSnapshot<dynamic> snapshot) {
+                          // 보류
                           if (snapshot.hasData) {
                             // if (snapshot.connectionState == ConnectionState.waiting) {
-                            //   return const Center(child: CircularProgressIndicator());
+                            //   return GestureDetector(
+                            //     onTap: () {
+                            //       selectDate(date);
+                            //     },
+                            //     child: Padding(
+                            //       padding: !isSelected
+                            //           ? const EdgeInsets.only(bottom: 1.0)
+                            //           : EdgeInsets.zero,
+                            //       child: FutureBuilder<int>(
+                            //           future: DatabaseService().averageFace(date),
+                            //           builder: (BuildContext context,
+                            //               AsyncSnapshot<dynamic> snapshot) {
+                            //             if (snapshot.hasData) {
+                            //               final int faceAverage = snapshot.data;
+                            //               return Column(
+                            //                 children: [
+                            //                   SizedBox(
+                            //                     width: 80,
+                            //                     height: 50,
+                            //                     child: Center(
+                            //                       child: Text(
+                            //                         displayText,
+                            //                         style: TextStyle(
+                            //                           fontSize:
+                            //                           isSelected ? 20 : 15,
+                            //                           color: Colors.black,
+                            //                         ),
+                            //                       ),
+                            //                     ),
+                            //                   ),
+                            //                 ],
+                            //               );
+                            //             } else
+                            //               return Container();
+                            //           }),
+                            //     ),
+                            //   );
                             // }
                             final bool isDate = snapshot.data;
                             return GestureDetector(
@@ -270,34 +381,37 @@ class DraggableSheet extends StatelessWidget {
                                         AsyncSnapshot<dynamic> snapshot) {
                                       if (snapshot.hasData) {
                                         final int faceAverage = snapshot.data;
-                                        return Column(
-                                          children: [
-                                            SizedBox(
-                                              width: 80,
-                                              height: 50,
-                                              child: Center(
-                                                child: Text(
-                                                  displayText,
-                                                  style: TextStyle(
-                                                    fontSize:
-                                                        isSelected ? 20 : 15,
-                                                    color: Colors.black,
+                                        return Container(
+                                          color: Colors.transparent,
+                                          child: Column(
+                                            children: [
+                                              SizedBox(
+                                                width: 80,
+                                                height: 50,
+                                                child: Center(
+                                                  child: Text(
+                                                    displayText,
+                                                    style: TextStyle(
+                                                      fontSize:
+                                                          isSelected ? 20 : 15,
+                                                      color: Colors.black,
+                                                    ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                            isDate
-                                                ? isSelected
-                                                    ? Image.asset(
-                                                        "./assets/images/face$faceAverage.png",
-                                                        scale: 2.4,
-                                                      )
-                                                    : Image.asset(
-                                                        "./assets/images/face$faceAverage.png",
-                                                        scale: 2.8,
-                                                      )
-                                                : Container(),
-                                          ],
+                                              isDate
+                                                  ? isSelected
+                                                      ? Image.asset(
+                                                          "./assets/images/face$faceAverage.png",
+                                                          scale: 2.4,
+                                                        )
+                                                      : Image.asset(
+                                                          "./assets/images/face$faceAverage.png",
+                                                          scale: 2.8,
+                                                        )
+                                                  : Container(),
+                                            ],
+                                          ),
                                         );
                                       } else
                                         return Container();
@@ -324,13 +438,16 @@ class DraggableSheet extends StatelessWidget {
 
     Widget toggleButton() {
       var listTextTabToggle = ["일일 통계", "전체 통계"];
-      return Padding(
-        padding: const EdgeInsets.only(left: 80.0, right: 68),
+      return Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+        elevation: 5,
         child: FlutterToggleTab(
           width: 50,
           marginSelected: const EdgeInsets.all(2),
           borderRadius: 30,
-          height: 30,
+          height: 32,
           selectedIndex: tabTextIndexSelected,
           selectedBackgroundColors: const [Colors.white, Colors.white],
           selectedTextStyle: const TextStyle(color: Colors.black, fontSize: 14),
@@ -365,99 +482,99 @@ class DraggableSheet extends StatelessWidget {
           ]));
     }
 
-    Widget missionIng() {
-      return SizedBox(
-        height: 300,
-        child: ListView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemCount: Mission().mission.length,
-          itemBuilder: (context, index1) {
-            return Column(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(35),
-                    color:
-                        index1 != 2 ? Color(0xffEEF6EA) : Colors.grey.shade200,
-                  ),
-                  width: 330,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 25.0, top: 10, bottom: 7),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 4.0),
-                          child: Row(
-                            children: [
-                              Text(
-                                "미션 ${index1 + 1} : ",
-                                style: const TextStyle(fontSize: 15),
-                              ),
-                              Text(
-                                Mission().mission[index1][1],
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 15),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 3.0),
-                          child: SizedBox(
-                            height: 40,
-                            child: ListView.builder(
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                scrollDirection: Axis.horizontal,
-                                itemCount: Mission().mission[index1].length - 2,
-                                itemBuilder: (context, index2) {
-                                  return Row(
-                                    children: [
-                                      Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            color: index1 != 2
-                                                ? Theme.of(context)
-                                                    .colorScheme
-                                                    .primary
-                                                : Colors.grey.shade400,
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                15, 3, 15, 3),
-                                            child: Text(
-                                              Mission().mission[index1]
-                                                  [index2 + 2],
-                                              style: const TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 15),
-                                            ),
-                                          )),
-                                      const SizedBox(
-                                        width: 10,
-                                      )
-                                    ],
-                                  );
-                                }),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                )
-              ],
-            );
-          },
-        ),
-      );
-    }
+    // Widget missionIng() {
+    //   return SizedBox(
+    //     height: 300,
+    //     child: ListView.builder(
+    //       physics: const NeverScrollableScrollPhysics(),
+    //       shrinkWrap: true,
+    //       itemCount: Mission().mission.length,
+    //       itemBuilder: (context, index1) {
+    //         return Column(
+    //           children: [
+    //             Container(
+    //               decoration: BoxDecoration(
+    //                 borderRadius: BorderRadius.circular(35),
+    //                 color:
+    //                     index1 != 2 ? Color(0xffEEF6EA) : Colors.grey.shade200,
+    //               ),
+    //               width: 330,
+    //               child: Padding(
+    //                 padding:
+    //                     const EdgeInsets.only(left: 25.0, top: 10, bottom: 7),
+    //                 child: Column(
+    //                   crossAxisAlignment: CrossAxisAlignment.start,
+    //                   children: [
+    //                     Padding(
+    //                       padding: const EdgeInsets.only(top: 4.0),
+    //                       child: Row(
+    //                         children: [
+    //                           Text(
+    //                             "미션 ${index1 + 1} : ",
+    //                             style: const TextStyle(fontSize: 15),
+    //                           ),
+    //                           Text(
+    //                             Mission().mission[index1][1],
+    //                             style: const TextStyle(
+    //                                 fontWeight: FontWeight.bold, fontSize: 15),
+    //                           )
+    //                         ],
+    //                       ),
+    //                     ),
+    //                     Padding(
+    //                       padding: const EdgeInsets.only(left: 3.0),
+    //                       child: SizedBox(
+    //                         height: 40,
+    //                         child: ListView.builder(
+    //                             physics: const NeverScrollableScrollPhysics(),
+    //                             shrinkWrap: true,
+    //                             scrollDirection: Axis.horizontal,
+    //                             itemCount: Mission().mission[index1].length - 2,
+    //                             itemBuilder: (context, index2) {
+    //                               return Row(
+    //                                 children: [
+    //                                   Container(
+    //                                       decoration: BoxDecoration(
+    //                                         borderRadius:
+    //                                             BorderRadius.circular(20),
+    //                                         color: index1 != 2
+    //                                             ? Theme.of(context)
+    //                                                 .colorScheme
+    //                                                 .primary
+    //                                             : Colors.grey.shade400,
+    //                                       ),
+    //                                       child: Padding(
+    //                                         padding: const EdgeInsets.fromLTRB(
+    //                                             15, 3, 15, 3),
+    //                                         child: Text(
+    //                                           Mission().mission[index1]
+    //                                               [index2 + 2],
+    //                                           style: const TextStyle(
+    //                                               color: Colors.white,
+    //                                               fontSize: 15),
+    //                                         ),
+    //                                       )),
+    //                                   const SizedBox(
+    //                                     width: 10,
+    //                                   )
+    //                                 ],
+    //                               );
+    //                             }),
+    //                       ),
+    //                     )
+    //                   ],
+    //                 ),
+    //               ),
+    //             ),
+    //             SizedBox(
+    //               height: 10,
+    //             )
+    //           ],
+    //         );
+    //       },
+    //     ),
+    //   );
+    // }
 
     Widget missionComplete() {
       int value = 23;
@@ -548,68 +665,74 @@ class DraggableSheet extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(height: 10),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(left: 24.0, right: 24),
-              child: ListView(
+              child: Stack(
                 children: [
-                  const SizedBox(height: 10),
-                  toggleButton(),
-                  tabTextIndexSelected == 0
-                      ? Column(
-                          children: [
-                            const SizedBox(height: 30),
-                            const Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "미션 진행 상태",
-                                  style: TextStyle(fontSize: 18),
-                                )),
-                            missionProgress(),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            const Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "진행중인 미션",
-                                  style: TextStyle(fontSize: 18),
-                                )),
-                            const SizedBox(
-                              height: 14,
-                            ),
-                            missionIng(),
-                          ],
-                        )
-                      : Container(),
-                  tabTextIndexSelected == 1
-                      ? Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            const SizedBox(height: 30),
-                            const Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "완료한 미션",
-                                  style: TextStyle(fontSize: 18),
-                                )),
-                            missionComplete(),
-                            const SizedBox(
-                              height: 25,
-                            ),
-                            const Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "주로 한 미션",
-                                  style: TextStyle(fontSize: 18),
-                                )),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            radarChart(),
-                          ],
-                        )
-                      : Container()
+                  ListView(
+                    children: [
+                      tabTextIndexSelected == 0
+                          ? Column(
+                              children: [
+                                const Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      "미션 진행 상태",
+                                      style: TextStyle(fontSize: 18),
+                                    )),
+                                missionProgress(),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                                const Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      "진행중인 미션",
+                                      style: TextStyle(fontSize: 18),
+                                    )),
+                                const SizedBox(
+                                  height: 14,
+                                ),
+                                //missionIng(),
+                              ],
+                            )
+                          : Container(),
+                      tabTextIndexSelected == 1
+                          ? Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                const Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      "완료한 미션",
+                                      style: TextStyle(fontSize: 18),
+                                    )),
+                                missionComplete(),
+                                const SizedBox(
+                                  height: 25,
+                                ),
+                                const Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      "주로 한 미션",
+                                      style: TextStyle(fontSize: 18),
+                                    )),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                                radarChart(),
+                              ],
+                            )
+                          : Container()
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 30.0),
+                    child: Align(alignment: Alignment.bottomCenter,child: toggleButton()),
+                  ),
+
                 ],
               ),
             ),

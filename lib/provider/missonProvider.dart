@@ -1,10 +1,21 @@
 import 'package:cap_stone_project/services/database_service.dart';
 import 'package:flutter/material.dart';
 
+import '../model/mission.dart';
+
 class MissionProvider extends ChangeNotifier {
   int currentIndex = 0;
   int face = 0;
   double height = 260;
+
+  List<List<String>> mission = [];
+
+  Future<List<List<String>>> fetchMission() async {
+    Mission missionModel = Mission();
+    mission = await missionModel.fetchMission();
+    notifyListeners();
+    return mission;
+  }
 
   void updateIndex(int index) {
     currentIndex = index;

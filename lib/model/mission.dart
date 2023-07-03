@@ -1,7 +1,46 @@
+import 'dart:math';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+
 class Mission {
-  List<List<String>> mission = [
-    ["성실성", "이불 개기", "끈기", "자기 통제력"],
-    ["식습관", "하루 한끼 요리해먹기", "창의성", "학구열", "판단력"],
-    ["사회성", "집 밖으로 나가 하늘 사진 찍기", "사회성", "감상력",]
-  ];
+  Future<List<List<String>>> fetchMission() async {
+    DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
+    await FirebaseFirestore.instance
+        .collection('mission')
+        .doc('level1')
+        .get();
+
+    if (documentSnapshot.exists) {
+      Map<String, dynamic>? data = documentSnapshot.data();
+      if (data != null) {
+        List<String> missionFields = data.keys
+            .where((key) => key.startsWith('mission'))
+            .toList();
+
+
+        List<int> randomNumbers = [1, 2, 3];
+
+        if(DateTime.now().add(const Duration(microseconds: 10)).minute != DateTime.now().minute){
+          while (randomNumbers.length < 3) {
+            int randomNumber = Random().nextInt(4);
+            if (!randomNumbers.contains(randomNumber)) {
+              randomNumbers.add(randomNumber);
+            }
+          }
+          print(randomNumbers);
+        }
+        //missionFields.shuffle();
+
+        List<List<String>> mission = [];
+        for (int i = 0; i < 3; i++) {
+          //랜덤
+          String missionField = missionFields[randomNumbers[i]];
+          mission.add(List<String>.from(data[missionField]));
+        }
+        return mission;
+      }
+    }
+
+    return [];
+  }
 }
