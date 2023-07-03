@@ -1,7 +1,6 @@
 import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/question_pages/additional_question_pages/additional_question_page.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 //  Page route for animation
 Route additionalQuestionPage(UserInfoValueModel model) {
