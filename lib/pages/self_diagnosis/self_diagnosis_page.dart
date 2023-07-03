@@ -17,7 +17,6 @@ import 'package:cap_stone_project/pages/self_diagnosis/user_data_database_update
 import 'package:cap_stone_project/pages/self_diagnosis/user_info_pages/user_nickname_info_page.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/self_diagnosis_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
 class SelfDiagnosisPage extends StatelessWidget {
@@ -277,4 +276,5 @@ class SelfDiagnosisPage extends StatelessWidget {
 닉네임 길이 제한 및 경고 메세지 추가
 체중, 신장 제출 버튼 없이 '다음' 버튼에 업데이트 함수 구현해 값 파베로 넘기기 구현
 추가 질문 텍스트 밑줄 수정
+테마 색상 업데이트
 */
