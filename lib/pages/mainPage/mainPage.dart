@@ -5,7 +5,6 @@ import 'package:cap_stone_project/pages/mainPage/statistic.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'home.dart';
-import 'myhompage.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
