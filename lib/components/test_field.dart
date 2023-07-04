@@ -47,15 +47,15 @@ class MyTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(50.0),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Color(0xFF619F70)),
+          // borderSide: BorderSide(color: Color(0xFF619F70)),
           borderRadius: BorderRadius.circular(50.0),
         ),
         fillColor: Colors.white,
         filled: true,
         hintText: hintText,
-        hintStyle: TextStyle(
-          color: Color(0xFF717171),
-        ),
+        // hintStyle: TextStyle(
+        //   color: Color(0xFF717171),
+        // ),
       ),
     );
   }
