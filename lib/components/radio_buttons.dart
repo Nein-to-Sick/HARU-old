@@ -24,7 +24,7 @@ class RadioButtons extends StatelessWidget {
               : null,
           elevation: 0,
           absoluteZeroSpacing: false,
-          unSelectedColor: Theme.of(context).canvasColor,
+          unSelectedColor: Theme.of(context).colorScheme.background,
           margin: const EdgeInsets.only(left: 8, right: 8),
           padding: 0,
           height: 50,
@@ -46,10 +46,10 @@ class RadioButtons extends StatelessWidget {
             "3",
             "4",
           ],
-          buttonTextStyle: const ButtonTextStyle(
-            selectedColor: Colors.white,
+          buttonTextStyle: ButtonTextStyle(
+            selectedColor: Theme.of(context).colorScheme.background,
             unSelectedColor: Colors.black,
-            textStyle: TextStyle(
+            textStyle: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),

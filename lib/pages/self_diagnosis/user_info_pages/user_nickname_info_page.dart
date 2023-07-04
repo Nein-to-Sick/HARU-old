@@ -1,4 +1,4 @@
-import 'package:cap_stone_project/Theme/color_schemes.g.dart';
+import 'package:cap_stone_project/Theme/color_schemes.dart';
 import 'package:cap_stone_project/auth/auth.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/self_diagnosis_model.dart';
@@ -88,23 +88,23 @@ class SelfIntroPage extends StatelessWidget {
                 controller: nicknameTextController,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(
-                      color: Color(0xFF717171),
+                    borderSide: BorderSide(
+                      color: Theme.of(context).colorScheme.outline,
                     ),
                     borderRadius: BorderRadius.circular(50),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: Theme.of(context).colorScheme.primary,
                       width: 2,
                     ),
                     borderRadius: BorderRadius.circular(50),
                   ),
-                  fillColor: HARUTheme.lightColorScheme.background,
+                  fillColor: Theme.of(context).colorScheme.background,
                   filled: true,
                   hintText: '닉네임',
-                  hintStyle: const TextStyle(
-                    color: Color(0xFF717171),
+                  hintStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.outlineVariant,
                   ),
                   suffixIcon: Padding(
                     padding: const EdgeInsets.only(right: 10),
