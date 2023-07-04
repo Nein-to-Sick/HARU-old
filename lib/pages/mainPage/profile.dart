@@ -11,8 +11,10 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     void signUserOut() {
       FirebaseAuth.instance.signOut();
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AuthPage()));
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const AuthPage()),
+          (route) => false);
     }
 
     return Scaffold(

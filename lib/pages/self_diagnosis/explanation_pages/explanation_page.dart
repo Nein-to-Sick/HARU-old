@@ -1,6 +1,4 @@
-import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class ExplanationPage extends StatelessWidget {
   const ExplanationPage({super.key});
