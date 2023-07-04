@@ -1,6 +1,4 @@
-import 'package:cap_stone_project/components/daily_emotion_background_animation.dart';
 import 'package:cap_stone_project/components/daily_emotion_dialog.dart';
-import 'package:cap_stone_project/model/mission.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../provider/missonProvider.dart';
@@ -60,8 +58,10 @@ class HomePage extends StatelessWidget {
                                 Text(
                                   mission[index][1],
                                   textAlign: TextAlign.center,
-                                  style:
-                                      const TextStyle(color: Color(0xff717171)),
+                                  style: TextStyle(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .outlineVariant),
                                 ),
                                 const SizedBox(
                                   height: 30,
@@ -77,11 +77,15 @@ class HomePage extends StatelessWidget {
                                           shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(10)),
-                                          backgroundColor:
-                                              Theme.of(context).primaryColor),
-                                      child: const Text(
+                                          backgroundColor: Theme.of(context)
+                                              .colorScheme
+                                              .secondary),
+                                      child: Text(
                                         "성공!",
-                                        style: TextStyle(color: Colors.white),
+                                        style: TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .background),
                                       ),
                                     ))
                               ],
@@ -119,8 +123,11 @@ class HomePage extends StatelessWidget {
                                 children: [
                                   Text(
                                     "${index + 1}/${pages.length}",
-                                    style: const TextStyle(
-                                        color: Color(0xff878787), fontSize: 14),
+                                    style: TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .outlineVariant,
+                                        fontSize: 14),
                                   ),
                                   const SizedBox(
                                     height: 5,
@@ -149,9 +156,10 @@ class HomePage extends StatelessWidget {
                                         );
                                       }
                                     },
-                                    child: const Icon(
+                                    child: Icon(
                                       Icons.arrow_back_ios_new,
-                                      color: Color(0xffE4E4E4),
+                                      color:
+                                          Theme.of(context).colorScheme.outline,
                                       size: 40,
                                     ),
                                   ),
@@ -173,9 +181,10 @@ class HomePage extends StatelessWidget {
                                         );
                                       }
                                     },
-                                    child: const Icon(
+                                    child: Icon(
                                       Icons.arrow_forward_ios_rounded,
-                                      color: Color(0xffE4E4E4),
+                                      color:
+                                          Theme.of(context).colorScheme.outline,
                                       size: 40,
                                     ),
                                   ),
@@ -220,7 +229,8 @@ class HomePage extends StatelessWidget {
                                 },
                                 style: ElevatedButton.styleFrom(
                                   elevation: 5,
-                                  backgroundColor: const Color(0xffA2D3FA),
+                                  backgroundColor:
+                                      Theme.of(context).colorScheme.secondary,
                                   shape: const CircleBorder(),
                                 ),
                                 child: SizedBox(
@@ -242,18 +252,24 @@ class HomePage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15),
                         color: Colors.black12.withOpacity(0.025),
                       ),
-                      child: const Padding(
-                        padding: EdgeInsets.only(
+                      child: Padding(
+                        padding: const EdgeInsets.only(
                             left: 16.0, right: 16.0, top: 8.0, bottom: 8.0),
                         child: Column(
                           children: [
                             Text(
                               "\"나는 심심할 때 창밖에 있는 새들을 봐\"",
-                              style: TextStyle(color: Color(0xff717171)),
+                              style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .outlineVariant),
                             ),
                             Text(
                               "너는?",
-                              style: TextStyle(color: Color(0xff717171)),
+                              style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .outlineVariant),
                             ),
                           ],
                         ),
@@ -262,8 +278,9 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               );
-            } else
+            } else {
               return Container();
+            }
           },
         );
       },

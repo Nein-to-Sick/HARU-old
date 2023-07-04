@@ -1,54 +1,12 @@
 import 'package:flutter/material.dart';
 
-ThemeData lightTheme = ThemeData(
-  useMaterial3: true,
-  brightness: Brightness.light,
-  appBarTheme: const AppBarTheme(
-    backgroundColor: Colors.transparent,
-    elevation: 0,
-    iconTheme: IconThemeData(color: Colors.black),
-    titleTextStyle: TextStyle(color: Colors.black, fontSize: 20),
-  ),
-  colorScheme: const ColorScheme.light(
-    background: Color(0xFFFAFAFA),
-    primary: HARUThemelight.HARUPrimary,
-    secondary: HARUThemelight.HARUSecondary,
-    tertiary: Color(0xFFE4E4E4), //  Unselected Color
-  ),
-  textButtonTheme: TextButtonThemeData(
-    style: TextButton.styleFrom(
-      foregroundColor: Colors.black,
-      textStyle: const TextStyle(color: Colors.white),
-    ),
-  ),
-);
+class AppColors {
+  static const Color primaryColor = Color(0xffFF7E67);
+  static const Color secondaryColor = Color(0xffA2D5F2);
+  static const Color teritaryColor = Color(0xff07679F);
+  static const Color geryColor = Color(0xffF9F9F9);
+  static const Color whiteColor = Colors.white;
 
-/*
-ThemeData lightTheme = ThemeData(
-  useMaterial3: true,
-  brightness: Brightness.light,
-  appBarTheme: const AppBarTheme(
-    backgroundColor: Colors.transparent,
-    elevation: 0,
-    iconTheme: IconThemeData(color: Colors.black),
-    titleTextStyle: TextStyle(color: Colors.black, fontSize: 20),
-  ),
-  colorScheme: const ColorScheme.light(
-    background: Color(0xFFFAFAFA),
-    primary: Color(0xFF619F70),
-    secondary: Color(0xFFC2E3AD),
-    tertiary: Color(0xFFE4E4E4), //  Unselected Color
-  ),
-  textButtonTheme: TextButtonThemeData(
-    style: TextButton.styleFrom(
-      foregroundColor: Colors.black,
-      textStyle: const TextStyle(color: Colors.white),
-    ),
-  ),
-);
-*/
-
-class HARUThemelight {
   static const MaterialColor HARUPrimary = MaterialColor(0xffFF7E67, {
     900: Color(0xff692016),
     800: Color(0xff892A1E),
@@ -60,7 +18,6 @@ class HARUThemelight {
     200: Color(0xffFFB2A1),
     100: Color(0xffFFD0C5),
     50: Color(0xffFFEFEB),
-    0: Color(0xffFF7E67),
   });
 
   static const MaterialColor HARUSecondary = MaterialColor(0xffA2D5F2, {

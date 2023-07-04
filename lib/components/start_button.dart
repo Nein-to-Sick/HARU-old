@@ -31,14 +31,16 @@ class StartButton extends StatelessWidget {
               (route) => false);
         },
         decoration: BoxDecoration(
+          color: isSelected
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.outline,
+          borderRadius: BorderRadius.circular(67),
+          border: Border.all(
             color: isSelected
                 ? Theme.of(context).colorScheme.primary
-                : Theme.of(context).colorScheme.tertiary,
-            borderRadius: BorderRadius.circular(67),
-            border: Border.all(
-                color: isSelected
-                    ? Theme.of(context).colorScheme.primary
-                    : const Color(0xFF717171))),
+                : Theme.of(context).colorScheme.outline,
+          ),
+        ),
         duration: const Duration(milliseconds: 500),
         child: Center(
           child: Text(
@@ -46,7 +48,7 @@ class StartButton extends StatelessWidget {
             style: TextStyle(
               color: isSelected
                   ? Theme.of(context).colorScheme.background
-                  : const Color(0xFF717171),
+                  : Theme.of(context).colorScheme.background,
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),

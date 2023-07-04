@@ -55,7 +55,7 @@ class _MainPageState extends State<MainPage>
           child: TabBar(
             controller: _tabController,
             labelColor: Colors.black,
-            indicatorColor: Theme.of(context).primaryColor,
+            indicatorColor: Theme.of(context).colorScheme.primary,
             tabs: [
               Tab(
                   child: _selectedIndex == 0
@@ -87,7 +87,7 @@ class _MainPageState extends State<MainPage>
       child: Center(
         child: Text(
           tabText,
-          style: const TextStyle(color: Colors.white),
+          style: TextStyle(color: Theme.of(context).colorScheme.background),
         ),
       ),
     );

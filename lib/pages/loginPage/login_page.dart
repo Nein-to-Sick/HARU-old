@@ -64,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -86,18 +86,21 @@ class _LoginPageState extends State<LoginPage> {
                     ),
 
                     //app names
-                    const Text(
+                    Text(
                       "하루",
                       style: TextStyle(
                         fontSize: 61,
-                        color: Color(0xFF544437),
+                        color: Theme.of(context).colorScheme.primary,
                         height: 1.0,
                       ),
                     ),
-                    const Text(
+                    Text(
                       "Haru",
                       style: TextStyle(
-                          fontSize: 30, color: Color(0xFF544437), height: 1.0),
+                        fontSize: 30,
+                        color: Theme.of(context).colorScheme.primaryContainer,
+                        height: 1.0,
+                      ),
                     ),
                     const SizedBox(
                       height: 40,

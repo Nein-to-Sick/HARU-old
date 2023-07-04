@@ -43,19 +43,23 @@ class MyTextField extends StatelessWidget {
       obscureText: obscureText,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Color(0xFFC2E3AD)),
+          borderSide: BorderSide(
+            color: Theme.of(context).colorScheme.outline,
+          ),
           borderRadius: BorderRadius.circular(50.0),
         ),
         focusedBorder: OutlineInputBorder(
-          // borderSide: BorderSide(color: Color(0xFF619F70)),
+          borderSide: BorderSide(
+            color: Theme.of(context).colorScheme.primary,
+          ),
           borderRadius: BorderRadius.circular(50.0),
         ),
-        fillColor: Colors.white,
+        fillColor: Theme.of(context).colorScheme.background,
         filled: true,
         hintText: hintText,
-        // hintStyle: TextStyle(
-        //   color: Color(0xFF717171),
-        // ),
+        hintStyle: TextStyle(
+          color: Theme.of(context).colorScheme.outlineVariant,
+        ),
       ),
     );
   }

@@ -1,5 +1,65 @@
+import 'package:cap_stone_project/Theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
+ThemeData newLightTheme = ThemeData(
+  useMaterial3: true,
+  brightness: Brightness.light,
+  colorScheme: ColorScheme.light(
+    //  주요 색상
+    primary: AppColors.HARUPrimary,
+    onPrimary: AppColors.HARUGreyscale.shade50,
+    //  주요 색상 변종
+    primaryContainer: AppColors.HARUPrimary.shade100,
+    //  2순위 색상
+    secondary: AppColors.HARUSecondary,
+    onSecondary: AppColors.HARUGreyscale.shade50,
+    secondaryContainer: AppColors.HARUSecondary.shade200,
+    //  3순위 색상
+    tertiary: AppColors.HARUTeritary,
+    onTertiary: AppColors.HARUGreyscale.shade50,
+    tertiaryContainer: AppColors.HARUTeritary.shade200,
+    //  배경, 흰 글씨
+    background: AppColors.whiteColor,
+    onBackground: AppColors.geryColor,
+    //  회색, 미선택, 비활성화 색상
+    outline: AppColors.HARUGreyscale.shade200,
+    outlineVariant: AppColors.HARUGreyscale.shade400,
+    /*
+    error: error,
+    onError: onError,
+    surface: surface,
+    onSurface: onSurface,
+    */
+  ),
+);
+
+ThemeData newDarkTheme = ThemeData(
+  useMaterial3: true,
+  brightness: Brightness.dark,
+  colorScheme: ColorScheme.dark(
+    primary: AppColors.HARUPrimary,
+    onPrimary: AppColors.HARUGreyscale.shade50,
+    primaryContainer: AppColors.HARUPrimary.shade100,
+    secondary: AppColors.HARUSecondary,
+    onSecondary: AppColors.HARUGreyscale.shade50,
+    secondaryContainer: AppColors.HARUSecondary.shade200,
+    tertiary: AppColors.HARUTeritary,
+    onTertiary: AppColors.HARUGreyscale.shade50,
+    tertiaryContainer: AppColors.HARUTeritary.shade200,
+    background: AppColors.whiteColor,
+    onBackground: AppColors.geryColor,
+    outline: AppColors.HARUGreyscale.shade200,
+    outlineVariant: AppColors.HARUGreyscale.shade400,
+    /*
+    error: error,
+    onError: onError,
+    surface: surface,
+    onSurface: onSurface,
+    */
+  ),
+);
+
+/*
 class HARUTheme {
   static const lightColorScheme = ColorScheme(
     brightness: Brightness.light,
@@ -133,3 +193,4 @@ class HARUTheme {
     900: Color(0xff393939)
   });
 }
+*/
