@@ -1,3 +1,4 @@
+import 'package:cap_stone_project/Theme/color_schemes.g.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/self_diagnosis_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
@@ -34,8 +35,8 @@ class AnimatedProgressBar extends StatelessWidget {
                 maxValue: 100,
                 size: 7,
                 animatedDuration: const Duration(milliseconds: 300),
-                backgroundColor: Theme.of(context).colorScheme.secondary,
-                progressColor: Theme.of(context).colorScheme.primary,
+                backgroundColor: HARUTheme.HARUPrimary.shade200,
+                progressColor: HARUTheme.HARUPrimary,
               ),
             ),
             const SizedBox(
@@ -52,8 +53,8 @@ class AnimatedProgressBar extends StatelessWidget {
                 maxValue: 100,
                 size: 7,
                 animatedDuration: const Duration(milliseconds: 300),
-                backgroundColor: Theme.of(context).colorScheme.secondary,
-                progressColor: Theme.of(context).colorScheme.primary,
+                backgroundColor: HARUTheme.HARUPrimary.shade200,
+                progressColor: HARUTheme.HARUPrimary,
               ),
             ),
             const SizedBox(
@@ -70,8 +71,8 @@ class AnimatedProgressBar extends StatelessWidget {
                 maxValue: 100,
                 size: 7,
                 animatedDuration: const Duration(milliseconds: 400),
-                backgroundColor: Theme.of(context).colorScheme.secondary,
-                progressColor: Theme.of(context).colorScheme.primary,
+                backgroundColor: HARUTheme.HARUPrimary.shade200,
+                progressColor: HARUTheme.HARUPrimary,
               ),
             )
           ],
@@ -89,9 +90,7 @@ class AnimatedProgressBar extends StatelessWidget {
               AnimatedDefaultTextStyle(
                 duration: const Duration(milliseconds: 300),
                 style: TextStyle(
-                  color: (stage == 0)
-                      ? Colors.black
-                      : Theme.of(context).colorScheme.tertiary,
+                  color: (stage == 0) ? Colors.black : Color(0xFFE4E4E4),
                 ),
                 child: const Text(
                   '개인설정',
@@ -101,9 +100,7 @@ class AnimatedProgressBar extends StatelessWidget {
               AnimatedDefaultTextStyle(
                 duration: const Duration(milliseconds: 300),
                 style: TextStyle(
-                  color: (stage == 1)
-                      ? Colors.black
-                      : Theme.of(context).colorScheme.tertiary,
+                  color: (stage == 1) ? Colors.black : Color(0xFFE4E4E4),
                 ),
                 child: const Text(
                   '자가진단',
@@ -113,9 +110,7 @@ class AnimatedProgressBar extends StatelessWidget {
               AnimatedDefaultTextStyle(
                 duration: const Duration(milliseconds: 300),
                 style: TextStyle(
-                  color: (stage == 2)
-                      ? Colors.black
-                      : Theme.of(context).colorScheme.tertiary,
+                  color: (stage == 2) ? Colors.black : Color(0xFFE4E4E4),
                 ),
                 child: const Text(
                   '이용설명',
