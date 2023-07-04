@@ -1,3 +1,5 @@
+import 'package:cap_stone_project/Theme/color_schemes.g.dart';
+import 'package:cap_stone_project/Theme/dark_theme.dart';
 import 'package:cap_stone_project/Theme/light_theme.dart';
 import 'package:cap_stone_project/auth/auth.dart';
 import 'package:cap_stone_project/pages/mainPage/mainPage.dart';
@@ -25,7 +27,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: lightTheme,
+      theme: ThemeData(
+          useMaterial3: true, colorScheme: HARUTheme.lightColorScheme),
+      darkTheme:
+          ThemeData(useMaterial3: true, colorScheme: HARUTheme.darkColorScheme),
+      // theme: lightTheme,
+      // darkTheme: darkTheme,
       home: const AuthPage(),
     );
   }

@@ -48,6 +48,7 @@ dependencies:
   liquid_progress_indicator_v2: ^0.5.0
   wrapped_korean_text: ^0.0.3
   lottie: ^2.4.0
+  simple_animations: ^5.0.2
 
 
 dev_dependencies:
@@ -99,6 +100,7 @@ flutter:
     - assets/images/icon/statisticIcon_click.png
     - assets/images/icon/statisticIcon_unclick.png
     - assets/dialog/daily_dialog_background.json
+    - assets/dialog/circle_blue.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -8,19 +8,46 @@ Future dialyEmotionDailog(BuildContext context) {
     builder: (BuildContext context) {
       return Dialog(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(25.0),
         ),
         child: Container(
-          height: 300, // 변경 가능한 높이
-          width: 300, // 변경 가능한 너비
+          height: 390, // 변경 가능한 높이
+          width: 340, // 변경 가능한 너비
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
+            color: const Color(0xFF64B5F6),
+            borderRadius: BorderRadius.circular(25.0),
           ),
-          child: Lottie.asset(
+          child: Stack(
+            children: [
+              Container(
+                height: 390, // 변경 가능한 높이
+                width: 340,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 250),
+                  child: Lottie.asset(
+                    'assets/dialog/circle_blue.json',
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 130),
+                child: Container(
+                  height: 200,
+                  width: 340,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+          /*
+          Lottie.asset(
             'assets/dialog/daily_dialog_background.json',
-            height: 300, // 변경 가능한 높이
-            width: 300,
+            height: 100,
+            width: 100,
+            fit: BoxFit.fill,
           ),
+          */
         ),
       );
     },

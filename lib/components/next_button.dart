@@ -1,3 +1,4 @@
+import 'package:cap_stone_project/Theme/color_schemes.g.dart';
 import 'package:flutter/material.dart';
 
 class NextButton extends StatelessWidget {
@@ -21,12 +22,12 @@ class NextButton extends StatelessWidget {
         width: 335,
         decoration: BoxDecoration(
             color: isSelected
-                ? Theme.of(context).colorScheme.primary
-                : Theme.of(context).colorScheme.tertiary,
+                ? HARUTheme.HARUPrimary.shade300
+                : HARUTheme.HARUPrimary.shade300,
             borderRadius: BorderRadius.circular(67),
             border: Border.all(
                 color: isSelected
-                    ? Theme.of(context).colorScheme.primary
+                    ? HARUTheme.HARUPrimary.shade900
                     : const Color(0xFF717171))),
         duration: const Duration(milliseconds: 300),
         child: Center(

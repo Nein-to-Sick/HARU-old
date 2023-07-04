@@ -1,3 +1,4 @@
+import 'package:cap_stone_project/components/daily_emotion_background_animation.dart';
 import 'package:cap_stone_project/components/daily_emotion_dialog.dart';
 import 'package:cap_stone_project/model/mission.dart';
 import 'package:flutter/material.dart';
@@ -213,6 +214,7 @@ class HomePage extends StatelessWidget {
                               child: ElevatedButton(
                                 onPressed: () {
                                   // 버튼을 클릭했을 때 실행될 코드
+                                  //dialyEmotionAnimation(context);
                                   dialyEmotionDailog(context);
                                   print('daily emotion button');
                                 },
