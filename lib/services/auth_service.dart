@@ -29,6 +29,7 @@ class AuthService {
     final userCollection = FirebaseFirestore.instance.collection("users");
 
     String? userId = FirebaseAuth.instance.currentUser?.uid;
+    String? userEmail = FirebaseAuth.instance.currentUser?.email;
 
     final docRef = userCollection.doc(userId);
 
@@ -41,6 +42,7 @@ class AuthService {
       "age": 0,
       "SelfDiagnosisIsDone": false,
       "SelfDiagnosisResult": 0,
+      "email": userEmail,
     });
 
     DateTime selectedDate =

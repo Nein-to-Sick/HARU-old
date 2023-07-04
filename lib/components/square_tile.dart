@@ -1,3 +1,4 @@
+import 'package:cap_stone_project/Theme/color_schemes.g.dart';
 import 'package:flutter/material.dart';
 
 class SquareTile extends StatelessWidget {
@@ -13,7 +14,8 @@ class SquareTile extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(0),
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.white),
+          // border: Border.all(color: Colors.white),
+          border: Border.all(color: HARUTheme.HARUGreyscale),
           borderRadius: BorderRadius.circular(50),
           color: Colors.white,
         ),

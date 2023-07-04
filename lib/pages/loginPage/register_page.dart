@@ -49,6 +49,7 @@ class _RegisterPageState extends State<RegisterPage> {
         final userCollection = FirebaseFirestore.instance.collection("users");
 
         String? userId = FirebaseAuth.instance.currentUser?.uid;
+        String? userEmail = FirebaseAuth.instance.currentUser?.email;
 
         final docRef = userCollection.doc(userId);
 
@@ -61,6 +62,7 @@ class _RegisterPageState extends State<RegisterPage> {
           "age": 0,
           "SelfDiagnosisIsDone": false,
           "SelfDiagnosisResult": 0,
+          "email": userEmail,
         });
 
         DateTime selectedDate = DateTime(
