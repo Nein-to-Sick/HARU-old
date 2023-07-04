@@ -1,3 +1,4 @@
+import 'package:cap_stone_project/Theme/color_schemes.g.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -70,7 +71,7 @@ class BodyInfo extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.circular(50),
               ),
-              fillColor: Theme.of(context).colorScheme.tertiary,
+              fillColor: HARUTheme.lightColorScheme.background,
               filled: true,
               hintText: '신장',
               hintStyle: const TextStyle(
@@ -148,7 +149,7 @@ class BodyInfo extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.circular(50),
               ),
-              fillColor: Theme.of(context).colorScheme.tertiary,
+              fillColor: HARUTheme.lightColorScheme.background,
               filled: true,
               hintText: '체중',
               hintStyle: const TextStyle(

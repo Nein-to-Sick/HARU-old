@@ -5,7 +5,7 @@ class HARUTheme {
     brightness: Brightness.light,
     //  primary
     primary: HARUPrimary,
-    onPrimary: Color(0xFFFFFFFF),
+    onPrimary: Color(0xffFF7E67),
     primaryContainer: Color(0xFFFFDAD4),
     onPrimaryContainer: Color(0xFF3F0300),
     //  secondary
@@ -89,12 +89,13 @@ class HARUTheme {
     200: Color(0xffFFB2A1),
     100: Color(0xffFFD0C5),
     50: Color(0xffFFEFEB),
+    0: Color(0xffFF7E67),
   });
 
   static const MaterialColor HARUSecondary = MaterialColor(0xffA2D5F2, {
     50: Color(0xffEFF4F8),
     100: Color(0xffCEDFEA),
-    200: Color(0xffFFB2A1),
+    200: Color(0xffAFCADB),
     300: Color(0xff91B6CB),
     400: Color(0xff74A1BA),
     500: Color(0xff5B8DA7),

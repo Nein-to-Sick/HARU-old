@@ -1,3 +1,4 @@
+import 'package:cap_stone_project/Theme/color_schemes.g.dart';
 import 'package:cap_stone_project/auth/auth.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/self_diagnosis_model.dart';
@@ -99,7 +100,7 @@ class SelfIntroPage extends StatelessWidget {
                     ),
                     borderRadius: BorderRadius.circular(50),
                   ),
-                  fillColor: Theme.of(context).colorScheme.tertiary,
+                  fillColor: HARUTheme.lightColorScheme.background,
                   filled: true,
                   hintText: '닉네임',
                   hintStyle: const TextStyle(
