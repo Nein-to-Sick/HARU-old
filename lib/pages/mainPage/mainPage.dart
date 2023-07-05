@@ -3,91 +3,65 @@ import 'package:cap_stone_project/provider/missonProvider.dart';
 import 'package:cap_stone_project/provider/statisticState.dart';
 import 'package:cap_stone_project/pages/mainPage/statistic.dart';
 import 'package:flutter/material.dart';
+import 'package:heroicons/heroicons.dart';
 import 'package:provider/provider.dart';
+import '../../provider/navigation_controller.dart';
 import 'home.dart';
 
-class MainPage extends StatefulWidget {
+class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
 
   @override
-  State<MainPage> createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-  int _selectedIndex = 1;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 3, vsync: this);
-    _tabController.index = 1;
-    _tabController.addListener(() => setState(
-          () => _selectedIndex = _tabController.index,
-        ));
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: _selectedIndex == 1
-            ? ChangeNotifierProvider(
-                create: (context) => MissionProvider(),
-                child: HomePage(),
-              )
-            : _selectedIndex == 0
-                ? ChangeNotifierProvider(
-                    create: (_) => StatisticState(),
-                    child: Statistic(),
-                  )
-                : ProfilePage(),
-        bottomNavigationBar: Container(
-          decoration: BoxDecoration(
-              border: Border(top: BorderSide(color: Colors.grey.shade200))),
-          height: 90,
-          child: TabBar(
-            controller: _tabController,
-            labelColor: Colors.black,
-            indicatorColor: Theme.of(context).colorScheme.primary,
-            tabs: [
-              Tab(
-                  child: _selectedIndex == 0
-                      ? Image.asset(
-                          "./assets/images/icon/statisticIcon_click.png")
-                      : Image.asset(
-                          "./assets/images/icon/statisticIcon_unclick.png")),
-              Tab(
-                  child: _selectedIndex == 1
-                      ? Image.asset("./assets/images/icon/homeIcon_click.png")
-                      : Image.asset(
-                          "./assets/images/icon/homeIcon_unclick.png")),
-              Tab(
-                  child: _selectedIndex == 2
-                      ? Image.asset(
-                          "./assets/images/icon/profileIcon_click.png")
-                      : Image.asset(
-                          "./assets/images/icon/profileIcon_unclick.png")),
-            ],
-          ),
-        ));
-  }
+    return ChangeNotifierProvider<NavigationController>(
+      create: (context) => NavigationController(),
+      child: Scaffold(
+        body: Consumer<NavigationController>(
+          builder: (context, navigationController, _) {
+            return IndexedStack(
+              index: navigationController.selectedIndex,
+              children: [
+                ChangeNotifierProvider.value(
+                  value: StatisticState(),
+                  child: const Statistic(),
+                ),
+                ChangeNotifierProvider.value(
+                  value: MissionProvider(),
+                  child: HomePage(),
+                ),
+                const ProfilePage(),
+              ],
+            );
+          },
+        ),
+        bottomNavigationBar: Consumer<NavigationController>(
+          builder: (context, navigationController, _) {
+            return BottomNavigationBar(
+              unselectedItemColor: Theme.of(context).primaryColor.withOpacity(0.3), // Apply opacity here
 
-  Widget tabContainer(BuildContext con, Color tabColor, String tabText) {
-    return Container(
-      width: MediaQuery.of(con).size.width,
-      height: MediaQuery.of(con).size.height,
-      color: tabColor,
-      child: Center(
-        child: Text(
-          tabText,
-          style: TextStyle(color: Theme.of(context).colorScheme.background),
+              unselectedIconTheme: IconThemeData(
+                color: Theme.of(context).primaryColor.withOpacity(0.3), // Apply icon opacity here
+              ),
+              currentIndex: navigationController.selectedIndex,
+              onTap: (index) {
+                navigationController.selectedIndex = index;
+              },
+              items:  [
+                BottomNavigationBarItem(
+                  icon: HeroIcon(HeroIcons.chartBar, style: HeroIconStyle.mini),
+                  label: '통계',
+                ),
+                BottomNavigationBarItem(
+                  icon: HeroIcon(HeroIcons.home, style: HeroIconStyle.mini),
+                  label: '홈',
+                ),
+                BottomNavigationBarItem(
+                  icon: HeroIcon(HeroIcons.user, style: HeroIconStyle.mini),
+                  label: '프로필',
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

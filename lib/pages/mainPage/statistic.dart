@@ -225,7 +225,7 @@ class DraggableSheet extends StatelessWidget {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
-                                              isDate
+                                              isDate && faceAverage != 0
                                                   ? index <= firstDayIndex
                                                       ? Opacity(
                                                           opacity: 0.2,
@@ -399,7 +399,7 @@ class DraggableSheet extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
-                                              isDate
+                                              isDate && faceAverage != 0
                                                   ? isSelected
                                                       ? Image.asset(
                                                           "./assets/images/face$faceAverage.png",
@@ -462,8 +462,11 @@ class DraggableSheet extends StatelessWidget {
       );
     }
 
+    var missionClearCount = statisticState.missionClearCount;
+
     Widget missionProgress() {
-      double currentValue = 60;
+      statisticState.clearCount();
+      double currentValue = missionClearCount / 3 * 100;
       return Padding(
           padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
           child: Column(children: [
@@ -472,6 +475,7 @@ class DraggableSheet extends StatelessWidget {
               size: 30,
               maxValue: 100,
               changeColorValue: 100,
+              changeProgressColor: Theme.of(context).primaryColor,
               backgroundColor: const Color(0xffEEF6EA),
               progressColor: Theme.of(context).colorScheme.primary,
               animatedDuration: const Duration(milliseconds: 300),

@@ -25,8 +25,30 @@ class DatabaseService {
       'faceIndex': faceIndex,
       'text1': text1,
       'text2': text2,
-      'text3': text3
+      'text3': text3,
+      'complete': true
     });
+  }
+
+  Future<double> missionClear() async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .collection(todayDate)
+        .get();
+
+    double completedMissions = 0;
+    for (final DocumentSnapshot document in querySnapshot.docs) {
+      try {
+        bool? isComplete = document['complete'];
+        if (isComplete == true) {
+          completedMissions++;
+        }
+      } catch (e) {
+        continue;
+      }
+    }
+    return completedMissions;
   }
 
   Future<bool> checkDate(DateTime currentTime) async {
@@ -51,10 +73,16 @@ class DatabaseService {
 
     int total = 0;
     for (final DocumentSnapshot document in querySnapshot.docs) {
-      final int faceIndex = document['faceIndex'];
-      total += faceIndex;
+      try {
+        final int faceIndex = document['faceIndex'];
+        total += faceIndex;
+      } catch (e) {
+        continue;
+      }
     }
     total = (total / 3).round();
     return total;
   }
+
+
 }

@@ -49,6 +49,7 @@ dependencies:
   wrapped_korean_text: ^0.0.3
   lottie: ^2.4.0
   simple_animations: ^5.0.2
+  heroicons: ^0.8.0
 
 
 dev_dependencies:
