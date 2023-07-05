@@ -26,7 +26,7 @@ class MyLoadingPage extends StatelessWidget {
             ),
           ),
           const Image(
-            image: AssetImage('assets/thecat.jpg'),
+            image: AssetImage('assets/images/haru.png'),
             width: 120,
             height: 146.9,
           ),

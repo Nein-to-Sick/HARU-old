@@ -77,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     //logo
                     Image(
-                      image: AssetImage('assets/thecat.jpg'),
+                      image: AssetImage('assets/images/haru.png'),
                       width: 120,
                       height: 146.9,
                     ),
