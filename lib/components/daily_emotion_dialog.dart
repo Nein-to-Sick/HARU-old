@@ -17,25 +17,25 @@ Future dialyEmotionDailog(BuildContext context) {
             color: const Color(0xFF64B5F6),
             borderRadius: BorderRadius.circular(25.0),
           ),
-          child: Stack(
+          child: Column(
             children: [
-              Container(
-                height: 390, // 변경 가능한 높이
+              const SizedBox(
+                height: 60,
+              ),
+              SizedBox(
                 width: 340,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 250),
-                  child: Lottie.asset(
-                    'assets/dialog/circle_blue.json',
-                    fit: BoxFit.fill,
-                  ),
+                child: Lottie.asset(
+                  'assets/dialog/circle_blue.json',
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 130),
+              Expanded(
                 child: Container(
-                  height: 200,
-                  width: 340,
-                  color: Colors.white,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(25),
+                        bottomLeft: Radius.circular(25)),
+                  ),
                 ),
               ),
             ],

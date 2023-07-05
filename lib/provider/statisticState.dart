@@ -1,3 +1,4 @@
+import 'package:cap_stone_project/services/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
@@ -50,6 +51,12 @@ class StatisticState with ChangeNotifier {
   int calendarCount = 0;
   void countCalendar(int count) {
     calendarCount = count;
+    notifyListeners();
+  }
+
+  double missionClearCount = 0;
+  Future<void> clearCount() async {
+    missionClearCount = await DatabaseService().missionClear();
     notifyListeners();
   }
 }
