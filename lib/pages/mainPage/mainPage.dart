@@ -46,7 +46,7 @@ class MainPage extends StatelessWidget {
               onTap: (index) {
                 navigationController.selectedIndex = index;
               },
-              items:  [
+              items:  const [
                 BottomNavigationBarItem(
                   icon: HeroIcon(HeroIcons.chartBar, style: HeroIconStyle.mini),
                   label: '통계',

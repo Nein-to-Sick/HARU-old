@@ -1,4 +1,5 @@
 import 'package:cap_stone_project/components/daily_emotion_dialog.dart';
+import 'package:cap_stone_project/services/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../provider/missonProvider.dart';
@@ -22,7 +23,6 @@ class HomePage extends StatelessWidget {
               void missionComplete(BuildContext context, int index) {
                 missionProvider.missionComplete(context, index);
               }
-
               final pages = List.generate(
                   mission.length,
                   (index) => Container(
@@ -93,6 +93,7 @@ class HomePage extends StatelessWidget {
                           )),
                         ),
                       ));
+              //DatabaseService().missionRegister(mission);
 
               return Scaffold(
                 body: Column(
@@ -225,7 +226,6 @@ class HomePage extends StatelessWidget {
                                   // 버튼을 클릭했을 때 실행될 코드
                                   //dialyEmotionAnimation(context);
                                   dialyEmotionDailog(context);
-                                  print('daily emotion button');
                                 },
                                 style: ElevatedButton.styleFrom(
                                   elevation: 5,
