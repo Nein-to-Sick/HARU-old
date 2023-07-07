@@ -341,6 +341,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.12.0+2"
+  heroicons:
+    dependency: "direct main"
+    description:
+      name: heroicons
+      sha256: "35151dab83218ad1aeba2c56813a74946e47b8a90221aeb3e78eb30da6002082"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.8.0"
   http:
     dependency: transitive
     description:
