@@ -6,8 +6,6 @@ import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:liquid_progress_indicator_v2/liquid_progress_indicator.dart';
 import 'package:provider/provider.dart';
 import '../../components/customRadarChart.dart';
-import '../../model/mission.dart';
-import '../../provider/missonProvider.dart';
 
 class Statistic extends StatelessWidget {
   const Statistic({super.key});
@@ -107,179 +105,175 @@ class DraggableSheet extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     final currentDate = DateTime(
                         currDate.year, currDate.month, index - firstDayIndex);
-                    return FutureBuilder<bool>(
-                      future: DatabaseService().checkDate(currentDate),
-                      builder: (BuildContext context,
-                          AsyncSnapshot<dynamic> snapshot) {
-                        if (snapshot.hasData) {
-                          //보류
-                          // if (snapshot.connectionState == ConnectionState.none) {
-                          //   return Stack(
-                          //     children: [
-                          //       currentDate.month == selectedDate.month &&
-                          //           currentDate.day == selectedDate.day
-                          //           ? Center(
-                          //         child: Container(
-                          //           width: 46,
-                          //           decoration: BoxDecoration(
-                          //               color: Colors.grey.shade300,
-                          //               borderRadius:
-                          //               BorderRadius.circular(15)),
-                          //         ),
-                          //       )
-                          //           : Container(),
-                          //       GestureDetector(
-                          //         onTap: () {
-                          //           statisticState.selectDate(DateTime(
-                          //               currentDate.year,
-                          //               currentDate.month,
-                          //               currentDate.day));
-                          //           DatabaseService().averageFace(currentDate);
-                          //         },
-                          //         child: Center(
-                          //           child: Container(
-                          //             color: Colors.transparent,
-                          //             child: FutureBuilder<int>(
-                          //               future: DatabaseService()
-                          //                   .averageFace(currentDate),
-                          //               builder: (BuildContext context,
-                          //                   AsyncSnapshot<dynamic> snapshot) {
-                          //                 if (snapshot.hasData) {
-                          //                   final int faceAverage = snapshot.data;
-                          //                   return Column(
-                          //                     mainAxisAlignment:
-                          //                     MainAxisAlignment.center,
-                          //                     children: [
-                          //                       const SizedBox(
-                          //                         height: 3,
-                          //                       ),
-                          //                       Text(
-                          //                         currentDate.month ==
-                          //                             DateTime.now()
-                          //                                 .month &&
-                          //                             currentDate.day ==
-                          //                                 DateTime.now().day
-                          //                             ? '오늘'
-                          //                             : '${currentDate.day}',
-                          //                         style: TextStyle(
-                          //                             fontSize: 16,
-                          //                             color: index <=
-                          //                                 firstDayIndex
-                          //                                 ? Colors.grey.shade300
-                          //                                 : Colors.black,
-                          //                             fontWeight: currentDate
-                          //                                 .month ==
-                          //                                 selectedDate
-                          //                                     .month &&
-                          //                                 currentDate.day ==
-                          //                                     selectedDate.day
-                          //                                 ? FontWeight.w600
-                          //                                 : FontWeight.normal),
-                          //                       ),
-                          //                     ],
-                          //                   );
-                          //                 } else {
-                          //                   return Container();
-                          //                 }
-                          //               },
-                          //             ),
-                          //           ),
-                          //         ),
-                          //       ),
-                          //     ],
-                          //   );
-                          // }
-                          final bool isDate = snapshot.data;
-                          return Stack(
-                            children: [
-                              currentDate.month == selectedDate.month &&
-                                      currentDate.day == selectedDate.day
-                                  ? Center(
-                                      child: Container(
-                                        width: 46,
-                                        decoration: BoxDecoration(
-                                            color: Colors.grey.shade300,
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
-                                      ),
-                                    )
-                                  : Container(),
-                              GestureDetector(
-                                onTap: () {
-                                  statisticState.selectDate(DateTime(
-                                      currentDate.year,
-                                      currentDate.month,
-                                      currentDate.day));
-                                  DatabaseService().averageFace(currentDate);
-                                },
-                                child: Center(
-                                  child: Container(
-                                    color: Colors.transparent,
-                                    child: FutureBuilder<int>(
-                                      future: DatabaseService()
-                                          .averageFace(currentDate),
-                                      builder: (BuildContext context,
-                                          AsyncSnapshot<dynamic> snapshot) {
-                                        if (snapshot.hasData) {
-                                          final int faceAverage = snapshot.data;
-                                          return Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              isDate && faceAverage != 0
-                                                  ? index <= firstDayIndex
-                                                      ? Opacity(
-                                                          opacity: 0.2,
-                                                          child: Image.asset(
-                                                              "./assets/images/face$faceAverage.png",
-                                                              scale: 3))
-                                                      : Image.asset(
-                                                          "./assets/images/face$faceAverage.png",
-                                                          scale: 3)
-                                                  : Container(),
-                                              const SizedBox(
-                                                height: 3,
-                                              ),
-                                              Text(
-                                                currentDate.month ==
-                                                            DateTime.now()
-                                                                .month &&
-                                                        currentDate.day ==
-                                                            DateTime.now().day
-                                                    ? '오늘'
-                                                    : '${currentDate.day}',
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    color: index <=
-                                                            firstDayIndex
-                                                        ? Colors.grey.shade300
-                                                        : Colors.black,
-                                                    fontWeight: currentDate
-                                                                    .month ==
-                                                                selectedDate
-                                                                    .month &&
-                                                            currentDate.day ==
-                                                                selectedDate.day
-                                                        ? FontWeight.w600
-                                                        : FontWeight.normal),
-                                              ),
-                                            ],
-                                          );
-                                        } else {
-                                          return Container();
-                                        }
-                                      },
+                    (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                      if (snapshot.hasData) {
+                        //보류
+                        // if (snapshot.connectionState == ConnectionState.none) {
+                        //   return Stack(
+                        //     children: [
+                        //       currentDate.month == selectedDate.month &&
+                        //           currentDate.day == selectedDate.day
+                        //           ? Center(
+                        //         child: Container(
+                        //           width: 46,
+                        //           decoration: BoxDecoration(
+                        //               color: Colors.grey.shade300,
+                        //               borderRadius:
+                        //               BorderRadius.circular(15)),
+                        //         ),
+                        //       )
+                        //           : Container(),
+                        //       GestureDetector(
+                        //         onTap: () {
+                        //           statisticState.selectDate(DateTime(
+                        //               currentDate.year,
+                        //               currentDate.month,
+                        //               currentDate.day));
+                        //           DatabaseService().averageFace(currentDate);
+                        //         },
+                        //         child: Center(
+                        //           child: Container(
+                        //             color: Colors.transparent,
+                        //             child: FutureBuilder<int>(
+                        //               future: DatabaseService()
+                        //                   .averageFace(currentDate),
+                        //               builder: (BuildContext context,
+                        //                   AsyncSnapshot<dynamic> snapshot) {
+                        //                 if (snapshot.hasData) {
+                        //                   final int faceAverage = snapshot.data;
+                        //                   return Column(
+                        //                     mainAxisAlignment:
+                        //                     MainAxisAlignment.center,
+                        //                     children: [
+                        //                       const SizedBox(
+                        //                         height: 3,
+                        //                       ),
+                        //                       Text(
+                        //                         currentDate.month ==
+                        //                             DateTime.now()
+                        //                                 .month &&
+                        //                             currentDate.day ==
+                        //                                 DateTime.now().day
+                        //                             ? '오늘'
+                        //                             : '${currentDate.day}',
+                        //                         style: TextStyle(
+                        //                             fontSize: 16,
+                        //                             color: index <=
+                        //                                 firstDayIndex
+                        //                                 ? Colors.grey.shade300
+                        //                                 : Colors.black,
+                        //                             fontWeight: currentDate
+                        //                                 .month ==
+                        //                                 selectedDate
+                        //                                     .month &&
+                        //                                 currentDate.day ==
+                        //                                     selectedDate.day
+                        //                                 ? FontWeight.w600
+                        //                                 : FontWeight.normal),
+                        //                       ),
+                        //                     ],
+                        //                   );
+                        //                 } else {
+                        //                   return Container();
+                        //                 }
+                        //               },
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   );
+                        // }
+                        final bool isDate = snapshot.data;
+                        return Stack(
+                          children: [
+                            currentDate.month == selectedDate.month &&
+                                    currentDate.day == selectedDate.day
+                                ? Center(
+                                    child: Container(
+                                      width: 46,
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey.shade300,
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
                                     ),
+                                  )
+                                : Container(),
+                            GestureDetector(
+                              onTap: () {
+                                statisticState.selectDate(DateTime(
+                                    currentDate.year,
+                                    currentDate.month,
+                                    currentDate.day));
+                                DatabaseService().averageFace(currentDate);
+                              },
+                              child: Center(
+                                child: Container(
+                                  color: Colors.transparent,
+                                  child: FutureBuilder<int>(
+                                    future: DatabaseService()
+                                        .averageFace(currentDate),
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot<dynamic> snapshot) {
+                                      if (snapshot.hasData) {
+                                        final int faceAverage = snapshot.data;
+                                        return Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            isDate && faceAverage != 0
+                                                ? index <= firstDayIndex
+                                                    ? Opacity(
+                                                        opacity: 0.2,
+                                                        child: Image.asset(
+                                                            "./assets/images/face$faceAverage.png",
+                                                            scale: 3))
+                                                    : Image.asset(
+                                                        "./assets/images/face$faceAverage.png",
+                                                        scale: 3)
+                                                : Container(),
+                                            const SizedBox(
+                                              height: 3,
+                                            ),
+                                            Text(
+                                              currentDate.month ==
+                                                          DateTime.now()
+                                                              .month &&
+                                                      currentDate.day ==
+                                                          DateTime.now().day
+                                                  ? '오늘'
+                                                  : '${currentDate.day}',
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: index <= firstDayIndex
+                                                      ? Colors.grey.shade300
+                                                      : Colors.black,
+                                                  fontWeight: currentDate
+                                                                  .month ==
+                                                              selectedDate
+                                                                  .month &&
+                                                          currentDate.day ==
+                                                              selectedDate.day
+                                                      ? FontWeight.w600
+                                                      : FontWeight.normal),
+                                            ),
+                                          ],
+                                        );
+                                      } else {
+                                        return Container();
+                                      }
+                                    },
                                   ),
                                 ),
                               ),
-                            ],
-                          );
-                        } else {
-                          return Container();
-                        }
-                      },
-                    );
+                            ),
+                          ],
+                        );
+                      } else {
+                        return Container();
+                      }
+                    };
+                    return null;
                   },
                   itemCount: totalGridItems,
                   shrinkWrap: true,
@@ -322,106 +316,107 @@ class DraggableSheet extends StatelessWidget {
                     } else {
                       displayText = date.day.toString();
                     }
-                    return FutureBuilder<bool>(
-                        future: DatabaseService().checkDate(date),
-                        builder: (BuildContext context,
-                            AsyncSnapshot<dynamic> snapshot) {
-                          // 보류
-                          if (snapshot.hasData) {
-                            // if (snapshot.connectionState == ConnectionState.waiting) {
-                            //   return GestureDetector(
-                            //     onTap: () {
-                            //       selectDate(date);
-                            //     },
-                            //     child: Padding(
-                            //       padding: !isSelected
-                            //           ? const EdgeInsets.only(bottom: 1.0)
-                            //           : EdgeInsets.zero,
-                            //       child: FutureBuilder<int>(
-                            //           future: DatabaseService().averageFace(date),
-                            //           builder: (BuildContext context,
-                            //               AsyncSnapshot<dynamic> snapshot) {
-                            //             if (snapshot.hasData) {
-                            //               final int faceAverage = snapshot.data;
-                            //               return Column(
-                            //                 children: [
-                            //                   SizedBox(
-                            //                     width: 80,
-                            //                     height: 50,
-                            //                     child: Center(
-                            //                       child: Text(
-                            //                         displayText,
-                            //                         style: TextStyle(
-                            //                           fontSize:
-                            //                           isSelected ? 20 : 15,
-                            //                           color: Colors.black,
-                            //                         ),
-                            //                       ),
-                            //                     ),
-                            //                   ),
-                            //                 ],
-                            //               );
-                            //             } else
-                            //               return Container();
-                            //           }),
-                            //     ),
-                            //   );
-                            // }
-                            final bool isDate = snapshot.data;
-                            return GestureDetector(
-                              onTap: () {
-                                selectDate(date);
-                              },
-                              child: Padding(
-                                padding: !isSelected
-                                    ? const EdgeInsets.only(bottom: 1.0)
-                                    : EdgeInsets.zero,
-                                child: FutureBuilder<int>(
-                                    future: DatabaseService().averageFace(date),
-                                    builder: (BuildContext context,
-                                        AsyncSnapshot<dynamic> snapshot) {
-                                      if (snapshot.hasData) {
-                                        final int faceAverage = snapshot.data;
-                                        return Container(
-                                          color: Colors.transparent,
-                                          child: Column(
-                                            children: [
-                                              SizedBox(
-                                                width: 80,
-                                                height: 50,
-                                                child: Center(
-                                                  child: Text(
-                                                    displayText,
-                                                    style: TextStyle(
-                                                      fontSize:
-                                                          isSelected ? 20 : 15,
-                                                      color: Colors.black,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              isDate && faceAverage != 0
-                                                  ? isSelected
-                                                      ? Image.asset(
-                                                          "./assets/images/face$faceAverage.png",
-                                                          scale: 2.4,
-                                                        )
-                                                      : Image.asset(
-                                                          "./assets/images/face$faceAverage.png",
-                                                          scale: 2.8,
-                                                        )
-                                                  : Container(),
-                                            ],
-                                          ),
-                                        );
-                                      } else
-                                        return Container();
-                                    }),
-                              ),
-                            );
-                          } else
-                            return Container();
-                        });
+                    return Container();
+                    // return FutureBuilder<bool>(
+                    //     future: DatabaseService().checkDate(date),
+                    //     builder: (BuildContext context,
+                    //         AsyncSnapshot<dynamic> snapshot) {
+                    //       // 보류
+                    //       if (snapshot.hasData) {
+                    //         // if (snapshot.connectionState == ConnectionState.waiting) {
+                    //         //   return GestureDetector(
+                    //         //     onTap: () {
+                    //         //       selectDate(date);
+                    //         //     },
+                    //         //     child: Padding(
+                    //         //       padding: !isSelected
+                    //         //           ? const EdgeInsets.only(bottom: 1.0)
+                    //         //           : EdgeInsets.zero,
+                    //         //       child: FutureBuilder<int>(
+                    //         //           future: DatabaseService().averageFace(date),
+                    //         //           builder: (BuildContext context,
+                    //         //               AsyncSnapshot<dynamic> snapshot) {
+                    //         //             if (snapshot.hasData) {
+                    //         //               final int faceAverage = snapshot.data;
+                    //         //               return Column(
+                    //         //                 children: [
+                    //         //                   SizedBox(
+                    //         //                     width: 80,
+                    //         //                     height: 50,
+                    //         //                     child: Center(
+                    //         //                       child: Text(
+                    //         //                         displayText,
+                    //         //                         style: TextStyle(
+                    //         //                           fontSize:
+                    //         //                           isSelected ? 20 : 15,
+                    //         //                           color: Colors.black,
+                    //         //                         ),
+                    //         //                       ),
+                    //         //                     ),
+                    //         //                   ),
+                    //         //                 ],
+                    //         //               );
+                    //         //             } else
+                    //         //               return Container();
+                    //         //           }),
+                    //         //     ),
+                    //         //   );
+                    //         // }
+                    //         final bool isDate = snapshot.data;
+                    //         return GestureDetector(
+                    //           onTap: () {
+                    //             selectDate(date);
+                    //           },
+                    //           child: Padding(
+                    //             padding: !isSelected
+                    //                 ? const EdgeInsets.only(bottom: 1.0)
+                    //                 : EdgeInsets.zero,
+                    //             child: FutureBuilder<int>(
+                    //                 future: DatabaseService().averageFace(date),
+                    //                 builder: (BuildContext context,
+                    //                     AsyncSnapshot<dynamic> snapshot) {
+                    //                   if (snapshot.hasData) {
+                    //                     final int faceAverage = snapshot.data;
+                    //                     return Container(
+                    //                       color: Colors.transparent,
+                    //                       child: Column(
+                    //                         children: [
+                    //                           SizedBox(
+                    //                             width: 80,
+                    //                             height: 50,
+                    //                             child: Center(
+                    //                               child: Text(
+                    //                                 displayText,
+                    //                                 style: TextStyle(
+                    //                                   fontSize:
+                    //                                       isSelected ? 20 : 15,
+                    //                                   color: Colors.black,
+                    //                                 ),
+                    //                               ),
+                    //                             ),
+                    //                           ),
+                    //                           isDate && faceAverage != 0
+                    //                               ? isSelected
+                    //                                   ? Image.asset(
+                    //                                       "./assets/images/face$faceAverage.png",
+                    //                                       scale: 2.4,
+                    //                                     )
+                    //                                   : Image.asset(
+                    //                                       "./assets/images/face$faceAverage.png",
+                    //                                       scale: 2.8,
+                    //                                     )
+                    //                               : Container(),
+                    //                         ],
+                    //                       ),
+                    //                     );
+                    //                   } else
+                    //                     return Container();
+                    //                 }),
+                    //           ),
+                    //         );
+                    //       } else
+                    //         return Container();
+                    //     });
                   }).toList(),
                 );
               },
@@ -759,9 +754,10 @@ class DraggableSheet extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 30.0),
-                    child: Align(alignment: Alignment.bottomCenter,child: toggleButton()),
+                    child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: toggleButton()),
                   ),
-
                 ],
               ),
             ),

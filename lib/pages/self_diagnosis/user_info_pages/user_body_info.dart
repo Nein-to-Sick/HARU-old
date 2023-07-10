@@ -1,4 +1,3 @@
-import 'package:cap_stone_project/Theme/color_schemes.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

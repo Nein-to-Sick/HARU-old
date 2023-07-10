@@ -67,10 +67,4 @@ class UserInfoValueModel with ChangeNotifier {
 
     notifyListeners();
   }
-
-  void TempMan() {
-    userStatus = 1;
-    print('update');
-    notifyListeners();
-  }
 }

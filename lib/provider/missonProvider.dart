@@ -24,7 +24,7 @@ class MissionProvider extends ChangeNotifier {
 
   void updateContent(int faceIndex, BuildContext context) {
     face = faceIndex;
-    notifyListeners();
+    //notifyListeners();
     // final snackbar = SnackBar(content: Text("저장되었습니다."));
     // ScaffoldMessenger.of(context).showSnackBar(snackbar);
   }
@@ -118,7 +118,9 @@ class MissionProvider extends ChangeNotifier {
                                             )),
                                             hintText: "뭐가 제일 기억에 남아?"),
                                       ),
-                                      const SizedBox(height: 15,),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
                                       TextField(
                                         controller: text2Controller,
                                         decoration: InputDecoration(
@@ -130,7 +132,9 @@ class MissionProvider extends ChangeNotifier {
                                             )),
                                             hintText: "싫었던건 없어?"),
                                       ),
-                                      const SizedBox(height: 15,),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
                                       TextField(
                                         controller: text3Controller,
                                         decoration: InputDecoration(
@@ -254,16 +258,19 @@ class MissionProvider extends ChangeNotifier {
                               ),
                             ),
                           )
-                        : height != 400 ? const SizedBox(
-                            height: 86,
-                          ) : Container(),
+                        : height != 400
+                            ? const SizedBox(
+                                height: 86,
+                              )
+                            : Container(),
                     face != 0 && height != 400
                         ? SizedBox(
                             width: 113,
                             height: 38,
                             child: ElevatedButton(
                               onPressed: () {
-                                DatabaseService().missionEmotion(face, missionIndex,"", "", "");
+                                DatabaseService().missionEmotion(
+                                    face, missionIndex, "", "", "");
                                 Navigator.pop(context);
                               },
                               style: ElevatedButton.styleFrom(
@@ -287,7 +294,12 @@ class MissionProvider extends ChangeNotifier {
                                 height: 45,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    DatabaseService().missionEmotion(face, missionIndex, text1Controller.text, text2Controller.text, text3Controller.text);
+                                    DatabaseService().missionEmotion(
+                                        face,
+                                        missionIndex,
+                                        text1Controller.text,
+                                        text2Controller.text,
+                                        text3Controller.text);
                                     Navigator.pop(context);
                                   },
                                   style: ElevatedButton.styleFrom(
