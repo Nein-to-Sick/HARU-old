@@ -32,18 +32,23 @@ class AuthService {
     String? userEmail = FirebaseAuth.instance.currentUser?.email;
 
     final docRef = userCollection.doc(userId);
+    DocumentSnapshot snapshot = await docRef.get();
 
-    await docRef.set({
-      "nickname": "",
-      "hight": 0.0,
-      "weight": 0.0,
-      "gender": 1,
-      "activity level": 1,
-      "age": 0,
-      "SelfDiagnosisIsDone": false,
-      "SelfDiagnosisResult": 0,
-      "email": userEmail,
-    });
+    if (snapshot.exists) {
+      print("true");
+    } else {
+      await docRef.set({
+        "nickname": "",
+        "hight": 0.0,
+        "weight": 0.0,
+        "gender": 1,
+        "activity level": 1,
+        "age": 0,
+        "SelfDiagnosisIsDone": false,
+        "SelfDiagnosisResult": 0,
+        "email": userEmail,
+      });
+    }
 
     DateTime selectedDate =
         DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);

@@ -1,13 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-DateTime selectedDate = DateTime(DateTime
-    .now()
-    .year, DateTime
-    .now()
-    .month, DateTime
-    .now()
-    .day);
+DateTime selectedDate =
+    DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
 
 class DatabaseService {
   String? userId = FirebaseAuth.instance.currentUser?.uid;
@@ -56,7 +51,8 @@ class DatabaseService {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection('users')
         .doc(userId)
-        .collection(date).get();
+        .collection(date)
+        .get();
     if (querySnapshot.docs.isEmpty) {
       return false;
     } else {
@@ -69,7 +65,8 @@ class DatabaseService {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection('users')
         .doc(userId)
-        .collection(date).get();
+        .collection(date)
+        .get();
 
     int total = 0;
     for (final DocumentSnapshot document in querySnapshot.docs) {
@@ -83,6 +80,4 @@ class DatabaseService {
     total = (total / 3).round();
     return total;
   }
-
-
 }
