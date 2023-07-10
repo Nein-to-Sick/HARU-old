@@ -1,26 +1,45 @@
 import 'package:cap_stone_project/components/daily_emotion_dialog.dart';
+import 'package:cap_stone_project/services/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../model/mission.dart';
 import '../../provider/missonProvider.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final controller = PageController(viewportFraction: 0.8, keepPage: true);
+  List<List<String>>? mission;
+
+  @override
+  void initState() {
+    super.initState();
+    MissionProvider().fetchMission().then((value) =>
+        setState(() {
+          mission = value;
+        }));
+  }
 
   @override
   Widget build(BuildContext context) {
+
     return Consumer<MissionProvider>(
       builder: (context, missionProvider, _) {
-        final mission = missionProvider.mission;
+        if (mission == null) {
+          return const Center(child: CircularProgressIndicator());
+        }
         final currentIndex = missionProvider.currentIndex;
 
         void missionComplete(BuildContext context, int index) {
           missionProvider.missionComplete(context, index);
         }
-
         final pages = List.generate(
-            mission.length,
+            mission!.length,
             (index) => Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
@@ -40,7 +59,7 @@ class HomePage extends StatelessWidget {
                             height: 30,
                           ),
                           Text(
-                            mission[index][0],
+                            mission![index][0],
                             style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 20,
@@ -50,7 +69,7 @@ class HomePage extends StatelessWidget {
                             height: 20,
                           ),
                           Text(
-                            mission[index][1],
+                            mission![index][1],
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Theme.of(context)
@@ -156,7 +175,7 @@ class HomePage extends StatelessWidget {
                             ),
                           )
                         : Container(),
-                    currentIndex != mission.length - 1
+                    currentIndex != mission!.length - 1
                         ? Align(
                             alignment: Alignment.centerRight,
                             child: GestureDetector(
@@ -187,7 +206,7 @@ class HomePage extends StatelessWidget {
               SizedBox(
                 height: 230,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 35.0),
+                  padding: const EdgeInsets.only(left: 60.0),
                   child: Stack(
                     children: [
                       Padding(
@@ -199,7 +218,7 @@ class HomePage extends StatelessWidget {
                             ),
                             Image.asset(
                               "./assets/images/haru.png",
-                              scale: 3,
+                              scale:2,
                             ),
                           ],
                         ),
@@ -207,7 +226,7 @@ class HomePage extends StatelessWidget {
 
                       //  daily emotion button
                       Padding(
-                        padding: const EdgeInsets.only(left: 200.0),
+                        padding: const EdgeInsets.only(left: 180.0),
                         child: ElevatedButton(
                           onPressed: () {
                             // 버튼을 클릭했을 때 실행될 코드
