@@ -59,4 +59,6 @@ class StatisticState with ChangeNotifier {
     missionClearCount = await DatabaseService().missionClear();
     notifyListeners();
   }
+
+
 }

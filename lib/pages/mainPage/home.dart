@@ -40,18 +40,18 @@ class _HomePageState extends State<HomePage> {
         }
         final pages = List.generate(
             mission!.length,
-            (index) => Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    color: Colors.black12.withOpacity(0.025), // 피그마 색 다름 너무 연함
-                  ),
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                  child: SizedBox(
-                    height: 205,
-                    width: 290,
-                    child: Center(
-                        child: Padding(
+                (index) => Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                color: Colors.black12.withOpacity(0.025), // 피그마 색 다름 너무 연함
+              ),
+              margin:
+              const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              child: SizedBox(
+                height: 205,
+                width: 290,
+                child: Center(
+                    child: Padding(
                       padding: const EdgeInsets.only(left: 24.0, right: 24),
                       child: Column(
                         children: [
@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                                 style: ElevatedButton.styleFrom(
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
-                                            BorderRadius.circular(10)),
+                                        BorderRadius.circular(10)),
                                     backgroundColor: Theme.of(context)
                                         .colorScheme
                                         .secondary),
@@ -104,8 +104,8 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     )),
-                  ),
-                ));
+              ),
+            ));
 
         return Scaffold(
           body: Column(
@@ -155,47 +155,47 @@ class _HomePageState extends State<HomePage> {
                     ),
                     currentIndex != 0
                         ? Align(
-                            alignment: Alignment.centerLeft,
-                            child: GestureDetector(
-                              onTap: () {
-                                if (currentIndex > 0) {
-                                  missionProvider.updateIndex(currentIndex - 1);
-                                  controller.animateToPage(
-                                    currentIndex - 1,
-                                    duration: const Duration(milliseconds: 500),
-                                    curve: Curves.ease,
-                                  );
-                                }
-                              },
-                              child: Icon(
-                                Icons.arrow_back_ios_new,
-                                color: Theme.of(context).colorScheme.outline,
-                                size: 40,
-                              ),
-                            ),
-                          )
+                      alignment: Alignment.centerLeft,
+                      child: GestureDetector(
+                        onTap: () {
+                          if (currentIndex > 0) {
+                            missionProvider.updateIndex(currentIndex - 1);
+                            controller.animateToPage(
+                              currentIndex - 1,
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.ease,
+                            );
+                          }
+                        },
+                        child: Icon(
+                          Icons.arrow_back_ios_new,
+                          color: Theme.of(context).colorScheme.outline,
+                          size: 40,
+                        ),
+                      ),
+                    )
                         : Container(),
                     currentIndex != mission!.length - 1
                         ? Align(
-                            alignment: Alignment.centerRight,
-                            child: GestureDetector(
-                              onTap: () {
-                                if (currentIndex < pages.length - 1) {
-                                  missionProvider.updateIndex(currentIndex + 1);
-                                  controller.animateToPage(
-                                    currentIndex + 1,
-                                    duration: const Duration(milliseconds: 500),
-                                    curve: Curves.ease,
-                                  );
-                                }
-                              },
-                              child: Icon(
-                                Icons.arrow_forward_ios_rounded,
-                                color: Theme.of(context).colorScheme.outline,
-                                size: 40,
-                              ),
-                            ),
-                          )
+                      alignment: Alignment.centerRight,
+                      child: GestureDetector(
+                        onTap: () {
+                          if (currentIndex < pages.length - 1) {
+                            missionProvider.updateIndex(currentIndex + 1);
+                            controller.animateToPage(
+                              currentIndex + 1,
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.ease,
+                            );
+                          }
+                        },
+                        child: Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: Theme.of(context).colorScheme.outline,
+                          size: 40,
+                        ),
+                      ),
+                    )
                         : Container(),
                   ],
                 ),
@@ -237,7 +237,7 @@ class _HomePageState extends State<HomePage> {
                           style: ElevatedButton.styleFrom(
                             elevation: 5,
                             backgroundColor:
-                                Theme.of(context).colorScheme.secondary,
+                            Theme.of(context).colorScheme.secondary,
                             shape: const CircleBorder(),
                           ),
                           child: SizedBox(
@@ -268,13 +268,13 @@ class _HomePageState extends State<HomePage> {
                         "\"나는 심심할 때 창밖에 있는 새들을 봐\"",
                         style: TextStyle(
                             color:
-                                Theme.of(context).colorScheme.outlineVariant),
+                            Theme.of(context).colorScheme.outlineVariant),
                       ),
                       Text(
                         "너는?",
                         style: TextStyle(
                             color:
-                                Theme.of(context).colorScheme.outlineVariant),
+                            Theme.of(context).colorScheme.outlineVariant),
                       ),
                     ],
                   ),
