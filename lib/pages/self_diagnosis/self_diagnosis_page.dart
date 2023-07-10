@@ -46,7 +46,6 @@ class SelfDiagnosisPage extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.only(top: 33.0, left: 34, right: 34),
                   child: AnimatedProgressBar(),
-                  //child: MyProgressIndicator(),
                 ),
 
                 //  back arrow icon button, page numer

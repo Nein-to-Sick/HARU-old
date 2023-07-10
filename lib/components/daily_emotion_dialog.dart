@@ -1,9 +1,10 @@
+import 'package:cap_stone_project/pages/daily_emotion_pages/daily_emotion.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 Future dialyEmotionDailog(BuildContext context) {
   return showDialog(
-    //barrierDismissible: false,
+    barrierDismissible: false,
     context: context,
     builder: (BuildContext context) {
       return Dialog(
@@ -37,11 +38,8 @@ Future dialyEmotionDailog(BuildContext context) {
                         bottomRight: Radius.circular(50),
                         bottomLeft: Radius.circular(50)),
                   ),
-                  child: Column(
-                    children: [
-                      Text('data'),
-                    ],
-                  ),
+                  child: const DefaultTabController(
+                      length: 2, child: DailyEmotion()),
                 ),
               ),
             ],
