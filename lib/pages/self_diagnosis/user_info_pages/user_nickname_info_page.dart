@@ -1,4 +1,3 @@
-import 'package:cap_stone_project/Theme/color_schemes.dart';
 import 'package:cap_stone_project/auth/auth.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/self_diagnosis_model.dart';

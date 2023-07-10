@@ -25,10 +25,9 @@ class MyLoadingPage extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const Image(
-            image: AssetImage('assets/images/haru.png'),
-            width: 120,
-            height: 146.9,
+          Image.asset(
+            'assets/images/haru.png',
+            scale: 3,
           ),
         ],
       ),
