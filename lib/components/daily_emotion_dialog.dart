@@ -8,14 +8,14 @@ Future dialyEmotionDailog(BuildContext context) {
     builder: (BuildContext context) {
       return Dialog(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25.0),
+          borderRadius: BorderRadius.circular(50.0),
         ),
         child: Container(
           height: 390, // 변경 가능한 높이
           width: 340, // 변경 가능한 너비
           decoration: BoxDecoration(
             color: const Color(0xFF64B5F6),
-            borderRadius: BorderRadius.circular(25.0),
+            borderRadius: BorderRadius.circular(50.0),
           ),
           child: Column(
             children: [
@@ -30,11 +30,17 @@ Future dialyEmotionDailog(BuildContext context) {
               ),
               Expanded(
                 child: Container(
+                  width: double.infinity,
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(25),
-                        bottomLeft: Radius.circular(25)),
+                        bottomRight: Radius.circular(50),
+                        bottomLeft: Radius.circular(50)),
+                  ),
+                  child: Column(
+                    children: [
+                      Text('data'),
+                    ],
                   ),
                 ),
               ),

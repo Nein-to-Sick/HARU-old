@@ -47,6 +47,7 @@ class DatabaseService {
   }
 
   Future<bool> checkDate(DateTime currentTime) async {
+    print('checkDate');
     String date = currentTime.toString().substring(0, 10);
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection('users')
@@ -61,6 +62,7 @@ class DatabaseService {
   }
 
   Future<int> averageFace(DateTime currentTime) async {
+    print('average');
     String date = currentTime.toString().substring(0, 10);
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection('users')
