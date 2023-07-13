@@ -27,7 +27,6 @@ class _ProfilePageState extends State<ProfilePage> {
           (route) => false);
     }
 
-    print(progress / 20);
     return Scaffold(
       appBar: AppBar(title: Text("Profile Page"), actions: [
         IconButton(onPressed: signUserOut, icon: Icon(Icons.logout))
