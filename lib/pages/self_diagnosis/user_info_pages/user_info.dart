@@ -204,10 +204,14 @@ class UserInformation extends StatelessWidget {
 
           //  Birthday input
           ElevatedButton(
-              onPressed: () {
-                birthDateInput(context);
-              },
-              child: const Text('생일')),
+            onPressed: () {
+              birthDateInput(context);
+            },
+            child: const Text('생일'),
+          ),
+
+          //  temp
+          BirthdayField(),
         ],
       ),
     );

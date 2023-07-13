@@ -36,3 +36,68 @@ Future birthDateInput(BuildContext context) {
     },
   );
 }
+
+class BirthdayField extends StatefulWidget {
+  @override
+  _BirthdayFieldState createState() => _BirthdayFieldState();
+}
+
+class _BirthdayFieldState extends State<BirthdayField> {
+  DateTime _selectedDate = DateTime.now();
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: _controller,
+      keyboardType: TextInputType.datetime,
+      decoration: InputDecoration(
+        labelText: '생일',
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Theme.of(context).colorScheme.outline,
+          ),
+          borderRadius: BorderRadius.circular(50),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Theme.of(context).colorScheme.primary,
+            width: 2,
+          ),
+          borderRadius: BorderRadius.circular(50),
+        ),
+        suffixIcon: IconButton(
+          icon: const Icon(Icons.calendar_today),
+          onPressed: _showDatePicker,
+        ),
+      ),
+      readOnly: true,
+      onTap: _showDatePicker,
+    );
+  }
+
+  void _showDatePicker() async {
+    final DateTime? date = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate,
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+
+    if (date != null) {
+      setState(
+        () {
+          _selectedDate = date;
+          _controller.text =
+              '${_selectedDate.year}년 / ${_selectedDate.month}월 / ${_selectedDate.day}일';
+        },
+      );
+    }
+  }
+}
