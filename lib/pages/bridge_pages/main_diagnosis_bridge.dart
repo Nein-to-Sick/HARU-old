@@ -1,4 +1,5 @@
 import 'package:cap_stone_project/pages/bridge_pages/while_loading_page.dart';
+import 'package:cap_stone_project/pages/energyState.dart';
 import 'package:cap_stone_project/pages/mainPage/mainPage.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/self_diagnosis_start_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -19,7 +20,7 @@ class BridgPage extends StatelessWidget {
           return const MyLoadingPage();
         } else {
           return (snapshot.data)
-              ? const MainPage()
+              ? const EnergyState()
               : const SelfDiagnosisStartPage();
         }
       },
