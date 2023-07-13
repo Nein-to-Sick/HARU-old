@@ -15,6 +15,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final controller = PageController(viewportFraction: 0.8, keepPage: true);
   List<List<String>>? mission;
+   int stateIndex = 0;
 
   @override
   void initState() {
@@ -23,6 +24,9 @@ class _HomePageState extends State<HomePage> {
         setState(() {
           mission = value;
         }));
+    DatabaseService().getState().then((value) => setState(() {
+      stateIndex = value;
+    }));
   }
 
   @override
@@ -203,55 +207,52 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 20,
               ),
-              SizedBox(
-                height: 230,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 60.0),
-                  child: Stack(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 50.0),
-                        child: Column(
-                          children: [
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Image.asset(
-                              "./assets/images/haru.png",
-                              scale:2,
-                            ),
-                          ],
+              Padding(
+                padding: const EdgeInsets.only(left: 60.0),
+                child: Stack(
+                  children: [
+                    Column(
+                      children: [
+                        const SizedBox(
+                          height: 20,
                         ),
-                      ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 50.0),
+                          child: Image.asset(
+                            "./assets/images/haru/$stateIndex.png",
+                            scale:3,
+                          ),
+                        ),
+                      ],
+                    ),
 
-                      //  daily emotion button
-                      Padding(
-                        padding: const EdgeInsets.only(left: 180.0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            // 버튼을 클릭했을 때 실행될 코드
-                            //dialyEmotionAnimation(context);
-                            dialyEmotionDailog(context);
-                            print('daily emotion button');
-                          },
-                          style: ElevatedButton.styleFrom(
-                            elevation: 5,
-                            backgroundColor:
-                            Theme.of(context).colorScheme.secondary,
-                            shape: const CircleBorder(),
-                          ),
-                          child: SizedBox(
-                            width: 55,
-                            height: 55,
-                            child: Image.asset(
-                              "./assets/images/lamp.png",
-                              scale: 1.7,
-                            ),
+                    //  daily emotion button
+                    Padding(
+                      padding: const EdgeInsets.only(left: 180.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // 버튼을 클릭했을 때 실행될 코드
+                          //dialyEmotionAnimation(context);
+                          dialyEmotionDailog(context);
+                          print('daily emotion button');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          elevation: 5,
+                          backgroundColor:
+                          Theme.of(context).colorScheme.secondary,
+                          shape: const CircleBorder(),
+                        ),
+                        child: SizedBox(
+                          width: 55,
+                          height: 55,
+                          child: Image.asset(
+                            "./assets/images/lamp.png",
+                            scale: 1.7,
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
               Container(

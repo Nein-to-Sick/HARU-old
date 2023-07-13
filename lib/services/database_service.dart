@@ -96,4 +96,26 @@ class DatabaseService {
     total = (total / 3).round();
     return total;
   }
+
+  storeState(int index) {
+    DocumentReference dr = FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId);
+
+    dr.update({
+      "todayState" : index
+    });
+  }
+
+  Future<int> getState() async {
+    var docSnapshot = await FirebaseFirestore.instance.collection('users').doc(userId).get();
+    var userData = docSnapshot.data();
+    if (userData != null) {
+      var fieldValue = userData['todayState']; // 필드 이름에 맞게 변경해야 합니다.
+      return fieldValue;
+    } else {
+      print('Document does not exist.');
+      return 0;
+    }
+  }
 }
