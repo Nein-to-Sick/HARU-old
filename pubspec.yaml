@@ -52,6 +52,7 @@ dependencies:
   heroicons: ^0.8.0
   flutter_advanced_seekbar: ^0.0.2
   bubble_lens: ^2.0.0
+  flutter_holo_date_picker: ^1.1.0
 
 
 

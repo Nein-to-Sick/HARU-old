@@ -1,7 +1,5 @@
-import 'package:cap_stone_project/auth/auth.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/self_diagnosis_model.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -78,6 +76,8 @@ class SelfIntroPage extends StatelessWidget {
                 },
                 controller: nicknameTextController,
                 decoration: InputDecoration(
+                  contentPadding:
+                      const EdgeInsets.only(left: 20, top: 20, bottom: 20),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Theme.of(context).colorScheme.outline,

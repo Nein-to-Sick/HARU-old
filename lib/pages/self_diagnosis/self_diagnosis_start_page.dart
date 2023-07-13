@@ -28,7 +28,7 @@ class SelfDiagnosisStartPage extends StatelessWidget {
         )
       ],
       child: const DefaultTabController(
-        length: 13,
+        length: 15,
         initialIndex: 0,
         child: SelfDiagnosisPage(),
       ),

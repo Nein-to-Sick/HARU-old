@@ -22,26 +22,11 @@ class ResultPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              RichText(
-                text: TextSpan(
-                  style: const TextStyle(fontSize: 25),
-                  children: [
-                    //  user nickname
-                    TextSpan(
-                      text: userNickName,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const TextSpan(
-                      text: '님은 현재',
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
+              Text(
+                '$userNickName님은',
+                style: const TextStyle(fontSize: 23),
+                textAlign: TextAlign.center,
+                textWidthBasis: TextWidthBasis.parent,
               ),
               const SizedBox(
                 height: 10,
@@ -52,10 +37,10 @@ class ResultPage extends StatelessWidget {
                     : (userStatus == 2)
                         ? '"사무라이 고양이"'
                         : '"총잡이 고양이"',
-                style: const TextStyle(
-                  fontSize: 23,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(
+                    fontSize: 23,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.primary),
                 textAlign: TextAlign.center,
                 textWidthBasis: TextWidthBasis.parent,
               ),
