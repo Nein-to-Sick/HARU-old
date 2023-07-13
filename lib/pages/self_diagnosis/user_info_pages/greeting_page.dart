@@ -25,7 +25,7 @@ class GreetingPage extends StatelessWidget {
                 style: const TextStyle(fontSize: 25),
                 children: [
                   const TextSpan(
-                    text: '안녕하세요! ',
+                    text: '안녕하세요!  ',
                     style: TextStyle(
                       color: Colors.black,
                     ),
@@ -50,11 +50,6 @@ class GreetingPage extends StatelessWidget {
             ),
             const SizedBox(
               height: 10,
-            ),
-            WrappedKoreanText(
-              '지금부터 간단한 테스트를 진행할께요',
-              style: const TextStyle(fontSize: 23),
-              textAlign: TextAlign.center,
             ),
           ],
         ),

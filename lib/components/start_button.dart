@@ -16,7 +16,56 @@ class StartButton extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isSelected = Provider.of<UserInfoValueModel>(context).isAgree;
 
-    return GestureDetector(
+    return AnimatedContainer(
+      curve: Curves.easeInQuart,
+      onEnd: () {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const MainPage()),
+            (route) => false);
+      },
+      decoration: BoxDecoration(
+        color: isSelected
+            ? Theme.of(context).colorScheme.primary
+            : Theme.of(context).colorScheme.outline,
+        borderRadius: BorderRadius.circular(67),
+        border: Border.all(
+          color: isSelected
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.outline,
+        ),
+      ),
+      duration: const Duration(milliseconds: 300),
+      child: SizedBox(
+        height: 60,
+        width: 335,
+        child: ElevatedButton(
+          onLongPress: () {
+            Provider.of<UserInfoValueModel>(context, listen: false)
+                .isAgreeUpdate(true);
+          },
+          style: ButtonStyle(
+            overlayColor: null,
+            backgroundColor: MaterialStateProperty.all(Colors.transparent),
+            shadowColor: MaterialStateProperty.all(Colors.transparent),
+          ),
+          onPressed: () {},
+          child: Center(
+            child: Text(
+              text,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.background,
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    /*
+    GestureDetector(
       onLongPress: () {
         Provider.of<UserInfoValueModel>(context, listen: false)
             .isAgreeUpdate(true);
@@ -57,5 +106,6 @@ class StartButton extends StatelessWidget {
         ),
       ),
     );
+    */
   }
 }

@@ -1,3 +1,4 @@
+import 'package:cap_stone_project/pages/self_diagnosis/provider/hobbies_model.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,6 +20,8 @@ Future<void> userInfoFirebaseUpdate(BuildContext context) async {
       "weight": Provider.of<UserInfoValueModel>(context, listen: false).weight,
       "SelfDiagnosisIsDone":
           Provider.of<UserInfoValueModel>(context, listen: false).isSubmitted,
+      "preferredHobbies":
+          Provider.of<HobbiesModel>(context, listen: false).addedHobbies,
     },
   );
 }

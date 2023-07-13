@@ -106,7 +106,7 @@ class AnimatedProgressBar extends StatelessWidget {
                       : Theme.of(context).colorScheme.primaryContainer,
                 ),
                 child: const Text(
-                  '자가진단',
+                  '자기소개',
                   textAlign: TextAlign.center,
                 ),
               ),

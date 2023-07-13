@@ -1,5 +1,5 @@
 import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
-import 'package:cap_stone_project/pages/self_diagnosis/question_pages/additional_question_pages/additional_question_start_page.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/self_introduction_pages/question_pages/additional_question_pages/additional_question_start_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wrapped_korean_text/wrapped_korean_text.dart';
@@ -48,10 +48,10 @@ class ResultPage extends StatelessWidget {
               ),
               Text(
                 (userStatus == 1)
-                    ? '"씨앗"'
+                    ? '"한량 고양이"'
                     : (userStatus == 2)
-                        ? '"새싹"'
-                        : '"묘목"',
+                        ? '"사무라이 고양이"'
+                        : '"총잡이 고양이"',
                 style: const TextStyle(
                   fontSize: 23,
                   fontWeight: FontWeight.bold,
