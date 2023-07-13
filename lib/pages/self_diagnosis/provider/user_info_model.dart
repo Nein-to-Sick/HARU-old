@@ -9,6 +9,7 @@ class UserInfoValueModel with ChangeNotifier {
   bool isSubmitted = false; //  whether user agree to submit thier diagnosis
   bool isAgree = false; //  whether user agree to start application
   int userStatus = 0;
+  String gender = '밝히고 싶지 않음';
 
   void userNickNameUpdate(value) {
     userNickName = value;

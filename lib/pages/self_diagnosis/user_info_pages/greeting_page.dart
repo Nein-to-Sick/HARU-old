@@ -2,7 +2,6 @@ import 'package:cap_stone_project/pages/self_diagnosis/provider/self_diagnosis_m
 import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wrapped_korean_text/wrapped_korean_text.dart';
 
 class GreetingPage extends StatelessWidget {
   const GreetingPage({super.key});
@@ -25,7 +24,7 @@ class GreetingPage extends StatelessWidget {
                 style: const TextStyle(fontSize: 25),
                 children: [
                   const TextSpan(
-                    text: '안녕하세요!  ',
+                    text: '안녕하세요 ',
                     style: TextStyle(
                       color: Colors.black,
                     ),
@@ -49,8 +48,15 @@ class GreetingPage extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 30,
             ),
+            Text(
+              '$userNickName님에 대해서 조금 더 알려주세요!',
+              style: const TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+              ),
+            )
           ],
         ),
       ),

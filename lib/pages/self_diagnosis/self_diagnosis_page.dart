@@ -2,7 +2,7 @@ import 'package:cap_stone_project/components/animated_step_progress_indidator.da
 import 'package:cap_stone_project/components/next_button.dart';
 import 'package:cap_stone_project/components/start_button.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/explanation_pages/complete_page.dart';
-import 'package:cap_stone_project/pages/self_diagnosis/explanation_pages/explanation_page.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/explanation_pages/explanation_page1.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/hobbies_model.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/self_introduction_pages/hobbies_keyword_select_pages/select_hobbies.dart';
@@ -14,12 +14,15 @@ import 'package:cap_stone_project/pages/self_diagnosis/self_introduction_pages/q
 import 'package:cap_stone_project/pages/self_diagnosis/self_introduction_pages/question_pages/question3.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/self_introduction_pages/question_pages/question4.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/self_introduction_pages/question_pages/question5.dart';
-import 'package:cap_stone_project/pages/self_diagnosis/user_info_pages/user_body_info.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/user_info_pages/user_info.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/user_data_database_update.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/user_info_pages/user_nickname_info_page.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/self_diagnosis_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'explanation_pages/explanation_page2.dart';
+import 'explanation_pages/explanation_page3.dart';
 
 class SelfDiagnosisPage extends StatelessWidget {
   const SelfDiagnosisPage({super.key});
@@ -143,8 +146,9 @@ class SelfDiagnosisPage extends StatelessWidget {
                     children: [
                       //  Intro page
                       SelfIntroPage(),
-                      BodyInfo(),
+                      UserInformation(),
                       GreetingPage(),
+
                       //  Question page
                       Question1(),
                       Question2(),
@@ -156,7 +160,9 @@ class SelfDiagnosisPage extends StatelessWidget {
                       ResultPage(),
 
                       //  Explain page
-                      ExplanationPage(),
+                      ExplanationPage1(),
+                      ExplanationPage2(),
+                      ExplanationPage3(),
                       CompletePage(),
                     ],
                   ),
@@ -205,9 +211,10 @@ class SelfDiagnosisPage extends StatelessWidget {
                   padding:
                       const EdgeInsets.only(bottom: 16, left: 29, right: 29),
                   child: (Provider.of<DiagnosisModel>(context)
-                              .currentTabIndex ==
-                          Provider.of<DiagnosisModel>(context)
-                              .getTotalPageNum())
+                              .currentTabIndex >=
+                          Provider.of<DiagnosisModel>(context).totalIntroPage +
+                              Provider.of<DiagnosisModel>(context)
+                                  .totalDiagnosisPage)
                       ?
                       //  Button for the last page to start
                       const StartButton(
