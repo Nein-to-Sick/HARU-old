@@ -61,7 +61,7 @@ class RadioButtons extends StatelessWidget {
                 .responseAdd(value, tabPage);
           },
           selectedColor: Theme.of(context).colorScheme.primary,
-          unSelectedBorderColor: Colors.black,
+          unSelectedBorderColor: Theme.of(context).colorScheme.primary,
         ),
         const SizedBox(
           height: 8,

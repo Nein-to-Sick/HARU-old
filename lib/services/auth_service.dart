@@ -47,6 +47,7 @@ class AuthService {
         "SelfDiagnosisIsDone": false,
         "SelfDiagnosisResult": 0,
         "email": userEmail,
+        "preferredHobbies": [],
       });
     }
 

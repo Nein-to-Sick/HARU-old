@@ -31,11 +31,22 @@ Future<bool> _getDataFromFirebase() async {
   bool selfDiagnosisIsDone = false;
   final userCollection = FirebaseFirestore.instance.collection("users");
   String? userId = FirebaseAuth.instance.currentUser?.uid;
-  await userCollection.doc(userId).get().then(
-        (value) => {
-          selfDiagnosisIsDone = value['SelfDiagnosisIsDone'],
-        },
-      );
+  if (userId != null) {
+    DocumentSnapshot userSnapshot = await userCollection.doc(userId).get();
+    if (userSnapshot.exists) {
+      Map<String, dynamic> userData =
+          userSnapshot.data() as Map<String, dynamic>;
+      if (userData.containsKey('SelfDiagnosisIsDone')) {
+        selfDiagnosisIsDone = userData['SelfDiagnosisIsDone'];
+      } else {
+        print('No field');
+      }
+    } else {
+      print('No document');
+    }
+  } else {
+    print('User ID is null');
+  }
 
   return selfDiagnosisIsDone;
 }

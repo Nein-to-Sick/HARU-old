@@ -10,12 +10,6 @@ class SelfIntroPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void signUserOut() {
-      FirebaseAuth.instance.signOut();
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AuthPage()));
-    }
-
     String userNickNameData =
         Provider.of<UserInfoValueModel>(context).userNickName;
     final nicknameTextController = TextEditingController();
@@ -29,8 +23,6 @@ class SelfIntroPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          IconButton(onPressed: signUserOut, icon: Icon(Icons.logout)),
-
           //  Text line
           RichText(
             text: TextSpan(

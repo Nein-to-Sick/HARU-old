@@ -1,4 +1,4 @@
-import 'package:cap_stone_project/pages/self_diagnosis/question_pages/question_form.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/self_introduction_pages/question_pages/question_form.dart';
 import 'package:flutter/material.dart';
 
 class Question1 extends StatelessWidget {

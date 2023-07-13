@@ -1,3 +1,4 @@
+import 'package:cap_stone_project/pages/self_diagnosis/provider/hobbies_model.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/self_diagnosis_model.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/self_diagnosis_page.dart';
@@ -22,9 +23,12 @@ class SelfDiagnosisStartPage extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => UserInfoValueModel(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => HobbiesModel(),
+        )
       ],
       child: const DefaultTabController(
-        length: 12,
+        length: 13,
         initialIndex: 0,
         child: SelfDiagnosisPage(),
       ),

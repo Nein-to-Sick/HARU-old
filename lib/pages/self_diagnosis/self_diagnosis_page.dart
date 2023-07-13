@@ -3,15 +3,17 @@ import 'package:cap_stone_project/components/next_button.dart';
 import 'package:cap_stone_project/components/start_button.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/explanation_pages/complete_page.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/explanation_pages/explanation_page.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/provider/hobbies_model.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
-import 'package:cap_stone_project/pages/self_diagnosis/question_pages/result_page.dart';
-import 'package:cap_stone_project/pages/self_diagnosis/question_pages/submit_page.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/self_introduction_pages/hobbies_keyword_select_pages/select_hobbies.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/self_introduction_pages/question_pages/result_page.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/self_introduction_pages/question_pages/submit_page.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/user_info_pages/greeting_page.dart';
-import 'package:cap_stone_project/pages/self_diagnosis/question_pages/question1.dart';
-import 'package:cap_stone_project/pages/self_diagnosis/question_pages/question2.dart';
-import 'package:cap_stone_project/pages/self_diagnosis/question_pages/question3.dart';
-import 'package:cap_stone_project/pages/self_diagnosis/question_pages/question4.dart';
-import 'package:cap_stone_project/pages/self_diagnosis/question_pages/question5.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/self_introduction_pages/question_pages/question1.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/self_introduction_pages/question_pages/question2.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/self_introduction_pages/question_pages/question3.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/self_introduction_pages/question_pages/question4.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/self_introduction_pages/question_pages/question5.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/user_info_pages/user_body_info.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/user_data_database_update.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/user_info_pages/user_nickname_info_page.dart';
@@ -149,14 +151,54 @@ class SelfDiagnosisPage extends StatelessWidget {
                       Question3(),
                       Question4(),
                       Question5(),
+                      Selecthobbies(),
                       SubmitPage(),
                       ResultPage(),
+
                       //  Explain page
                       ExplanationPage(),
                       CompletePage(),
                     ],
                   ),
                 ),
+
+                //  skip button
+                /*
+                GestureDetector(
+                  onTap: (Provider.of<DiagnosisModel>(context)
+                              .currentTabIndex ==
+                          1)
+                      ? () {
+                          Provider.of<DiagnosisModel>(context, listen: false)
+                              .increaseProgressIndex();
+                          tabController.animateTo(Provider.of<DiagnosisModel>(
+                                  context,
+                                  listen: false)
+                              .currentTabIndex);
+                        }
+                      : () {},
+                  child: AnimatedDefaultTextStyle(
+                    duration: const Duration(milliseconds: 300),
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: (Provider.of<DiagnosisModel>(context)
+                                  .currentTabIndex ==
+                              1)
+                          ? Theme.of(context).colorScheme.primary
+                          : Colors.white.withOpacity(0),
+                    ),
+                    child: const Text(
+                      '건너뛰기',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+                
+                const SizedBox(
+                  height: 25,
+                ),
+                */
 
                 //  next button
                 Padding(
@@ -184,9 +226,10 @@ class SelfDiagnosisPage extends StatelessWidget {
                                     Provider.of<DiagnosisModel>(context,
                                             listen: false)
                                         .currentTabIndex);
-                                Provider.of<UserInfoValueModel>(context,
-                                        listen: false)
-                                    .isSubmittedUpdate();
+                                //  임시 나중에 주석 풀기!
+                                // Provider.of<UserInfoValueModel>(context,
+                                //         listen: false)
+                                //     .isSubmittedUpdate();
                                 Provider.of<UserInfoValueModel>(context,
                                         listen: false)
                                     .calculateDiagnosisResult();
@@ -231,7 +274,7 @@ class SelfDiagnosisPage extends StatelessWidget {
                                                 listen: false)
                                             .currentTabIndex !=
                                         1) {
-                                  //  In the middle of diagnosis(radio button) with already resonponsed
+                                  //  In the middle of diagnosis(radio button) with already responsed
                                   if (Provider.of<DiagnosisModel>(context,
                                                   listen: false)
                                               .stage ==
@@ -245,6 +288,17 @@ class SelfDiagnosisPage extends StatelessWidget {
                                                       .currentProgressbarIndex -
                                                   1] ==
                                           true) {
+                                  }
+                                  //  In select hobbies page with already responsed
+                                  else if (Provider.of<DiagnosisModel>(context,
+                                                  listen: false)
+                                              .stage ==
+                                          1 &&
+                                      Provider.of<HobbiesModel>(context,
+                                              listen: false)
+                                          .containerStates
+                                          .where((element) => element == true)
+                                          .isNotEmpty) {
                                   } else {
                                     Provider.of<DiagnosisModel>(context,
                                             listen: false)
