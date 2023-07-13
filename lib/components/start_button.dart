@@ -1,3 +1,4 @@
+import 'package:cap_stone_project/pages/energyState.dart';
 import 'package:cap_stone_project/pages/mainPage/mainPage.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class StartButton extends StatelessWidget {
         onEnd: () {
           Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => const MainPage()),
+              MaterialPageRoute(builder: (context) => const EnergyState()),
               (route) => false);
         },
         decoration: BoxDecoration(

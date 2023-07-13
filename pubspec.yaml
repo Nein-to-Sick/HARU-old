@@ -50,6 +50,8 @@ dependencies:
   lottie: ^2.4.0
   simple_animations: ^5.0.2
   heroicons: ^0.8.0
+  flutter_advanced_seekbar: ^0.0.2
+
 
 
 dev_dependencies:
@@ -76,6 +78,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/images/haru/
+    - assets/images/
+    - assets/images/icon/
     - assets/applelogin.jpg
     - assets/googlelogin.jpg
     - assets/kakaologin.jpg
