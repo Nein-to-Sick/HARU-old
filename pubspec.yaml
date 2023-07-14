@@ -51,7 +51,7 @@ dependencies:
   simple_animations: ^5.0.2
   heroicons: ^0.8.0
   flutter_advanced_seekbar: ^0.0.2
-
+  image_picker: ^1.0.1
 
 
 dev_dependencies:
