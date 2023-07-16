@@ -1,6 +1,7 @@
 import 'package:cap_stone_project/pages/missionCommunity/missionReview.dart';
 import 'package:flutter/material.dart';
 
+import '../Theme/app_colors.dart';
 import '../model/mission.dart';
 
 class MissionProvider extends ChangeNotifier {
@@ -47,7 +48,7 @@ class MissionProvider extends ChangeNotifier {
               width: MediaQuery.of(context).size.width * 0.8,
               height: MediaQuery.of(context).size.height * 0.45,
               child: Padding(
-                padding: const EdgeInsets.all(32.0),
+                padding: const EdgeInsets.only(top: 32.0),
                 child: Column(
                   children: [
                     const Text(
@@ -67,32 +68,43 @@ class MissionProvider extends ChangeNotifier {
                       "./assets/images/haru.png",
                       scale: 2,
                     ),
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => MissionReview(mission: mission)));
-                      },
-                      child: const Text("후기 남기러 가기",
-                          style: TextStyle(
-                            color: Color(0xFF878787),
-                            decoration: TextDecoration.underline,
-                          )),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xff64B5F6)),
-                      child: const Padding(
-                        padding: EdgeInsets.only(left: 16.0, right: 16.0),
-                        child: Text(
-                          "완료",
-                          style: TextStyle(color: Colors.white, fontSize: 16),
+                    SizedBox(height: 30,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => MissionReview(mission: mission)));
+                          },
+                          style:
+                          ElevatedButton.styleFrom(backgroundColor: AppColors.HARUPrimary),
+                          child: const Text(
+                            "후기 남기기",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w600),
+                          ),
                         ),
-                      ),
+                        const SizedBox(width: 10,),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          style:
+                          ElevatedButton.styleFrom(backgroundColor: Color(0xff64B5F6)),
+                          child: const Padding(
+                            padding: EdgeInsets.only(left: 16.0, right: 16.0),
+                            child: Text(
+                              "완료",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                        )
+                      ],
                     )
                   ],
                 ),

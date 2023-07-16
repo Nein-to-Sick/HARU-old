@@ -62,7 +62,7 @@ class _MissionReviewState extends State<MissionReview> {
             children: [
               Icon(Icons.arrow_back_ios),
               Text(
-                "돌아가기",
+                "취소",
                 style: TextStyle(fontSize: 18),
               ),
             ],
@@ -282,13 +282,13 @@ class _MissionReviewState extends State<MissionReview> {
           return Dialog(
               child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(25),
                     color: Colors.white,
                   ),
-                  width: MediaQuery.of(context).size.width * 0.8,
+                  width: MediaQuery.of(context).size.width * 0.8, // 추가
                   height: MediaQuery.of(context).size.height * 0.3,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 50.0),
+                    padding: const EdgeInsets.only(top: 50.0, bottom: 30),
                     child: Column(
                       children: [
                         Expanded(
@@ -298,7 +298,6 @@ class _MissionReviewState extends State<MissionReview> {
                               SizedBox(height: 20,),
                               Text("같은 미션을 성공한 파트너들의", style: TextStyle(fontSize: 18, color: AppColors.HARUGreyscale[400]),),
                               Text("후기도 확인할 수 있어요~", style: TextStyle(fontSize: 18, color: AppColors.HARUGreyscale[400]),),
-                              const SizedBox(height: 10,),
                             ],
                           ),
                         ),
@@ -315,7 +314,7 @@ class _MissionReviewState extends State<MissionReview> {
                                 "후기 보러 가기",
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 18,
+                                    fontSize: 17,
                                     fontWeight: FontWeight.w600),
                               ),
                             ),
@@ -334,7 +333,7 @@ class _MissionReviewState extends State<MissionReview> {
                                   "완료",
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 18,
+                                      fontSize: 17,
                                       fontWeight: FontWeight.w600),
                                 ),
                               ),
