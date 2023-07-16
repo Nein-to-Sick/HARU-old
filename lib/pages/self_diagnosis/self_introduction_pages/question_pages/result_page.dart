@@ -1,5 +1,5 @@
 import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
-import 'package:cap_stone_project/pages/self_diagnosis/question_pages/additional_question_pages/additional_question_start_page.dart';
+import 'package:cap_stone_project/pages/self_diagnosis/self_introduction_pages/question_pages/additional_question_pages/additional_question_start_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wrapped_korean_text/wrapped_korean_text.dart';
@@ -22,40 +22,25 @@ class ResultPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              RichText(
-                text: TextSpan(
-                  style: const TextStyle(fontSize: 25),
-                  children: [
-                    //  user nickname
-                    TextSpan(
-                      text: userNickName,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const TextSpan(
-                      text: '님은 현재',
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
+              Text(
+                '$userNickName님은',
+                style: const TextStyle(fontSize: 23),
+                textAlign: TextAlign.center,
+                textWidthBasis: TextWidthBasis.parent,
               ),
               const SizedBox(
                 height: 10,
               ),
               Text(
                 (userStatus == 1)
-                    ? '"씨앗"'
+                    ? '"한량 고양이"'
                     : (userStatus == 2)
-                        ? '"새싹"'
-                        : '"묘목"',
-                style: const TextStyle(
-                  fontSize: 23,
-                  fontWeight: FontWeight.bold,
-                ),
+                        ? '"사무라이 고양이"'
+                        : '"총잡이 고양이"',
+                style: TextStyle(
+                    fontSize: 23,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.primary),
                 textAlign: TextAlign.center,
                 textWidthBasis: TextWidthBasis.parent,
               ),

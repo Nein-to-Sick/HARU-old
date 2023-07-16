@@ -19,7 +19,7 @@ class SubmitPage extends StatelessWidget {
                   .recordResponse();
             },
             child: WrappedKoreanText(
-              '검사 내용을 제출하시겠나요?\n 제출 후에는 수정이 불가능합니다',
+              '설문 내용을 제출하시겠나요?',
               style: const TextStyle(fontSize: 23),
               textAlign: TextAlign.center,
             ),

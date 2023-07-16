@@ -68,6 +68,7 @@ class _RegisterPageState extends State<RegisterPage> {
             "SelfDiagnosisIsDone": false,
             "SelfDiagnosisResult": 0,
             "email": userEmail,
+            "preferredHobbies": [],
           });
         }
 
@@ -127,10 +128,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     //logo
-                    Image(
-                      image: AssetImage('assets/thecat.jpg'),
-                      width: 120,
-                      height: 146.9,
+                    Image.asset(
+                      'assets/images/haru.png',
+                      scale: 3,
                     ),
                     SizedBox(
                       height: 5,

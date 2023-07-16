@@ -15,7 +15,45 @@ class NextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      decoration: BoxDecoration(
+          color: isSelected
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.outline,
+          borderRadius: BorderRadius.circular(67),
+          border: Border.all(
+            color: isSelected
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.outline,
+          )),
+      child: SizedBox(
+        height: 60,
+        width: 335,
+        child: ElevatedButton(
+          onPressed: isSelected ? onTap : null,
+          style: ButtonStyle(
+            overlayColor: MaterialStateProperty.all(
+                Theme.of(context).colorScheme.primaryContainer),
+            backgroundColor: MaterialStateProperty.all(Colors.transparent),
+            shadowColor: MaterialStateProperty.all(Colors.transparent),
+          ),
+          child: Center(
+            child: Text(
+              text,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.background,
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    /*
+    GestureDetector(
       onTap: isSelected ? onTap : () {},
       child: AnimatedContainer(
         height: 60,
@@ -29,15 +67,14 @@ class NextButton extends StatelessWidget {
               color: isSelected
                   ? Theme.of(context).colorScheme.primary
                   : Theme.of(context).colorScheme.outline,
-            )),
+            ),
+            ),
         duration: const Duration(milliseconds: 300),
         child: Center(
           child: Text(
             text,
             style: TextStyle(
-              color: isSelected
-                  ? Theme.of(context).colorScheme.background
-                  : Theme.of(context).colorScheme.background,
+              color: Theme.of(context).colorScheme.background,
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),
@@ -45,5 +82,6 @@ class NextButton extends StatelessWidget {
         ),
       ),
     );
+    */
   }
 }

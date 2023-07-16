@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class DiagnosisModel with ChangeNotifier {
   final totalIntroPage = 3; //  total intro page count
-  final totalDiagnosisPage = 7; //  total diagnosis page count
-  final totalExplainPage = 1; //  total explain page count
-  int currentTabIndex; //  0 ~ total pages (9 = 1 + 7 + 1)
+  final totalDiagnosisPage = 8; //  total diagnosis page count
+  final totalExplainPage = 3; //  total explain page count
+  int currentTabIndex; //  0 ~ total pages (12 = 1 + 8 + 3)
   int currentProgressbarIndex; //  1 ~ intro, 1 ~ diagnosis, 1 ~ explain
   int stage; //  intro = 0, diagnosis = 1, explain = 2
   bool isSelected; //  whether the radio button selected

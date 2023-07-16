@@ -15,7 +15,7 @@ class AuthService {
     }
 
     //obtain auth details from request
-    final GoogleSignInAuthentication gAuth = await gUser!.authentication;
+    final GoogleSignInAuthentication gAuth = await gUser.authentication;
 
     //create a new credential for user
     final credential = GoogleAuthProvider.credential(
@@ -47,6 +47,7 @@ class AuthService {
         "SelfDiagnosisIsDone": false,
         "SelfDiagnosisResult": 0,
         "email": userEmail,
+        "preferredHobbies": [],
       });
     }
 
