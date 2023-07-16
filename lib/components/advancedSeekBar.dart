@@ -218,7 +218,7 @@ class SeekBarRenderBox extends RenderBox {
       );
       final textPainter = TextPainter(
         text: TextSpan(
-          text: ((progress * 5).round() + 1).toString(),
+          text: !fillProgress ? ((progress * 5).round() + 1).toString() : ((progress*100/11).floor()+1).toString(),
           style: const TextStyle(
             color: Colors.white,
             fontSize: 16,
@@ -235,9 +235,14 @@ class SeekBarRenderBox extends RenderBox {
       );
 
       textPainter.paint(context.canvas, textOffset);
-      context.canvas.drawCircle(
+      !fillProgress ? context.canvas.drawCircle(
           Offset(progress * size.width, size.height / 2),
           scaleWhileDrag ? thumbSize / 2 * 2.3 : thumbSize / 2,
+          Paint()
+            ..color = thumbColor.withOpacity(0.2)
+            ..style = PaintingStyle.fill) : context.canvas.drawCircle(
+          Offset(progress * size.width, size.height / 2),
+          scaleWhileDrag ? thumbSize / 2 * 1.8 : thumbSize / 2,
           Paint()
             ..color = thumbColor.withOpacity(0.2)
             ..style = PaintingStyle.fill);

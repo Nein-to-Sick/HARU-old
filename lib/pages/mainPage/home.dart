@@ -39,8 +39,8 @@ class _HomePageState extends State<HomePage> {
         }
         final currentIndex = missionProvider.currentIndex;
 
-        void missionComplete(BuildContext context, int index) {
-          missionProvider.missionComplete(context, index);
+        void missionComplete(BuildContext context, List<String> mission) {
+          missionProvider.missionComplete(context, mission);
         }
         final pages = List.generate(
             mission!.length,
@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                               height: 33,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  missionComplete(context, index);
+                                  missionComplete(context, mission![index]);
                                 },
                                 style: ElevatedButton.styleFrom(
                                     shape: RoundedRectangleBorder(
