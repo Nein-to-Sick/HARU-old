@@ -6,10 +6,11 @@ class UserInfoValueModel with ChangeNotifier {
   String userNickName = '';
   String height = '';
   String weight = '';
+  String gender = '밝히고 싶지 않음';
+  DateTime? birthday;
   bool isSubmitted = false; //  whether user agree to submit thier diagnosis
   bool isAgree = false; //  whether user agree to start application
   int userStatus = 0;
-  String gender = '밝히고 싶지 않음';
 
   void userNickNameUpdate(value) {
     userNickName = value;
@@ -23,6 +24,16 @@ class UserInfoValueModel with ChangeNotifier {
 
   void userWeightUpdate(value) {
     weight = value;
+    notifyListeners();
+  }
+
+  void userGenderUpdate(value) {
+    gender = value;
+    notifyListeners();
+  }
+
+  void userBirthDateUpdate(value) {
+    birthday = value;
     notifyListeners();
   }
 
@@ -67,5 +78,9 @@ class UserInfoValueModel with ChangeNotifier {
     }
 
     notifyListeners();
+  }
+
+  void Temp() {
+    print(birthday);
   }
 }

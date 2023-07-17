@@ -1,17 +1,23 @@
+import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class GenderInput extends StatelessWidget {
   const GenderInput({super.key});
 
   @override
   Widget build(BuildContext context) {
-    String selectedGender = "남성";
+    final userInfoModel =
+        Provider.of<UserInfoValueModel>(context, listen: false);
+    String selectedGender = userInfoModel.gender;
 
     return SizedBox(
       height: 60,
       child: DropdownButtonFormField<String>(
         decoration: InputDecoration(
-          labelText: '성별',
+          label: const Text('성별'),
+          labelStyle:
+              TextStyle(color: Theme.of(context).colorScheme.outlineVariant),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: Theme.of(context).colorScheme.outline,
@@ -27,7 +33,9 @@ class GenderInput extends StatelessWidget {
           ),
         ),
         value: selectedGender,
-        onChanged: (gender) {},
+        onChanged: (gender) {
+          userInfoModel.userGenderUpdate(gender);
+        },
         items: const [
           DropdownMenuItem(
             value: '남성',

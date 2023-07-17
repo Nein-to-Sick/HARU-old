@@ -65,10 +65,12 @@ class _RegisterPageState extends State<RegisterPage> {
             "gender": 1,
             "activity level": 1,
             "age": 0,
+            "birthday": null,
             "SelfDiagnosisIsDone": false,
             "SelfDiagnosisResult": 0,
             "email": userEmail,
             "preferredHobbies": [],
+            "created_at": FieldValue.serverTimestamp(),
           });
         }
 
