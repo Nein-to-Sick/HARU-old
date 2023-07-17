@@ -13,10 +13,15 @@ class UserInformation extends StatelessWidget {
   Widget build(BuildContext context) {
     String userHeightData = Provider.of<UserInfoValueModel>(context).height;
     String userWeightData = Provider.of<UserInfoValueModel>(context).weight;
+    DateTime? userBirthDate = Provider.of<UserInfoValueModel>(context).birthday;
     final heightTextController = TextEditingController();
     final weightTextController = TextEditingController();
+    final birthdateTextController = TextEditingController();
     heightTextController.text = (userHeightData.isEmpty) ? '' : userHeightData;
     weightTextController.text = (userWeightData.isEmpty) ? '' : userWeightData;
+    birthdateTextController.text = ((userBirthDate == null)
+        ? ''
+        : userBirthDate.toString().substring(0, 10));
     FocusNode textFocusHeight = FocusNode();
     FocusNode textFocusWeight = FocusNode();
     RegExp regex = RegExp(r'^\d*\.?\d{0,2}$');
@@ -74,6 +79,9 @@ class UserInformation extends StatelessWidget {
                 heightTextController.text = userHeightData;
               },
               decoration: InputDecoration(
+                label: const Text('신장'),
+                labelStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.outlineVariant),
                 contentPadding:
                     const EdgeInsets.only(left: 20, top: 20, bottom: 20),
                 enabledBorder: OutlineInputBorder(
@@ -147,6 +155,9 @@ class UserInformation extends StatelessWidget {
                 weightTextController.text = userWeightData;
               },
               decoration: InputDecoration(
+                label: const Text('체중'),
+                labelStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.outlineVariant),
                 contentPadding:
                     const EdgeInsets.only(left: 20, top: 20, bottom: 20),
                 enabledBorder: OutlineInputBorder(
@@ -196,18 +207,45 @@ class UserInformation extends StatelessWidget {
           ),
 
           //  Gender selection
-          GenderInput(),
+          const GenderInput(),
 
           const SizedBox(
             height: 20,
           ),
 
           //  Birthday input
-          ElevatedButton(
-              onPressed: () {
-                birthDateInput(context);
-              },
-              child: const Text('생일')),
+          TextFormField(
+            controller: birthdateTextController,
+            keyboardType: TextInputType.datetime,
+            decoration: InputDecoration(
+              label: const Text('생일'),
+              labelStyle: TextStyle(
+                  color: Theme.of(context).colorScheme.outlineVariant),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Theme.of(context).colorScheme.outline,
+                ),
+                borderRadius: BorderRadius.circular(50),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Theme.of(context).colorScheme.primary,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(50),
+              ),
+              suffixIcon: IconButton(
+                icon: const Icon(Icons.calendar_today),
+                onPressed: () {
+                  birthDateInput(context);
+                },
+              ),
+            ),
+            readOnly: true,
+            onTap: () {
+              birthDateInput(context);
+            },
+          )
         ],
       ),
     );
