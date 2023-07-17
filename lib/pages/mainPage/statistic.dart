@@ -483,97 +483,121 @@ class DraggableSheet extends StatelessWidget {
     }
 
     // Widget missionIng() {
-    //   return SizedBox(
-    //     height: 300,
-    //     child: ListView.builder(
-    //       physics: const NeverScrollableScrollPhysics(),
-    //       shrinkWrap: true,
-    //       itemCount: Mission().mission.length,
-    //       itemBuilder: (context, index1) {
-    //         return Column(
-    //           children: [
-    //             Container(
-    //               decoration: BoxDecoration(
-    //                 borderRadius: BorderRadius.circular(35),
-    //                 color:
-    //                     index1 != 2 ? Color(0xffEEF6EA) : Colors.grey.shade200,
-    //               ),
-    //               width: 330,
-    //               child: Padding(
-    //                 padding:
-    //                     const EdgeInsets.only(left: 25.0, top: 10, bottom: 7),
-    //                 child: Column(
-    //                   crossAxisAlignment: CrossAxisAlignment.start,
-    //                   children: [
-    //                     Padding(
-    //                       padding: const EdgeInsets.only(top: 4.0),
-    //                       child: Row(
-    //                         children: [
-    //                           Text(
-    //                             "미션 ${index1 + 1} : ",
-    //                             style: const TextStyle(fontSize: 15),
+    //   return Consumer<MissionProvider>(
+    //     builder: (context, missionProvider, _) {
+    //       return FutureBuilder<List<List<String>>>(
+    //         future: missionProvider.fetchMission(),
+    //         builder: (context, snapshot) {
+    //           if (snapshot.connectionState != ConnectionState.done) {
+    //             final mission = missionProvider.mission;
+    //
+    //             return SizedBox(
+    //               height: 300,
+    //               child: ListView.builder(
+    //                 physics: const NeverScrollableScrollPhysics(),
+    //                 shrinkWrap: true,
+    //                 itemCount: mission.length,
+    //                 itemBuilder: (context, index1) {
+    //                   return Column(
+    //                     children: [
+    //                       Container(
+    //                         decoration: BoxDecoration(
+    //                           borderRadius: BorderRadius.circular(35),
+    //                           color:
+    //                           index1 != 2 ? Color(0xffEEF6EA) : Colors.grey
+    //                               .shade200,
+    //                         ),
+    //                         width: 330,
+    //                         child: Padding(
+    //                           padding:
+    //                           const EdgeInsets.only(
+    //                               left: 25.0, top: 10, bottom: 7),
+    //                           child: Column(
+    //                             crossAxisAlignment: CrossAxisAlignment.start,
+    //                             children: [
+    //                               Padding(
+    //                                 padding: const EdgeInsets.only(top: 4.0),
+    //                                 child: Row(
+    //                                   children: [
+    //                                     Text(
+    //                                       "미션 ${index1 + 1} : ",
+    //                                       style: const TextStyle(fontSize: 15),
+    //                                     ),
+    //                                     Text(
+    //                                       mission[index1][1],
+    //                                       style: const TextStyle(
+    //                                           fontWeight: FontWeight.bold,
+    //                                           fontSize: 15),
+    //                                     )
+    //                                   ],
+    //                                 ),
+    //                               ),
+    //                               Padding(
+    //                                 padding: const EdgeInsets.only(left: 3.0),
+    //                                 child: SizedBox(
+    //                                   height: 40,
+    //                                   child: ListView.builder(
+    //                                       physics: const NeverScrollableScrollPhysics(),
+    //                                       shrinkWrap: true,
+    //                                       scrollDirection: Axis.horizontal,
+    //                                       itemCount: mission[index1]
+    //                                           .length - 2,
+    //                                       itemBuilder: (context, index2) {
+    //                                         return Row(
+    //                                           children: [
+    //                                             Container(
+    //                                                 decoration: BoxDecoration(
+    //                                                   borderRadius:
+    //                                                   BorderRadius.circular(20),
+    //                                                   color: index1 != 2
+    //                                                       ? Theme
+    //                                                       .of(context)
+    //                                                       .colorScheme
+    //                                                       .primary
+    //                                                       : Colors.grey
+    //                                                       .shade400,
+    //                                                 ),
+    //                                                 child: Padding(
+    //                                                   padding: const EdgeInsets
+    //                                                       .fromLTRB(
+    //                                                       15, 3, 15, 3),
+    //                                                   child: Text(
+    //                                                     mission[index1]
+    //                                                     [index2 + 2],
+    //                                                     style: const TextStyle(
+    //                                                         color: Colors.white,
+    //                                                         fontSize: 15),
+    //                                                   ),
+    //                                                 )),
+    //                                             const SizedBox(
+    //                                               width: 10,
+    //                                             )
+    //                                           ],
+    //                                         );
+    //                                       }),
+    //                                 ),
+    //                               )
+    //                             ],
     //                           ),
-    //                           Text(
-    //                             Mission().mission[index1][1],
-    //                             style: const TextStyle(
-    //                                 fontWeight: FontWeight.bold, fontSize: 15),
-    //                           )
-    //                         ],
+    //                         ),
     //                       ),
-    //                     ),
-    //                     Padding(
-    //                       padding: const EdgeInsets.only(left: 3.0),
-    //                       child: SizedBox(
-    //                         height: 40,
-    //                         child: ListView.builder(
-    //                             physics: const NeverScrollableScrollPhysics(),
-    //                             shrinkWrap: true,
-    //                             scrollDirection: Axis.horizontal,
-    //                             itemCount: Mission().mission[index1].length - 2,
-    //                             itemBuilder: (context, index2) {
-    //                               return Row(
-    //                                 children: [
-    //                                   Container(
-    //                                       decoration: BoxDecoration(
-    //                                         borderRadius:
-    //                                             BorderRadius.circular(20),
-    //                                         color: index1 != 2
-    //                                             ? Theme.of(context)
-    //                                                 .colorScheme
-    //                                                 .primary
-    //                                             : Colors.grey.shade400,
-    //                                       ),
-    //                                       child: Padding(
-    //                                         padding: const EdgeInsets.fromLTRB(
-    //                                             15, 3, 15, 3),
-    //                                         child: Text(
-    //                                           Mission().mission[index1]
-    //                                               [index2 + 2],
-    //                                           style: const TextStyle(
-    //                                               color: Colors.white,
-    //                                               fontSize: 15),
-    //                                         ),
-    //                                       )),
-    //                                   const SizedBox(
-    //                                     width: 10,
-    //                                   )
-    //                                 ],
-    //                               );
-    //                             }),
-    //                       ),
-    //                     )
-    //                   ],
-    //                 ),
+    //                       SizedBox(
+    //                         height: 10,
+    //                       )
+    //                     ],
+    //                   );
+    //                 },
     //               ),
-    //             ),
-    //             SizedBox(
-    //               height: 10,
-    //             )
-    //           ],
-    //         );
-    //       },
-    //     ),
+    //             );
+    //           }
+    //           else {
+    //             return Container();
+    //           }
+    //         },
+    //       );
+    //     },
     //   );
+    //
     // }
 
     Widget missionComplete() {
