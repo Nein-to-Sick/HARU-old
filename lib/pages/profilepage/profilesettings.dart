@@ -140,9 +140,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   width: MediaQuery.of(context).size.width -
                       MediaQuery.of(context).size.width * 0.1,
                   child: ElevatedButton(
-                    onPressed: () {
-                      signUserOut;
-                    },
+                    onPressed: signUserOut,
                     style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50)),
