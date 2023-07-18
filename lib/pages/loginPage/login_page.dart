@@ -4,10 +4,10 @@ import 'package:cap_stone_project/components/test_field.dart';
 import 'package:cap_stone_project/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class LoginPage extends StatefulWidget {
-  final Function()? onTap;
-  const LoginPage({super.key, required this.onTap});
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -75,10 +75,12 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    const SizedBox(
+                      height: 200,
+                    ),
                     //logo
                     Image.asset(
                       'assets/images/haru.png',
-                      scale: 3,
                     ),
 
                     const SizedBox(
@@ -86,97 +88,36 @@ class _LoginPageState extends State<LoginPage> {
                     ),
 
                     //app names
-                    Text(
-                      "하루",
-                      style: TextStyle(
-                        fontSize: 61,
-                        color: Theme.of(context).colorScheme.primary,
-                        height: 1.0,
-                      ),
+                    // Text(
+                    //   "하루",
+                    //   style: TextStyle(
+                    //     fontSize: 61,
+                    //     color: Theme.of(context).colorScheme.primary,
+                    //     height: 1.0,
+                    //   ),
+                    // ),
+                    // Text(
+                    //   "Haru",
+                    //   style: TextStyle(
+                    //     fontSize: 30,
+                    //     color: Theme.of(context).colorScheme.primaryContainer,
+                    //     height: 1.0,
+                    //   ),
+                    // ),
+                    // const SizedBox(
+                    //   height: 40,
+                    // ),
+                    SignInButton(
+                      Buttons.GoogleDark,
+                      onPressed: () {
+                        AuthService().signInWithGoogle();
+                      },
                     ),
-                    Text(
-                      "Haru",
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Theme.of(context).colorScheme.primaryContainer,
-                        height: 1.0,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 40,
-                    ),
-
-                    //email textfield
-                    Container(
-                      width: 295,
-                      height: 44,
-                      child: MyTextField(
-                          controller: emailTextController,
-                          hintText: '이메일',
-                          obscureText: false,
-                          validatorType: 1),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-
-                    //pw textfield
-                    Container(
-                      width: 295,
-                      height: 44,
-                      child: MyTextField(
-                        controller: passwordTextController,
-                        hintText: '비밀번호',
-                        obscureText: true,
-                        validatorType: 2,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 25,
-                    ),
-
-                    //sign in button
-                    Container(
-                        width: 295,
-                        height: 60,
-                        child: MyButton(onTap: signIn, text: '로그인')),
-                    const SizedBox(
-                      height: 10,
-                    ),
-
-                    //go to register page
-                    GestureDetector(
-                      onTap: widget.onTap,
-                      child: const Text(
-                        "회원가입",
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: Color(0xFF717171),
-                            decoration: TextDecoration.underline),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-
-                    //Social Media Logins
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SquareTile(
-                            onTap: () => AuthService().signInWithGoogle(),
-                            imagePath: 'assets/googlelogin.jpg'),
-                        SquareTile(
-                            onTap: () {
-                              showErrorMessage("카카오톡 로그인은 v.1.0에 추가될 예정입니다.");
-                            },
-                            imagePath: 'assets/kakaologin.jpg'),
-                        SquareTile(
-                            onTap: () {
-                              showErrorMessage("애플 로그인은 v.1.0에 추가될 예정입니다.");
-                            },
-                            imagePath: 'assets/applelogin.jpg'),
-                      ],
+                    SignInButton(
+                      Buttons.AppleDark,
+                      onPressed: () {
+                        showErrorMessage("V.1.0.0에 구현될 예정입니다.");
+                      },
                     ),
                   ],
                 ),

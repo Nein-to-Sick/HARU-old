@@ -1,4 +1,4 @@
-import 'package:cap_stone_project/auth/login_or_register.dart';
+import 'package:cap_stone_project/pages/loginPage/login_page.dart';
 import 'package:cap_stone_project/pages/mainPage/mainPage.dart';
 import 'package:cap_stone_project/pages/bridge_pages/main_diagnosis_bridge.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/self_diagnosis_start_page.dart';
@@ -21,7 +21,7 @@ class AuthPage extends StatelessWidget {
             return const BridgPage();
           } else {
             //user is not logged in
-            return const LoginOrRegister();
+            return const LoginPage();
           }
         },
       ),

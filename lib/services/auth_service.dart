@@ -34,6 +34,11 @@ class AuthService {
     final docRef = userCollection.doc(userId);
     DocumentSnapshot snapshot = await docRef.get();
 
+    // FirebaseFirestore.instance
+    //     .collection("users")
+    //     .doc(FirebaseAuth.instance.currentUser?.uid)
+    //     .get();
+
     if (snapshot.exists) {
       print("true");
     } else {

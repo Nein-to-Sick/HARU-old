@@ -1,4 +1,4 @@
-import 'package:cap_stone_project/pages/mainPage/profile.dart';
+import 'package:cap_stone_project/pages/profilepage/profile.dart';
 import 'package:cap_stone_project/provider/missonProvider.dart';
 import 'package:cap_stone_project/provider/statisticState.dart';
 import 'package:cap_stone_project/pages/mainPage/statistic.dart';
@@ -37,16 +37,20 @@ class MainPage extends StatelessWidget {
         bottomNavigationBar: Consumer<NavigationController>(
           builder: (context, navigationController, _) {
             return BottomNavigationBar(
-              unselectedItemColor: Theme.of(context).primaryColor.withOpacity(0.3), // Apply opacity here
+              unselectedItemColor: Theme.of(context)
+                  .primaryColor
+                  .withOpacity(0.3), // Apply opacity here
 
               unselectedIconTheme: IconThemeData(
-                color: Theme.of(context).primaryColor.withOpacity(0.3), // Apply icon opacity here
+                color: Theme.of(context)
+                    .primaryColor
+                    .withOpacity(0.3), // Apply icon opacity here
               ),
               currentIndex: navigationController.selectedIndex,
               onTap: (index) {
                 navigationController.selectedIndex = index;
               },
-              items:  const [
+              items: const [
                 BottomNavigationBarItem(
                   icon: HeroIcon(HeroIcons.chartBar, style: HeroIconStyle.mini),
                   label: '통계',
