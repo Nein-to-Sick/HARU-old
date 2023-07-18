@@ -1,13 +1,9 @@
-import 'package:cap_stone_project/components/button.dart';
-import 'package:cap_stone_project/components/next_button.dart';
 import 'package:cap_stone_project/components/profile_widget.dart';
 import 'package:cap_stone_project/pages/profilepage/profilesettings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import '../../auth/auth.dart';
-import '../../components/advancedSeekBar.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
