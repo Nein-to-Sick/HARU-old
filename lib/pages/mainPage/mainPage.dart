@@ -1,4 +1,5 @@
-import 'package:cap_stone_project/pages/profilepage/profile.dart';
+import 'package:cap_stone_project/pages/mainPage/dailyStatistic.dart';
+import 'package:cap_stone_project/pages/mainPage/profile.dart';
 import 'package:cap_stone_project/provider/missonProvider.dart';
 import 'package:cap_stone_project/provider/statisticState.dart';
 import 'package:cap_stone_project/pages/mainPage/statistic.dart';
@@ -29,7 +30,7 @@ class MainPage extends StatelessWidget {
                   value: MissionProvider(),
                   child: HomePage(),
                 ),
-                const ProfilePage(),
+                const ProfilePage()
               ],
             );
           },

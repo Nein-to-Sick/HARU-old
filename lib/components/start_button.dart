@@ -1,4 +1,4 @@
-import 'package:cap_stone_project/pages/energyState.dart';
+import 'package:cap_stone_project/%EC%95%88%EC%93%B0%EB%8A%94%20%ED%8E%98%EC%9D%B4%EC%A7%80/energyState.dart';
 import 'package:cap_stone_project/pages/mainPage/mainPage.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
 import 'package:flutter/material.dart';

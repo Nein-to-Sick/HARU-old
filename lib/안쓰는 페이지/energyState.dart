@@ -1,7 +1,7 @@
 import 'package:cap_stone_project/pages/mainPage/mainPage.dart';
 import 'package:cap_stone_project/services/database_service.dart';
 import 'package:flutter/material.dart';
-import '../components/advancedSeekBar.dart';
+import 'advancedSeekBar.dart';
 import '../components/next_button.dart';
 
 class EnergyState extends StatefulWidget {
@@ -126,11 +126,11 @@ class _EnergyStateState extends State<EnergyState> {
             
             NextButton(
               onTap: () {
-                DatabaseService().storeState((progress / 20 + 1).round());
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MainPage()),
-                    (route) => false);
+                // DatabaseService().storeState((progress / 20 + 1).round());
+                // Navigator.pushAndRemoveUntil(
+                //     context,
+                //     MaterialPageRoute(builder: (context) => const MainPage()),
+                //     (route) => false);
               },
               text: "저장",
               isSelected: true,

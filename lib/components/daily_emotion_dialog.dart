@@ -2,7 +2,7 @@ import 'package:cap_stone_project/Theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import 'advancedSeekBar.dart';
+import '../안쓰는 페이지/advancedSeekBar.dart';
 
 List<String> emotion = [
   "행복",
