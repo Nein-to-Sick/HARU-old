@@ -75,16 +75,20 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(
-                      height: 200,
-                    ),
+                    // const SizedBox(
+                    //   height: 200,
+                    // ),
                     //logo
                     Image.asset(
-                      'assets/images/haru.png',
+                      // imagePath: 'assets/images/login/applelogin.jpg',
+                      'assets/images/login/firstpage.jpg',
                     ),
+                    // AssetImage(
+                    //   "./assests/images/login/firstpage.png",
+                    // ),
 
                     const SizedBox(
-                      height: 5,
+                      height: 104.34,
                     ),
 
                     //app names
@@ -107,17 +111,91 @@ class _LoginPageState extends State<LoginPage> {
                     // const SizedBox(
                     //   height: 40,
                     // ),
-                    SignInButton(
-                      Buttons.GoogleDark,
-                      onPressed: () {
+                    // SignInButton(
+                    //   Buttons.GoogleDark,
+                    //   onPressed: () {
+                    //     AuthService().signInWithGoogle();
+                    //   },
+                    // ),
+                    // SignInButton(
+                    //   Buttons.AppleDark,
+                    //   onPressed: () {
+                    //     showErrorMessage("V.1.0.0에 구현될 예정입니다.");
+                    //   },
+                    // ),
+
+                    GestureDetector(
+                      onTap: () {
                         AuthService().signInWithGoogle();
                       },
+                      child: AnimatedContainer(
+                        height: 60,
+                        width: 335,
+                        decoration: BoxDecoration(
+                          // color: Theme.of(context).colorScheme.primary,
+                          borderRadius: BorderRadius.circular(67),
+                          border: Border.all(
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
+                        duration: const Duration(milliseconds: 300),
+                        child: const Row(children: [
+                          SizedBox(
+                            width: 30,
+                          ),
+                          SquareTile(
+                            imagePath: 'assets/images/login/googlelogin.jpg',
+                            radians: 30,
+                          ),
+                          Expanded(
+                            child: Text(
+                              "   Google 로그인",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ]),
+                      ),
                     ),
-                    SignInButton(
-                      Buttons.AppleDark,
-                      onPressed: () {
+                    SizedBox(
+                      height: 24,
+                    ),
+                    GestureDetector(
+                      onTap: () {
                         showErrorMessage("V.1.0.0에 구현될 예정입니다.");
                       },
+                      child: AnimatedContainer(
+                        height: 60,
+                        width: 335,
+                        decoration: BoxDecoration(
+                          // color: Theme.of(context).colorScheme.primary,
+                          borderRadius: BorderRadius.circular(67),
+                          border: Border.all(
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
+                        duration: const Duration(milliseconds: 300),
+                        child: const Row(children: [
+                          SizedBox(
+                            width: 30,
+                          ),
+                          SquareTile(
+                            imagePath: 'assets/images/login/applelogin.jpg',
+                            radians: 30,
+                          ),
+                          Expanded(
+                            child: Text(
+                              "   Google 로그인",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ]),
+                      ),
                     ),
                   ],
                 ),

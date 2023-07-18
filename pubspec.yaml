@@ -84,9 +84,7 @@ flutter:
     - assets/images/
     - assets/images/icon/
     - assets/images/emotion/
-    - assets/applelogin.jpg
-    - assets/googlelogin.jpg
-    - assets/kakaologin.jpg
+    - assets/images/login/
     #   - images/a_dot_burr.jpeg
     #   - images/a_dot_ham.jpeg
     - assets/images/haru.png

@@ -47,14 +47,14 @@ class AuthService {
         "hight": 0.0,
         "weight": 0.0,
         "gender": 1,
-        "activity level": 1,
         "age": 0,
         "birthday": null,
         "SelfDiagnosisIsDone": false,
-        "SelfDiagnosisResult": 0,
         "email": userEmail,
-        "preferredHobbies": [],
         "created_at": FieldValue.serverTimestamp(),
+        "hexagon": [0, 0, 0, 0, 0, 0],
+        "progressDeck": [],
+        "imageURL": FirebaseAuth.instance.currentUser?.photoURL,
       });
     }
 
@@ -62,25 +62,18 @@ class AuthService {
         DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
     String todayDate = selectedDate.toString().substring(0, 10);
 
-    final missionCollection = FirebaseFirestore.instance
-        .collection("users")
-        .doc(FirebaseAuth.instance.currentUser?.uid)
-        .collection(todayDate);
+    final dateDocRef = docRef.collection("date").doc(todayDate);
 
-    final mission1 = missionCollection.doc("mission1");
-    await mission1.set({
-      "faceIndex": 1,
-    });
+    DocumentSnapshot snapshotDate = await dateDocRef.get();
 
-    final mission2 = missionCollection.doc("mission2");
-    await mission2.set({
-      "faceIndex": 2,
-    });
-
-    final mission3 = missionCollection.doc("mission3");
-    await mission3.set({
-      "faceIndex": 3,
-    });
+    if (snapshot.exists) {
+      print("true");
+    } else {
+      await dateDocRef.set({
+        "mission": [],
+        "completed": [false, false, false],
+      });
+    }
 
     //finally, lets sign in
     return userCredential;
