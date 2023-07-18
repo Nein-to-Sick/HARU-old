@@ -1,12 +1,12 @@
 import 'package:cap_stone_project/Theme/app_colors.dart';
-import 'package:cap_stone_project/pages/mainPage/statisticBody.dart';
+import 'package:cap_stone_project/pages/mainPage/statistic/statisticBody.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../components/sliding/sliding.dart';
-import '../../components/sliding/sliding_panel_controller.dart';
-import '../../provider/statisticState.dart';
-import '../../services/database_service.dart';
+import '../../../components/sliding/sliding.dart';
+import '../../../components/sliding/sliding_panel_controller.dart';
+import '../../../provider/statisticState.dart';
+import '../../../services/database_service.dart';
 
 class DailyStatistic extends StatefulWidget {
   const DailyStatistic({Key? key}) : super(key: key);

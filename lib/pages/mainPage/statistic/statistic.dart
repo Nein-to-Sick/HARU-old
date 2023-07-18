@@ -1,12 +1,12 @@
-import 'package:cap_stone_project/pages/mainPage/dailyStatistic.dart';
+import 'package:cap_stone_project/pages/mainPage/statistic/dailyStatistic.dart';
 import 'package:cap_stone_project/provider/statisticState.dart';
 import 'package:cap_stone_project/services/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:liquid_progress_indicator_v2/liquid_progress_indicator.dart';
 import 'package:provider/provider.dart';
-import '../../components/FAProgressBar.dart';
-import '../../components/customRadarChart.dart';
+import '../../../components/FAProgressBar.dart';
+import '../../../components/customRadarChart.dart';
 import 'monthlyStatistic.dart';
 
 class Statistic extends StatelessWidget {
@@ -22,7 +22,7 @@ class Statistic extends StatelessWidget {
     }
 
     Widget toggleButton() {
-      var listTextTabToggle = ["일일 통계", "전체 통계"];
+      var listTextTabToggle = ["월별 통계", "전체 통계"];
       return Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
