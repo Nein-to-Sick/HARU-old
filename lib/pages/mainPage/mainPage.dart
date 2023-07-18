@@ -1,6 +1,6 @@
 import 'package:cap_stone_project/provider/missonProvider.dart';
 import 'package:cap_stone_project/provider/statisticState.dart';
-import 'package:cap_stone_project/pages/mainPage/statistic.dart';
+import 'package:cap_stone_project/pages/mainPage/statistic/statistic.dart';
 import 'package:flutter/material.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:provider/provider.dart';

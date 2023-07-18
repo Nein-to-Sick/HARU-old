@@ -2,7 +2,7 @@ import 'package:cap_stone_project/Theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:liquid_progress_indicator_v2/liquid_progress_indicator.dart';
 
-import '../../components/customRadarChart.dart';
+import '../../../components/customRadarChart.dart';
 
 class MonthlyStatistic extends StatelessWidget {
   const MonthlyStatistic({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class MonthlyStatistic extends StatelessWidget {
             // Defaults to the current Theme's accentColor.
             backgroundColor: Colors.white,
             // Defaults to the current Theme's backgroundColor.
-            borderColor: Colors.grey.shade300,
+            borderColor: AppColors.HARUGreyscale[50] ?? Colors.white,
             borderWidth: 5.0,
             direction: Axis.vertical,
             // The direction the liquid moves (Axis.vertical = bottom to top, Axis.horizontal = left to right). Defaults to Axis.vertical.
@@ -58,10 +58,10 @@ class MonthlyStatistic extends StatelessWidget {
         labels: labels,
         values: values,
         maxValue: maxValue,
-        lineColor: Colors.grey.shade300,
+        lineColor: AppColors.HARUGreyscale[50] ?? Colors.white,
         //Color(0xffF4F4F4),
-        dataPointColor: AppColors.HARUSecondary,
-        dataLineColor: AppColors.HARUSecondary[50] ?? Colors.white // Add this line for the data line color
+        dataPointColor: AppColors.HARUSecondary[500] ?? Colors.white,
+        dataLineColor: AppColors.HARUSecondary[200] ?? Colors.white // Add this line for the data line color
       ),
     );
   }
@@ -73,6 +73,31 @@ class MonthlyStatistic extends StatelessWidget {
         padding: const EdgeInsets.only(left: 24.0, right: 24),
         child: ListView(
           children: <Widget>[
+            const SizedBox(height: 10,),
+
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: AppColors.HARUSecondary,
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.fromLTRB(16, 5, 10, 5),
+                    child: Row(
+                      children: [
+                        Text("23.06.18 ~ 23.07.18", style: TextStyle(fontSize: 15),),
+                        SizedBox(width: 3,),
+                        Icon(Icons.keyboard_arrow_down, color: Colors.white, size: 27,),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 25,),
             const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(

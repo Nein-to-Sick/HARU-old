@@ -1,8 +1,8 @@
 import 'package:cap_stone_project/Theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../components/FAProgressBar.dart';
-import '../../provider/statisticState.dart';
+import '../../../components/FAProgressBar.dart';
+import '../../../provider/statisticState.dart';
 
 class StatisticBody extends StatelessWidget {
   const StatisticBody({Key? key}) : super(key: key);
