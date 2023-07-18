@@ -6,14 +6,19 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 Future<void> userInfoFirebaseUpdate(BuildContext context) async {
+  int age;
   DateTime now = DateTime.now();
   DateTime? birthday =
       Provider.of<UserInfoValueModel>(context, listen: false).birthday;
-  int age = now.year - birthday!.year;
+  if (birthday == null) {
+    age = 0;
+  } else {
+    age = now.year - birthday.year;
 
-  if (now.month > birthday.month ||
-      (now.month == birthday.month && now.day >= birthday.day)) {
-    age++;
+    if (now.month > birthday.month ||
+        (now.month == birthday.month && now.day >= birthday.day)) {
+      age++;
+    }
   }
 
   final userCollection = FirebaseFirestore.instance.collection("users");

@@ -2,7 +2,6 @@ import 'package:cap_stone_project/components/birthdate_input.dart';
 import 'package:cap_stone_project/components/gender_input.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/provider/user_info_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:wrapped_korean_text/wrapped_korean_text.dart';
 

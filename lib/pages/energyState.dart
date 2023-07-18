@@ -86,7 +86,8 @@ class _EnergyStateState extends State<EnergyState> {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 40.0, right: 40, top: 50),
+                    padding:
+                        const EdgeInsets.only(left: 40.0, right: 40, top: 50),
                     child: Container(
                       height: 50,
                       padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -123,10 +124,9 @@ class _EnergyStateState extends State<EnergyState> {
                 ],
               ),
             ),
-            
             NextButton(
               onTap: () {
-                DatabaseService().storeState((progress / 20 + 1).round());
+                //DatabaseService().storeState((progress / 20 + 1).round());
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (context) => const MainPage()),

@@ -5,8 +5,12 @@ import 'package:provider/provider.dart';
 
 void birthDateInput(BuildContext context) async {
   final userInfoModel = Provider.of<UserInfoValueModel>(context, listen: false);
+  DateTime? selectedDate = (userInfoModel.birthday == null)
+      ? DateTime.now()
+      : userInfoModel.birthday;
+
   return showDialog(
-    barrierDismissible: true,
+    barrierDismissible: false,
     context: context,
     builder: (context) {
       return Dialog(
@@ -15,7 +19,7 @@ void birthDateInput(BuildContext context) async {
         ),
         child: Container(
           height: 300,
-          width: 750,
+          width: 800,
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.background,
             borderRadius: BorderRadius.circular(50.0),
@@ -23,7 +27,13 @@ void birthDateInput(BuildContext context) async {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('생일을 입력해주세요'),
+              const Text(
+                '생일을 입력해주세요',
+                style: TextStyle(
+                  fontSize: 24,
+                  color: Colors.black,
+                ),
+              ),
               DatePickerWidget(
                 looping: false,
                 firstDate: DateTime(1900, 01, 01),
@@ -33,14 +43,27 @@ void birthDateInput(BuildContext context) async {
                 locale: DatePicker.localeFromString('KO'),
                 onChange: (DateTime newDate, _) {
                   userInfoModel.userBirthDateUpdate(newDate);
-                },
-                onConfirm: (DateTime newDate, _) {
-                  userInfoModel.userBirthDateUpdate(newDate);
+                  selectedDate = newDate;
                 },
                 pickerTheme: DateTimePickerTheme(
                   itemTextStyle:
                       const TextStyle(color: Colors.black, fontSize: 20),
                   dividerColor: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  userInfoModel.userBirthDateUpdate(selectedDate);
+                  Navigator.of(context).pop();
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.primary),
+                child: const Text(
+                  "확인",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600),
                 ),
               ),
             ],
@@ -49,71 +72,4 @@ void birthDateInput(BuildContext context) async {
       );
     },
   );
-}
-
-class BirthdayField extends StatefulWidget {
-  const BirthdayField({super.key});
-
-  @override
-  _BirthdayFieldState createState() => _BirthdayFieldState();
-}
-
-class _BirthdayFieldState extends State<BirthdayField> {
-  DateTime _selectedDate = DateTime.now();
-  late TextEditingController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: _controller,
-      keyboardType: TextInputType.datetime,
-      decoration: InputDecoration(
-        labelText: '생일',
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.outline,
-          ),
-          borderRadius: BorderRadius.circular(50),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.primary,
-            width: 2,
-          ),
-          borderRadius: BorderRadius.circular(50),
-        ),
-        suffixIcon: IconButton(
-          icon: const Icon(Icons.calendar_today),
-          onPressed: _showDatePicker,
-        ),
-      ),
-      readOnly: true,
-      onTap: _showDatePicker,
-    );
-  }
-
-  void _showDatePicker() async {
-    final DateTime? date = await showDatePicker(
-      context: context,
-      initialDate: _selectedDate,
-      firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
-    );
-
-    if (date != null) {
-      setState(
-        () {
-          _selectedDate = date;
-          _controller.text =
-              '${_selectedDate.year}년 / ${_selectedDate.month}월 / ${_selectedDate.day}일';
-        },
-      );
-    }
-  }
 }
