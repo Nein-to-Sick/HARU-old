@@ -1,8 +1,6 @@
 import 'package:cap_stone_project/components/daily_emotion_dialog.dart';
-import 'package:cap_stone_project/services/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../model/mission.dart';
 import '../../provider/missonProvider.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,7 +13,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final controller = PageController(viewportFraction: 0.8, keepPage: true);
   List<List<String>>? mission;
-   int stateIndex = 0;
 
   @override
   void initState() {
@@ -24,9 +21,6 @@ class _HomePageState extends State<HomePage> {
         setState(() {
           mission = value;
         }));
-    DatabaseService().getState().then((value) => setState(() {
-      stateIndex = value;
-    }));
   }
 
   @override
@@ -219,7 +213,7 @@ class _HomePageState extends State<HomePage> {
                         Padding(
                           padding: const EdgeInsets.only(right: 50.0),
                           child: Image.asset(
-                            "./assets/images/haru/$stateIndex.png",
+                            "./assets/images/haru/1.png",
                             scale:3,
                           ),
                         ),

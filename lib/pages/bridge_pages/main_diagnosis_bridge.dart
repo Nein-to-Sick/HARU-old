@@ -1,5 +1,5 @@
 import 'package:cap_stone_project/pages/bridge_pages/while_loading_page.dart';
-import 'package:cap_stone_project/pages/energyState.dart';
+import 'package:cap_stone_project/%EC%95%88%EC%93%B0%EB%8A%94%20%ED%8E%98%EC%9D%B4%EC%A7%80/energyState.dart';
 import 'package:cap_stone_project/pages/mainPage/mainPage.dart';
 import 'package:cap_stone_project/pages/self_diagnosis/self_diagnosis_start_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -20,7 +20,7 @@ class BridgPage extends StatelessWidget {
           return const MyLoadingPage();
         } else {
           return (snapshot.data)
-              ? const EnergyState()
+              ? const MainPage()
               : const SelfDiagnosisStartPage();
         }
       },

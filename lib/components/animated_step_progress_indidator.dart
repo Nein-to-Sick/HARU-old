@@ -1,7 +1,7 @@
 import 'package:cap_stone_project/pages/self_diagnosis/provider/self_diagnosis_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:provider/provider.dart';
+import 'FAProgressBar.dart';
 
 class AnimatedProgressBar extends StatelessWidget {
   const AnimatedProgressBar({super.key});
